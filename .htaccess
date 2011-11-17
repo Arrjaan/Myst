@@ -1,0 +1,15 @@
+RewriteEngine On
+
+RewriteBase /
+
+RewriteCond $1 ^(main\.php|PHP)
+RewriteRule ^(.*)$ index.php/access_denied/$1 [PT,L]
+
+RewriteCond $1 ^(autoindex\.txt|index\.php|opmaak\.css|favicon\.ico|images|img|js|html|files|apple|api|CRMpanel|crmpanel|test\.php)
+RewriteRule ^(.*)$ - [PT]
+
+RewriteCond %{HTTP_HOST} ^adfari\.com [NC] 
+RewriteRule ^(.*)$ index.php/$1 [PT,L]
+
+RewriteCond %{HTTP_HOST} ^www\.adfari\.com [NC] 
+RewriteRule ^(.*)$ index.php/$1 [PT,L]
