@@ -29,3 +29,23 @@ Site - De website zoals gebruikers en de beheerder die te zien krijgen.
 Gebruikers - Bezoekers van de website.
 Beheerder - De persoon die de applicatie op zijn server geïnstalleerd heeft.
 Add-on - Een uitbreidingspakket of extensie dat kan worden toegevoegd aan de applicatie. De beheerder kan zelf kiezen welke add-ons hij wel en niet installeert.
+
+== Git Handeleiding == 
+
+~~ Voor je gaat werken ~~ 
+- Start Git
+- In console:
+ cd Myst
+ git pull origin master
+ 
+~~ Bestanden uploaden ~~ 
+- In console:
+ git stage "bestand1.php" "bestand2.php"
+ git commit -m "Aanpassing die je hebt gedaan"
+ git push origin master
+ 
+ ~~ Bestand toevoegen/verwijderen ~~ 
+- In console:
+ git add/rm "bestand.php"
+ git commit -m "Bestand toegevoegd/verwijderd"
+ git push origin master
