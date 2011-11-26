@@ -1,4 +1,4 @@
-== PROJECT MYST ==
+﻿== PROJECT MYST ==
 
 ~~ Projectomschrijving ~~
 Een webapplicatie waarmee je een eigen website kan maken. Het zal een Content Managing System worden waar niet alleen hele simpele websites gemaakt kunnen worden, maar ook ingewikkelde websites door middel van add-ons. Daarnaast zal een sterke nadruk liggen op technieken als jQuery en AJAX voor een betere gebruikerservaring.
@@ -48,4 +48,20 @@ Add-on - Een uitbreidingspakket of extensie dat kan worden toegevoegd aan de app
 - In console:
  git add/rm "bestand.php"
  git commit -m "Bestand toegevoegd/verwijderd"
+ git push origin master
+
+ ~~ Bestand terughalen ~~
+- In console:
+ git pull origin master
+ git log --oneline
+ > zoek de code van de commit die terug geplaatst moet worden (HEAD voor de laatste)
+ > druk op "q"
+ git revert "code"
+ > waarschijnlijk krijg je een melding nu, druk twee keer op "q"
+ git status
+ > kijk goed welk(e) bestand(en) je terug wil zetten!
+ git checkout -- "bestanden die niet terug gezet moeten worden"
+ git checkout -- HEAD "bestanden die niet verwijderd moeten worden"
+ > als je alleen de/het bedoelde bestand(en) over hebt mag je verder":
+ git commit -m "reden"
  git push origin master
