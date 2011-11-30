@@ -7,4 +7,6 @@ class Page {
 	}
 }
 
+new Page ();
+
 ?>
