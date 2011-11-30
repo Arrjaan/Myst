@@ -1,0 +1,9 @@
+~~ Taakverdeling ~~
+Core-programmeur (PHP + MySQL) - Arjan (+ ?????????) [Een core-programmeur houdt zich bezig met de basisfuncties van de applicatie.]
+Frontend-programmeur (HTML + PHP + AJAX + jQuery + Javascript) - ????????? ["Frontend" is het gedeelte van de applicatie dat de bezoekers van de site te zien krijgen.]
+Backend-programmeur (HTML + PHP + AJAX + Javascript) - ????????? ["Backend" is het gedeelte van de applicatie dat de beheerder van de site te zien krijgt.]
+Layout-programmeur (HTML + CSS + PHP) - ????????? [De layout-programmeur houdt zich bezig met het design van de applicatie en het systeem dat het design van de applicatie kan verbeteren.]
+Addon-programmeur  (HTML + PHP) - ????????? [De addon-programmeur houdt zich bezig met het ontwikkelen van add-ons die kunnen worden toegevoegd aan de applicatie.]
+
+Kies zelf allemaal maar waaraan je graag zou willen werken. Probeer minstens twee velden te kiezen, dan heb je altijd wat te doen. Tussen haakjes staan de programmeertalen die zullen worden gebruikt. Je hoeft ze niet allemaal te kennen!
+Lijkt een taak je leuk, zet dan gweoon je naam bij de vraagtekens.
