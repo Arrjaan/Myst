@@ -10,6 +10,10 @@ class head {
 			</head>
 
 		<body>';
+		
+	function show() {
+		echo $start;
+	}
 }
 
 class bottom {
