@@ -9,6 +9,8 @@ end first setup information */
 
 versie 0.0.03: 2-12-2011:
 - Scriptcontrole via database.
+- Titel
+- Beschrijving
 
 end logfile */
 
