@@ -17,6 +17,7 @@ include("000000.php");
 $head = new Head();
 $content = $head->content;
 $head->show($content['naam']);
+$head->description($content['description']);
 
 
 $e = new Bottom;

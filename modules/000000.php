@@ -45,6 +45,10 @@ class Head {
 					html, body {
 						height: 100%;
 					}
+					.description {
+						height: 1em;
+						padding-left: 60px;
+					}
 					.wrapper {
 						min-height: 100%;
 						height: auto !important;
@@ -55,16 +59,25 @@ class Head {
 						margin-left: 1em;
 						height: 2em;
 					}
+					h1 {
+						padding: 20px 50px 10px 50px;
+					}
 				</style>
 			</head>
 
 		<body>
 			<div class="wrapper">
-				<h1>Setup new <?php echo $title; ?></h1>
+				<h1>Setup new <?php echo $title; ?><br /><hr></h1>
 			';
 		
 	function show($title) {
 		eval ("?>".$this->start);
+	}
+	
+	public $description = '<div class="description"><?php echo $description; ?></div>';
+	
+	function description($description) {
+		eval ("?>".$this->description);
 	}
 }
 
