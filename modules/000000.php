@@ -1,13 +1,43 @@
 <?php
-// module-functies \\
-	$content = array("title"=>"module-functies","version"=>"0.0.2");
+/* first setup information:
+1. er moet een tabel zijn die de gegevens van de bestanden bij houdt,
+dwz: versiecontrole etc.
 
-class head {
+end first setup information */
+
+/* logfile:
+
+versie 0.0.03: 2-12-2011:
+- Scriptcontrole via database.
+
+end logfile */
+
+
+// module-functies \\
+
+class Head {
+	
+	public $content;
+	function __construct() {
+		$db = new Mysqli("adfari.com","myserver_myst","eq,yQ_cL6-T}","myserver_myst");
+		$split = substr($_SERVER['SCRIPT_FILENAME'],-10,6);
+		$result = $db->query("SELECT * FROM `files` WHERE nummer='$split'");
+		if($result) {
+			while($con = $result->fetch_assoc()) {
+			$this->content = $con;
+			}
+			
+		}
+		else{
+			echo 'Er is een fout opgetreden in de database: '. $db->error .'';
+		}
+	}
+
 	public $start = '
 		<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 		<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 			<head>
-				<title><?php echo $title; ?></title>
+				<title>Setup new <?php echo $title; ?></title>
 				<style type="text/css">
 				    * {
 						margin: 0;
@@ -29,14 +59,16 @@ class head {
 			</head>
 
 		<body>
-			<div class="wrapper">';
+			<div class="wrapper">
+				<h1>Setup new <?php echo $title; ?></h1>
+			';
 		
 	function show($title) {
 		eval ("?>".$this->start);
 	}
 }
 
-class bottom {
+class Bottom {
 	public $end = '
 				<div class="push"></div>
 			</div>
