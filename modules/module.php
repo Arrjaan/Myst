@@ -1,6 +1,6 @@
 <?php
 
-class Module {
+class Module { // Moet gelijk zijn aan bestandsnaam en moet beginnen met hoofdletter!
 	public $name = 'Voorbeeld Module'; // Volledige naam module
 	public $modid = 000001; // Id van de module, voor in centrale database.
 	public $version = '0.1'; // Versienummer
