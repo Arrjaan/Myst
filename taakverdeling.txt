@@ -1,8 +1,8 @@
 De verschillende taken in het algemeen: 
 
  =TAAK=               =VULLING=   =OPGAVE=
-Projectmanageur     - ( 2 / 2 ) - Arjan, Peter.
-Kernprogrammeur     - ( 2 / 2 ) - Arjan, Peter
+Projectmanager       - ( 2 / 2 ) - Arjan, Peter.
+Kernprogrammeur      - ( 2 / 2 ) - Arjan, Peter
 Frontend-programmeur - ( 0 / 1 ) - OPEN
 Backend-programmeur  - ( 0 / 3 ) - OPEN
 Layout-programmeur   - ( 0 / 2 ) - OPEN
