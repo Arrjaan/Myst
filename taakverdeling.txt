@@ -1,15 +1,15 @@
 De verschillende taken in het algemeen: 
 
  =TAAK=               =VULLING=   =OPGAVE=
-Project manager     - ( 2 / 2 ) - Arjan, Peter.
-Core-programmer     - ( 2 / 2 ) - Arjan, Peter
-Frontend-programmer - ( 0 / 1 ) - OPEN
-Backend-programmer  - ( 0 / 3 ) - OPEN
-Layout-programmer   - ( 0 / 2 ) - OPEN
-Addon-programmer    - ( 0 / 4 ) - OPEN
+Projectmanageur     - ( 2 / 2 ) - Arjan, Peter.
+Kernprogrammeur     - ( 2 / 2 ) - Arjan, Peter
+Frontend-programmeur - ( 0 / 1 ) - OPEN
+Backend-programmeur  - ( 0 / 3 ) - OPEN
+Layout-programmeur   - ( 0 / 2 ) - OPEN
+Addon-programmeur    - ( 0 / 4 ) - OPEN
 
-*Wat doet een Project manager?
-Een Project manager zorgt dat er werk is en dat iedereen in de groep 
+*Wat doet een projectmanager?
+Een projectmanager zorgt dat er werk is en dat iedereen in de groep 
 weet wat hij of zij, in dit geval hij, kan doen.
 -Moeilijkheidsgraad:
 > N/A
@@ -20,8 +20,8 @@ weet wat hij of zij, in dit geval hij, kan doen.
 > Is goed in het formuleren van zinnen en weet precies waar de zin.
 > Al de bovengenoemde punten zijn nodig voor het in goede banen leiden van een project.
 
-*Wat doet een Core-programmer?
-Een core-programmer houdt zich bezig met de basisfuncties van de applicatie,
+*Wat doet een Kernprogrammeur?
+Een kernprogrammeur houdt zich bezig met de basisfuncties van de applicatie,
 hij zorgt dat alles in een goede harmonie volgens Jing en Jang samenwerkt.
 -Moeilijkheidsgraad:
 > Exert.
@@ -29,9 +29,9 @@ hij zorgt dat alles in een goede harmonie volgens Jing en Jang samenwerkt.
 > Uitgebreide kennis van PHP en MySQL.
 > Basiskennis HTML, AJAX, jQuery en Javascript.
 
-*Wat doet een Frontend-programmer?
+*Wat doet een Frontend-programmeur?
 Een Frontend-programmer zorgt voor een goed te gebruiken en simpele omgeving
-voor de bezoekers. Álles gaat voor, om het de bezoeker zo makkelijk mogelijk te maken.
+voor de bezoekers. ï¿½lles gaat voor, om het de bezoeker zo makkelijk mogelijk te maken.
 -Moeilijkheidsgraad:
 > Beginner/Gevorderde.
 -Benodigdheden:
