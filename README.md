@@ -1,6 +1,8 @@
-﻿== PROJECT MYST ==
+﻿PROJECT MYST
+=============
 
-~~ Projectomschrijving ~~
+Projectomschrijving
+-------
 Een webapplicatie waarmee je een eigen website kan maken. Het zal een Content Managing System worden waar niet alleen hele simpele websites gemaakt kunnen worden, maar ook ingewikkelde websites door middel van add-ons. Daarnaast zal een sterke nadruk liggen op technieken als jQuery en AJAX voor een betere gebruikerservaring.
 
 ~~ Specifieke eisen ~~
@@ -14,34 +16,40 @@ Een webapplicatie waarmee je een eigen website kan maken. Het zal een Content Ma
 - Alle onderdelen die niet noodzakelijk zijn voor het functioneren van de webapplicatie moeten worden ondergebracht in add-ons.
 
 
-~~ Woordenlijst ~~
+Woordenlijst
+-------
 Applicatie - Het hele systeem zoals wij die ontwikkelen. Alles bij elkaar dus.
 Site - De website zoals gebruikers en de beheerder die te zien krijgen.
 Gebruikers - Bezoekers van de website.
 Beheerder - De persoon die de applicatie op zijn server geïnstalleerd heeft.
 Add-on - Een uitbreidingspakket of extensie dat kan worden toegevoegd aan de applicatie. De beheerder kan zelf kiezen welke add-ons hij wel en niet installeert.
 
-== Git Handeleiding == 
+Git Handeleiding
+=============
 
-~~ Voor je gaat werken ~~ 
+Voor je gaat werken
+-------
 - Start Git
 - In console:
  cd Myst
  git pull origin master
  
-~~ Bestanden uploaden ~~ 
+Bestanden uploaden
+-------
 - In console:
  git stage "bestand1.php" "bestand2.php"
  git commit -m "Aanpassing die je hebt gedaan"
  git push origin master
  
- ~~ Bestand toevoegen/verwijderen ~~ 
+Bestand toevoegen/verwijderen
+-------
 - In console:
  git add/rm "bestand.php"
  git commit -m "Bestand toegevoegd/verwijderd"
  git push origin master
 
- ~~ Bestand terughalen ~~
+Bestand terughalen
+-------
 - In console:
  git pull origin master
  git log --oneline
@@ -56,6 +64,3 @@ Add-on - Een uitbreidingspakket of extensie dat kan worden toegevoegd aan de app
  > als je alleen de/het bedoelde bestand(en) over hebt mag je verder":
  git commit -m "reden"
  git push origin master
- 
-
-HOI
