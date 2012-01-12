@@ -1,15 +1,62 @@
-RewriteEngine On
+###################################################
+# Turn the RewriteEngine on.                      #
+###################################################
 
-RewriteBase /
+Options +FollowSymlinks
 
-RewriteCond $1 ^(main\.php|PHP)
-RewriteRule ^(.*)$ index.php/access_denied/$1 [PT,L]
+RewriteEngine on
 
-RewriteCond $1 ^(autoindex\.txt|index\.php|opmaak\.css|favicon\.ico|images|img|js|html|files|apple|api|CRMpanel|crmpanel|test\.php)
-RewriteRule ^(.*)$ - [PT]
+###################################################
+# Add a leading www to domain if one is missing.  #
+###################################################
+# If this rule is used, the rewriting stops here  #
+# and then restarts from the beginning with the   #
+# new URL                                         #
+###################################################
 
-RewriteCond %{HTTP_HOST} ^adfari\.com [NC] 
-RewriteRule ^(.*)$ index.php/$1 [PT,L]
+# RewriteCond %{HTTP_HOST} ^www\.
+# RewriteRule ^(.*)$ http://www.%{HTTP_HOST}/$1 [R=301,L]
 
-RewriteCond %{HTTP_HOST} ^www\.adfari\.com [NC] 
-RewriteRule ^(.*)$ index.php/$1 [PT,L]
+###################################################
+# Do not process images or CSS files further      #
+###################################################
+# No more processing occurs if this rule is       #
+# successful                                      #
+###################################################
+
+RewriteRule \.(css|jpe?g|gif|png)$ - [L]
+
+###################################################
+# Add a trailing slash if needed                  #
+###################################################
+# If this rule is used, the rewriting stops here  #
+# and then restarts from the beginning with the   #
+# new URL                                         #
+###################################################
+
+RewriteCond %{REQUEST_URI} ^/[^\.]+[^/]$
+RewriteRule ^(.*)$ http://%{HTTP_HOST}/$1/ [R=301,L]
+
+###################################################
+# Rewrite web pages to one master page            #
+###################################################
+# /somepage/            => index.php             #
+#                            ?page=somepage       #
+# /somesection/somepage => index.php             #
+#                            ?section=somesection #
+#                            &page=somepage       #
+# /somesection/somesub/somepage/                  #
+#                       => index.php             #
+#                            ?section=somesection #
+#                            &subsection=somesub  #
+#                            &page=somepage       #
+###################################################
+# Variables are accessed in PHP using             #
+# $_GET['section'], $_GET['subsection'] and       #
+# $_GET['page']                                   #
+###################################################
+# No more processing occurs if any of these rules #
+# are successful                                  #
+###################################################
+
+RewriteRule ^(.*)$ index.php/$1 [L]

@@ -1,7 +1,7 @@
 <?php
 $config['processor'] = '';
 $config['home'] = 'index';
-$config['rootdir'] = '';
+$config['rootdir'] = '/Myst';
 
 $config['host'] = 'localhost';
 $config['user'] = 'encodors';
