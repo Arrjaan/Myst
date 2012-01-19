@@ -1,20 +1,18 @@
 <?php
 
-error_reporting(E_ALL);
+error_reporting(E_ERROR);
 date_default_timezone_set('Europe/Amsterdam');
 session_start();
 
 require('config.inc.php');
 require('main.php');
 
-/* Dit stuk moet echt snel herschreven worden! */
+$page = $_GET['p'];
+if ( empty($page) ) $page = 'index';
 
-$dir = @explode("/",$_SERVER['PATH_INFO']);
-
-if ( empty($dir[1]) ) redirect('http://'.$_SERVER['HTTP_HOST'].$config['rootdir'].'/'.$config['processor'].$config['home']);
-if ( file_exists('php/'.$dir[1].'.php') ) {
-	error_reporting(E_ERROR);
-	require('php/'.$dir[1].'.php');
+if ( empty($page) ) redirect('http://'.$_SERVER['HTTP_HOST'].$config['rootdir'].'/'.$config['processor'].$config['home']);
+if ( file_exists('php/'.$page.'.php') ) {
+	require('php/'.$page.'.php');
 }
 else echo 'ERRROR!';
 

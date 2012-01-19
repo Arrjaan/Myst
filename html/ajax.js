@@ -1,24 +1,34 @@
-	/* attach a submit handler to the form */
-$("#admin").submit(function(event) {
+var xmlhttp;
 
-    /* stop form from submitting normally */
-    event.preventDefault(); 
-        
-    /* get some values from elements on the page: */
-    var $form = $( this ),
-        value = $form.find( 'input[name="option"]' ).val(),
-        url = $form.attr( 'action' );
+function createAJAX() {
+	if (window.XMLHttpRequest) {
+		return new XMLHttpRequest();
+	}
+	if (window.ActiveXObject) {
+		return new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	return null;
+}
+		
+function edit() {
+	xmlhttp=createAJAX();
+	xmlhttp.onreadystatechange=stateChanged;
+	xmlhttp.open("GET","php/update.php?title",true);
+	xmlhttp.send(null);
+}
 
-    /* Send the data using post and put the results in a div */
-    $.post( url, { option: value },
-		function( data ) {
-			$( "#title" ).empty().append( data );
-		}
-    );
-});
-
-$('#edit').click(function() {
-	$.get("/php/update.php", { title: "x" }, function(data){
-		( "#title" ).empty().append( data );
-	});
-});
+function saveEdit()
+{
+	var option=encodeURIComponent(document.getElementById("option").value);
+	xmlhttp=createAJAX();
+	xmlhttp.onreadystatechange=stateChanged;
+	xmlhttp.open("POST","php/update.php",true);
+	xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+	xmlhttp.send("option="+option);
+}
+		
+function stateChanged() {
+	if (xmlhttp.readyState==4 && xmlhttp.responseText != "") {
+		document.getElementById("title").innerHTML=xmlhttp.responseText;
+	}
+}

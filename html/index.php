@@ -2,11 +2,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 	<head>
 		<title>Myst</title>
-		<link href="http://217.121.7.218/Myst/html/all_browsers.css" rel="stylesheet" type="text/css" />
+		<link href="http://localhost/Myst/html/all_browsers.css" rel="stylesheet" type="text/css" />
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-		<script type="text/javascript" src="http://217.121.7.218/Myst/html/ajax.js"></script>
-		<script type="text/javascript" src="http://217.121.7.218/Myst/html/jquery.js"></script>
-		<link rel="shortcut icon" href="http://217.121.7.218/Myst/html/img/favicon.ico" />
+		<script type="text/javascript" src="http://localhost/Myst/html/ajax.js"></script>
+		<script type="text/javascript" src="http://localhost/Myst/html/jquery.js"></script>
+		<link rel="shortcut icon" href="http://localhost/Myst/html/img/favicon.ico" />
 	</head>
 
 	<body>
