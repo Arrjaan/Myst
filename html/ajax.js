@@ -32,3 +32,7 @@ function stateChanged() {
 		document.getElementById("title").innerHTML=xmlhttp.responseText;
 	}
 }
+
+function onEnter(evt){
+	if(evt.keyCode==13) saveEdit();
+}
