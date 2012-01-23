@@ -10,26 +10,15 @@
 	</head>
 
 	<body>
-		<div id="head">Wielrennervereniging HLB
-			<div id="head_img"></div>
-		</div>
-		
-		<div id="menu">
-			<h1>Menu</h1>
+		<div id="head">Titel</div>
 			
-			<ul class="menu">
+		<ul id="menu">
 			<li><a href="javascript:void(0)" onclick="load('home')">Home</a></li>
 			<li><a href="javascript:void(0)" onclick="load('nieuws')">Nieuws</a></li>
 			<li><a href="javascript:void(0)" onclick="load('agenda')">Agenda</a></li>
 			<li><a href="javascript:void(0)" onclick="load('contact')">Contact</a></li>
-			</ul>
-			<br />
-			<ul class="menu">
-			<li><a href="javascript:void(0)" onclick="load('sport')">Over Wielrennen</a></li>
-			</ul>
-			
-		</div>
-		
+		</ul>
+					
 		<div id="content">
 			
 			<?php
