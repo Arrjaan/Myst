@@ -4,7 +4,7 @@ ob_start();
 
 ?>
 <span id="title">
-	<h1><a href="javascript:edit()">Titel</a></h1>
+	<h1><a class="title" href="javascript:edit()">Titel</a></h1>
 </span>
 
 <script src="/Myst/html/ajax.js">

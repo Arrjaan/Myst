@@ -8,6 +8,13 @@ a:visited { color: #3300CC; text-decoration: none; }
 a:hover { color: #CC9900; text-decoration: none; }
 a:active { color: #CC9900; text-decoration: none; }
 
+.title {
+	font-size: 17pt;
+	color: #FF6600;
+}
+
+a:hover { color: #CC9900; text-decoration: none; }
+
 body {
 	font-family: Calibri, Veranda, Arial, serif;
 	font-size: 13pt;
