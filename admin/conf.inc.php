@@ -248,10 +248,10 @@ print('
 //mainnav
 	//home
 	if($a_page == "home" OR $a_page == "server" OR $a_page == "website") {
-		print('<li><a href="?a_page=home" class="active">Home</a></li>');
+		print('<li><a href="\home" class="active">Home</a></li>');
 	}
 	else {
-		print('<li><a href="?a_page=home">Home</a></li>');
+		print('<li><a href="\home">Home</a></li>');
 	}
 	//berichten
 	if($a_page == "berichten" OR $a_page == "nieuw_bericht" OR $a_page == "bewerk_bericht" OR $a_page == "verwijder_bericht") {

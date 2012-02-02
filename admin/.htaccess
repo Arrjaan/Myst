@@ -2,10 +2,9 @@ Options +FollowSymlinks
 RewriteEngine on
 
 RewriteRule ^contact index.php?page=contact
-RewriteRule ^home index.php?page=home
+RewriteRule ^home index.php?a_page=home
 RewriteRule ^login.css 9C75.php
 RewriteRule ^.htaccess index.php
-RewriteRule ^adminportal/Home index.php
 
 <Files .htaccess>
 	order deny,allow
