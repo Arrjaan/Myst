@@ -75,12 +75,16 @@
 				}
 		}
 	}
+	
+	if ($_POST['send'] == "receive") {
+		exit;
+	}
 
 	if($_SESSION['admin_on'] != "admin_logged_on") {
 
 		$_SESSION['include_css'] = "include";
 		print('<html><head><link rel="stylesheet" type="text/css" href="login.css" /><script type="text/javascript" src="js/functions.js"></script></head><body>');
-		
+		$_SESSION['include_css'] = "";
 		print("	<div class='blok'>
 					<div class='blok_key'>Logo<br />Myst.nl</div>
 					<div class='blok_tekst'>Beheerderspaneel van MystCMS,<br /> graag eerst inloggen.</div>
