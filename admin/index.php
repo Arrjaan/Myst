@@ -82,6 +82,10 @@
 
 	if($_SESSION['admin_on'] != "admin_logged_on") {
 
+		header('HTTP/1.1 303 See Other');
+		header('Location: http://127.0.0.1/Myst/');
+		
+		/*
 		$_SESSION['include_css'] = "include";
 		print('<html><head><link rel="stylesheet" type="text/css" href="login.css" /><script type="text/javascript" src="js/functions.js"></script></head><body>');
 		$_SESSION['include_css'] = "";
@@ -108,7 +112,7 @@
 				</div>");
 
 		print('</body></html>');
-		
+		*/
 	}
 
 	elseif($_SESSION['admin_on'] == "admin_logged_on") {
