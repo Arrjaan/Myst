@@ -4,8 +4,8 @@
 		<title>Myst</title>
 		<link href="http://localhost/Myst/html/all_browsers.css" rel="stylesheet" type="text/css" />
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+		<script src="http://cdn.jquerytools.org/1.2.6/full/jquery.tools.min.js"></script>
 		<script type="text/javascript" src="http://localhost/Myst/html/ajax.js"></script>
-		<script type="text/javascript" src="http://localhost/Myst/html/jquery.js"></script>
 		<link rel="shortcut icon" href="http://localhost/Myst/html/img/favicon.ico" />
 	</head>
 
@@ -15,13 +15,11 @@
 			
 		<ul id="menu">
 			<li><a href="javascript:void(0)" onclick="load('home')">Home</a></li>
-			<li><a href="javascript:void(0)" onclick="load('nieuws')">Nieuws</a></li>
-			<li><a href="javascript:void(0)" onclick="load('agenda')">Agenda</a></li>
-			<li><a href="javascript:void(0)" onclick="load('contact')">Contact</a></li>
+			<li><a href="javascript:void(0)" class="adminlogin" rel="#prompt">Admin</a></li>
+
 		</ul>
 					
 		<div id="content">
-			Hallo
 			<?php
 						
 			//Doorverwijzing bij http-fout.
@@ -33,13 +31,33 @@
 			<?php
 			//Content printen.
 				echo $content;
-			?>	
-										
+			?>								
 		</div>
 	</div>
 		
 		<div id="onderkant">
 		Deze site is gemaakt met Myst
+		</div>
+		
+		<div class="dialog" id="prompt">
+			<h2>Inloggen</h2>
+
+			<form>
+				<table border="0">
+					<tr>
+						<td>Gebruikersnaam:&nbsp;</td>
+						<td><input id="username" /></td>
+					</td>
+					<tr>
+						<td>Wachtwoord: </td>
+						<td><input type="password" id="password" /></td>
+					</tr>
+				</table>
+				<br />
+				<button type="submit"> Inloggen </button>
+				<button type="button" class="close"> Annuleren </button>
+			</form>
+			<br />
 		</div>
 	</body>
 </html>

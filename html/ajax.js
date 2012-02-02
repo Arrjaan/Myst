@@ -36,3 +36,14 @@ function stateChanged() {
 function onEnter(evt){
 	if(evt.keyCode==13) saveEdit();
 }
+
+$(document).ready(function() {
+	$(".adminlogin").overlay({
+		mask: {
+			color: '#ebecff',
+			loadSpeed: 200,
+			opacity: 0.9
+		},
+		closeOnClick: false
+	});
+});
