@@ -19,7 +19,7 @@
 
 		</ul>
 					
-		<div id="content">
+		<div id="content">		
 			<?php
 						
 			//Doorverwijzing bij http-fout.
@@ -43,6 +43,7 @@
 			<h2>Inloggen</h2>
 
 			<form>
+				<span id="loginmsg"></span>
 				<table border="0">
 					<tr>
 						<td>Gebruikersnaam:&nbsp;</td>

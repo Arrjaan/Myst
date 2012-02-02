@@ -45,7 +45,6 @@
 					$logon = mysql_query("SELECT password FROM users WHERE id='" . $logon['id'] . "'");
 					$logon = mysql_fetch_assoc($logon);
 					if($logon['password'] == md5($_POST['pass'])) {
-						print(" ingelogt ");
 						
 						$_SESSION['admin_on'] = "admin_logged_on";
 						$_SESSION['id'] = $logon['id'];
@@ -54,13 +53,14 @@
 						$sort = 'login';
 						save_log($sort,$a_page);
 						
+						die("SUCCESS");
 					}
 					else {
-						//print(" wachtwoord klopt niet ");
+						die("FAILURE");
 					}
 				}
 				else {
-					;
+					die("FAILURE");
 				}
 				
 				if($_SESSION['admin_on'] != "admin_logged_on") {
@@ -69,6 +69,7 @@
 					//foute login, opslaan
 					$sort = 'login_fail';
 					save_log($sort,$a_page);
+					die("FAILURE");
 				}
 				else {
 					;
