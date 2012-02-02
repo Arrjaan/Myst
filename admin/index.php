@@ -74,16 +74,13 @@
 					;
 				}
 		}
-	}
-	
-	if ($_POST['send'] == "receive") {
 		exit;
 	}
-
+	
 	if($_SESSION['admin_on'] != "admin_logged_on") {
 
-		header('HTTP/1.1 303 See Other');
-		header('Location: http://127.0.0.1/Myst/');
+		//header('HTTP/1.1 303 See Other');
+		//header('Location: http://127.0.0.1/Myst/');
 		
 		/*
 		$_SESSION['include_css'] = "include";
@@ -99,7 +96,7 @@
 		else {
 			print("<br /><br />");
 		}
-			print("		<form name='login' id='login' action='adminportal.php?a_page=home' method='post'>
+			print("		<form name='login' id='login' action='home' method='post'>
 						Gebruikersnaam:<br /><input class='blok_gebruiker' type='text' name='user' value='gebruiker' /><br />
 						<br />
 						Wachtwoord:<br /><input class='blok_wachtwoord' type='password' name='pass' value='wachtwoord' /><br />

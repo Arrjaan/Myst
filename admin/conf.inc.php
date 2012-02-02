@@ -248,10 +248,10 @@ print('
 //mainnav
 	//home
 	if($a_page == "home" OR $a_page == "server" OR $a_page == "website") {
-		print('<li><a href="\home" class="active">Home</a></li>');
+		print('<li><a href="home" class="active">Home</a></li>');
 	}
 	else {
-		print('<li><a href="\home">Home</a></li>');
+		print('<li><a href="home">Home</a></li>');
 	}
 	//berichten
 	if($a_page == "berichten" OR $a_page == "nieuw_bericht" OR $a_page == "bewerk_bericht" OR $a_page == "verwijder_bericht") {
@@ -293,7 +293,7 @@ print('
 	print('        		
 		<div id="sidebar">
 			<ul class="sideNav">
-				<li><a href="?a_page=home"'); if($a_page == "home") { print('class="active"'); } else { ; } print('>Home</a></li>
+				<li><a href="home"'); if($a_page == "home") { print('class="active"'); } else { ; } print('>Home</a></li>
 				<li><a href="?a_page=server"'); if($a_page == "server") { print('class="active"'); } else { ; } print('>Serverstatus</a></li>
 				<li><a href="?a_page=website"'); if($a_page == "website") { print('class="active"'); } else { ; } print('>Websitestatus</a></li>
 			</ul>
@@ -302,7 +302,7 @@ print('
 		<!-- // #sidebar -->
 		
 		<!-- h2 stays for breadcrumbs -->
-		<h2><a href="?a_page=home"'); if($a_page == "home") { print('class="active">Home</a>'); } 
+		<h2><a href="home"'); if($a_page == "home") { print('class="active">Home</a>'); } 
 		else { 
 			print('>Home</a> &raquo; <a href="?a_page=' . $a_page . '" class="active">'); 
 			if($a_page == "server") { print('Serverstatus'); } 
