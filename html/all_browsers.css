@@ -8,18 +8,11 @@ a:visited { color: #3300CC; text-decoration: none; }
 a:hover { color: #CC9900; text-decoration: none; }
 a:active { color: #CC9900; text-decoration: none; }
 
-.title {
-	font-size: 17pt;
-	color: #FF6600;
-}
-
-a:hover { color: #CC9900; text-decoration: none; }
-
 body {
 	font-family: Calibri, Veranda, Arial, serif;
 	font-size: 13pt;
-	background-color: grey;
-	color: white;
+	background-color: #DCDCDC;
+	color: #696969;
 }
 
 h1 { 
@@ -54,16 +47,19 @@ p,ul {
 .menu { 
 	margin-left: 0px;
 }
+#wrap {min-height: 100%;}
 
 #head {
 	background-image: url(img/bg.png);
-	color: #F8F8FF;
+	color: #1E90FF;
 	padding-left: 50px;
 	padding-top: 20px;
 	height: 64px;
 	font-size: 30pt;
 }	
 
+
+html, body {height: 100%;}
 #head_img {
 	background-image: url(img/newheader.jpg);
 	background-position: right;
@@ -75,10 +71,25 @@ p,ul {
 
 #content { 
 	margin-top: 50px;
-	margin-left: 275px;
+	margin-left: 75px;
 	margin-right: 50px;
-	position: absolute;
+	margin-bottom: 0px;
+	position: relative;
 	width: 77%;
+	overflow:auto;
+	padding-bottom: 150px;
+	border: 1px solid black;
+}
+#onderkant{
+	background-image: url(img/ft.png);
+	color: white;
+	padding-left: 50px;
+	padding-top: 20px;
+	font-size: 10pt;
+	position: relative;
+	margin-top: -20px; /* negative value of footer height */
+	height: 20px;
+	clear:both;
 }
 
 ul#menu
