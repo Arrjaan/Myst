@@ -7,6 +7,7 @@
 ########################
 */
 
+if(!isset($_POST['logon'])) {
 	include("conf.inc.php");
 
 	if(isset($_GET['a_page'])) {
@@ -20,18 +21,24 @@
 	
 
 	if(!isset($_SESSION['admin_on'])) {
-		$_SESSION['admin_on'] = "";
+		$_SESSION['admin_on'] = "empty";
+	}
+	if(!isset($_SESSION['id'])) {
+		$_SESSION['id'] = "empty";
 	}
 
 	//uitloggen
 	elseif($a_page == "admin_off") {
-		$_SESSION['admin_on'] = "";
-		
+		$_SESSION['admin_on'] = "empty";
 		//pagina opslaan
 		$sort = 'logout';
 		save_log($sort,$a_page);
 	}
+}
 
+	//niet ingelogt :
+if ($_SESSION['admin_on'] == "empty") {
+	
 	// Inloggen
 	if(isset($_POST['log_on'])) {
 		if($_POST['log_on'] == "Doorgaan") {
@@ -68,7 +75,6 @@
 					
 					//foute login, opslaan
 					$sort = 'login_fail';
-					save_log($sort,$a_page);
 				}
 				else {
 					;
@@ -77,10 +83,9 @@
 		exit;
 	}
 	
-	if($_SESSION['admin_on'] != "admin_logged_on") {
-
-		//header('HTTP/1.1 303 See Other');
-		//header('Location: http://127.0.0.1/Myst/');
+	// terug sturen als er niet wordt ingelogt en niet ingelogt is.
+	header('HTTP/1.1 303 See Other');
+	header('Location: http://127.0.0.1/Myst/');
 		
 		/*
 		$_SESSION['include_css'] = "include";
@@ -110,9 +115,9 @@
 
 		print('</body></html>');
 		*/
-	}
+}
 
-	elseif($_SESSION['admin_on'] == "admin_logged_on") {
+	elseif (($_SESSION['admin_on'] == "admin_logged_on") AND (preg_match('/\d{1,3}/',$_SESSION['id'],$match))) {
 		
 		//pagina opslaan
 		$sort = 'pagina';
@@ -347,6 +352,7 @@
 		
 		bottom();
 	}
+	// sessie 'admin_on' is niet 'admin_logged_on' of 'empy'
 	else {
 		
 		// onbekende fout
