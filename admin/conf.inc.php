@@ -31,30 +31,6 @@
 	//database connectie
 	#####################
 	
-	$db['server'] = 'sql09.freemysql.net';
-	$db['user'] = 'projectmyst';
-	$db['passw'] = 'GitMyst';
-	$db['db'] = 'projectmyst';
-
-	$db['connect'] = @mysql_connect( $db['server'], $db['user'], $db['passw'] );
-	$db['passw'] = '';
-	$db['selectDb'] = @mysql_select_db( $db['db'], $db['connect'] );
-
-	if ( $db['connect'] ){
-		if ( $db['selectDb'] )	{
-			// print("Alle connecties gingen goed en de database is geselecteerd!");
-		}
-		else{
-			//print( '<p style="font-family: Tahoma; font-size: 11px;">MySQL : Er kon geen database geselecteerd worden. <i>(Database: ' . $db['db'] . ')</i></p>' );
-		}
-	}
-	else
-	{
-		//print( '<p style="font-family: Tahoma; font-size: 11px;">MySQL : Er kon geen verbinding gemaakt worden <i>(' . $db['user'] . '@' . $db['server'] . ')</i></p>');
-	}
-
-	$db = '';
-
 	#####################
 
 
