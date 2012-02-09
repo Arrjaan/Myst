@@ -1,10 +1,14 @@
 <?PHP
+//sessies starten\\
+session_start();
+
+
 // database connectie \\
 function db($db) {
 
-	$con = new mysqli($db['server'], $db['user'], $db['passw'], $dp['selectDB']);
+	global $con;
+	$con = new mysqli($db['server'], $db['user'], $db['passw'], $db['db']);
 	unset($db);
-	print_r($db);
 
 	if ($con->connect_errno) {
 		die('Connect Error: ' . $mysqli->connect_errno);
