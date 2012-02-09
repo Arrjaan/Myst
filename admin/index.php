@@ -1,7 +1,7 @@
 <?php
 /*
 ########################
-# © 2010 Peter Postema #
+# ï¿½ 2010 Peter Postema #
 # ~ SideShoreSports ~  # 
 #   adminportal.php    #
 ########################
