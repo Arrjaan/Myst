@@ -16,6 +16,10 @@ function db($db) {
 
 }
 
+function save_log($sort,$a_page) {
+	print("empty");
+}
+
 function error($errormsg, $errno = 0) {
 	echo $errormsg;
 }

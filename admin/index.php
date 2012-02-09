@@ -83,11 +83,9 @@ if ($_SESSION['admin_on'] == "empty") {
 	exit;
 	}
 
-print_r($_SESSION);
-
 	// terug sturen als er niet wordt ingelogt en niet ingelogt is.\\
-	//header('HTTP/1.1 303 See Other');
-	//header('Location: http://127.0.0.1/Myst/');
+	header('HTTP/1.1 303 See Other');
+	header('Location: http://127.0.0.1/Myst/');
 		
 }
 
@@ -99,7 +97,7 @@ elseif (($_SESSION['admin_on'] == "admin_logged_on") AND (preg_match('/\d{1,3}/'
 	save_log($sort,$a_page);
 	
 	//head
-	head($a_page);
+	a_head($a_page);
 	
 	// Begin scherm
 	if($a_page == "home") {
@@ -322,7 +320,7 @@ elseif (($_SESSION['admin_on'] == "admin_logged_on") AND (preg_match('/\d{1,3}/'
 		}
 	}
 	
-	bottom();
+	a_bottom();
 }
 
 // sessie 'admin_on' is niet 'admin_logged_on' of 'empy'
