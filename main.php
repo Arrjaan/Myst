@@ -1,9 +1,22 @@
-<?php
+<?PHP
+// database connectie \\
+function db($db) {
+
+	$con = new mysqli($db['server'], $db['user'], $db['passw'], $dp['selectDB']);
+	unset($db);
+	print_r($db);
+
+	if ($con->connect_errno) {
+		die('Connect Error: ' . $mysqli->connect_errno);
+	}
+
+}
 
 function error($errormsg, $errno = 0) {
 	echo $errormsg;
 }
 
+// direct doorsturen \\
 function redirect($url) {
 	if ( !headers_sent() ) {
 		header("HTTP/1.1 302 found");
@@ -13,5 +26,5 @@ function redirect($url) {
 		Tahoma; font-size: 11px;">Redirect : De HTML pagina is al verstuurd. Headers kunnen niet meer aangepast worden.</span>');
 	die();
 }
-
+	
 ?>

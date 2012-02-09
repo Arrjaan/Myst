@@ -1,7 +1,7 @@
 <?php
 /*
 ########################
-# ï¿½ 2010 Peter Postema #
+# © 2010 Peter Postema #
 # ~ SideShoreSports ~  # 
 #   adminportal.php    #
 ########################
@@ -43,78 +43,52 @@ if ($_SESSION['admin_on'] == "empty") {
 	if(isset($_POST['log_on'])) {
 		if($_POST['log_on'] == "Doorgaan") {
 			
-				$logon = mysql_query("SELECT id FROM users WHERE username='" . $_POST['user'] . "'");
-				$logon = mysql_fetch_assoc($logon);
-				if($logon['id'] == "") {
-					//print(" gebruiker bestaat niet ");
-				}
-				elseif($logon['id'] != "") {
-					$logon = mysql_query("SELECT password FROM users WHERE id='" . $logon['id'] . "'");
-					$logon = mysql_fetch_assoc($logon);
-					if($logon['password'] == md5($_POST['pass'])) {
-						print(" ingelogt ");
-						
-						$_SESSION['admin_on'] = "admin_logged_on";
-						$_SESSION['id'] = $logon['id'];
+			$logon = $con->query("SELECT `id` FROM `users` WHERE `username`='" . $_POST['user'] . "'");
+			$logon = $logon->fetch_assoc();
+			if($logon['id'] == "") {
+				//print(" gebruiker bestaat niet ");
+			}
+			elseif($logon['id'] != "") {
+				$logon = $con->query("SELECT `password` FROM `users` WHERE `id`='" . $logon['id'] . "'");
+				$logon = $logon->fetch_assoc();
+				if($logon['password'] == md5($_POST['pass'])) {
+					print(" ingelogt ");
 					
-						// goede login, opslaan
-						$sort = 'login';
-						save_log($sort,$a_page);
-						
-					}
-					else {
-						//print(" wachtwoord klopt niet ");
-					}
-				}
-				else {
-					;
-				}
+					$_SESSION['admin_on'] = "admin_logged_on";
+					$_SESSION['id'] = $logon['id'];
 				
-				if($_SESSION['admin_on'] != "admin_logged_on") {
-					$_SESSION['admin_on'] = "Not_True";
+					unset($logon);
+				
+					// goede login, opslaan
+					$sort = 'login';
+					save_log($sort,$a_page);
 					
-					//foute login, opslaan
-					$sort = 'login_fail';
 				}
 				else {
-					;
+					//print(" wachtwoord klopt niet ");
 				}
+			}
+			else {
+				;
+			}
+				
+			if($_SESSION['admin_on'] != "admin_logged_on") {
+				$_SESSION['admin_on'] = "Not_True";
+					
+				//foute login, opslaan
+				$sort = 'login_fail';
+			}
+			else {
+				;
+			}
 		}
-		exit;
+	exit;
 	}
 	
 	// terug sturen als er niet wordt ingelogt en niet ingelogt is.
 	header('HTTP/1.1 303 See Other');
 	header('Location: http://127.0.0.1/Myst/');
 		
-		/*
-		$_SESSION['include_css'] = "include";
-		print('<html><head><link rel="stylesheet" type="text/css" href="login.css" /><script type="text/javascript" src="js/functions.js"></script></head><body>');
-		$_SESSION['include_css'] = "";
-		print("	<div class='blok'>
-					<div class='blok_key'>Logo<br />Myst.nl</div>
-					<div class='blok_tekst'>Beheerderspaneel van MystCMS,<br /> graag eerst inloggen.</div>
-					<div class='blok_inloggen'>");
-		if(isset($_POST['log_on'])) { 
-			print("<font color='red'>Foutieve logingegevens.</font><br /><br />");
-		}
-		else {
-			print("<br /><br />");
-		}
-			print("		<form name='login' id='login' action='home' method='post'>
-						Gebruikersnaam:<br /><input class='blok_gebruiker' type='text' name='user' value='gebruiker' /><br />
-						<br />
-						Wachtwoord:<br /><input class='blok_wachtwoord' type='password' name='pass' value='wachtwoord' /><br />
-						<br />
-						<br />
-						<center><input type='submit' value='Doorgaan' name='log_on' /></center>
-						</form>
-					</div>
-		
-				</div>");
-
-		print('</body></html>');
-		*/
 }
 
 	elseif (($_SESSION['admin_on'] == "admin_logged_on") AND (preg_match('/\d{1,3}/',$_SESSION['id'],$match))) {
