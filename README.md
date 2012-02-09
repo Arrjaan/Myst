@@ -52,7 +52,7 @@ Bestand toevoegen/verwijderen
 Bestand terughalen
 -------
 In console:
-- git pull origin master.
+- git pull origin master./n/r/n
 - git log --oneline.
 - > zoek de code van de commit die terug geplaatst moet worden (HEAD voor de laatste)
 - > druk op "q"
