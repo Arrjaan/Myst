@@ -33,7 +33,7 @@ function doLogin()
 	var password=encodeURIComponent(document.getElementById("password").value);
 	xmlhttp=createAJAX();
 	xmlhttp.onreadystatechange=loggedin;
-	xmlhttp.open("POST","admin/adminportal.php",true);
+	xmlhttp.open("POST","admin/index.php",true);
 	xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 	xmlhttp.send("send=receive&log_on=Doorgaan&user="+username+"&pass="+password);
 }
