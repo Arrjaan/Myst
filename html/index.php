@@ -55,7 +55,7 @@
 					</tr>
 				</table>
 				<br />
-				<button type="submit"> Inloggen </button>
+				<button type="submit" class="accept"> Inloggen </button>
 				<button type="button" class="close"> Annuleren </button>
 			</form>
 			<br />
