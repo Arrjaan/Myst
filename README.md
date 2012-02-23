@@ -51,17 +51,17 @@ Bestand toevoegen/verwijderen
 
 Bestand terughalen
 -------
-- In console:
- git pull origin master
- git log --oneline
- > zoek de code van de commit die terug geplaatst moet worden (HEAD voor de laatste)
- > druk op "q"
- git revert "code"
- > waarschijnlijk krijg je een melding nu, druk twee keer op "q"
- git status
- > kijk goed welk(e) bestand(en) je terug wil zetten!
- git checkout -- "bestanden die niet terug gezet moeten worden"
- git checkout -- HEAD "bestanden die niet verwijderd moeten worden"
- > als je alleen de/het bedoelde bestand(en) over hebt mag je verder":
- git commit -m "reden"
- git push origin master
+In console:
+- git pull origin master
+- git log --oneline
+- > zoek de code van de commit die terug geplaatst moet worden (HEAD voor de laatste)
+- > druk op "q"
+- git revert "code"
+- > waarschijnlijk krijg je een melding nu, druk twee keer op "q"
+- git status
+- > kijk goed welk(e) bestand(en) je terug wil zetten!
+- git checkout -- "bestanden die niet terug gezet moeten worden"
+- git checkout -- HEAD "bestanden die niet verwijderd moeten worden"
+- > als je alleen de/het bedoelde bestand(en) over hebt mag je verder":
+- git commit -m "reden"
+-git push origin master
