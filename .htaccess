@@ -2,9 +2,9 @@
 # Turn the RewriteEngine on.                      #
 ###################################################
 
-Options +FollowSymlinks
+# Options +FollowSymlinks
 
-RewriteEngine on
+# RewriteEngine on
 
 ###################################################
 # Add a leading www to domain if one is missing.  #
@@ -24,7 +24,7 @@ RewriteEngine on
 # successful                                      #
 ###################################################
 
-RewriteRule \.(css|jpe?g|gif|png)$ - [L]
+# RewriteRule \.(css|jpe?g|gif|png)$ - [L]
 
 ###################################################
 # Add a trailing slash if needed                  #
@@ -34,8 +34,8 @@ RewriteRule \.(css|jpe?g|gif|png)$ - [L]
 # new URL                                         #
 ###################################################
 
-RewriteCond %{REQUEST_URI} ^/[^\.]+[^/]$
-RewriteRule ^(.*)$ http://%{HTTP_HOST}/$1/ [R=301,L]
+# RewriteCond %{REQUEST_URI} ^/[^\.]+[^/]$
+# RewriteRule ^(.*)$ http://%{HTTP_HOST}/$1/ [R=301,L]
 
 ###################################################
 # Rewrite web pages to one master page            #
@@ -59,4 +59,4 @@ RewriteRule ^(.*)$ http://%{HTTP_HOST}/$1/ [R=301,L]
 # are successful                                  #
 ###################################################
 
-RewriteRule ^(.*)$ index.php/$1 [L]
+# RewriteRule ^(.*)$ index.php/$1 [L]
