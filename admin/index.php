@@ -1,16 +1,11 @@
 <?php
-/*
-########################
-# © 2010 Peter Postema #
-# ~ SideShoreSports ~  # 
-#   adminportal.php    #
-########################
-*/
 
 	include("../config.inc.php");
 	include("../main.php");
-	//$con = db($db);
-	db($db);
+	
+$con = $db;
+
+error_reporting(0);
 
 // first things first. \\
 if(!isset($_POST['logon'])) {
