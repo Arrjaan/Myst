@@ -1,20 +1,21 @@
-<?PHP
+<?php
 //sessies starten\\
 session_start();
-
 
 // database connectie \\
 function db($db) {
 
-	global $con;
-	$con = new mysqli($db['server'], $db['user'], $db['passw'], $db['db']);
-	unset($db);
+	$db = new mysqli($db['server'], $db['user'], $db['passw'], $db['db']);
 
-	if ($con->connect_errno) {
-		die('Connect Error: ' . $mysqli->connect_errno);
+	if ($db->connect_errno) {
+		die('Connect Error: ' . $db->connect_errno);
+		return false;
 	}
+	else return $db;
 
 }
+
+$db = db($db);
 
 function save_log($sort,$a_page) {
 	print("empty");

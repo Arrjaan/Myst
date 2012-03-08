@@ -2,14 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 	<head>
 		<title>Myst</title>
-		<link href="http://localhost:8080/Myst/html/all_browsers.css" rel="stylesheet" type="text/css" />
+		<link href="/html/all_browsers.css" rel="stylesheet" type="text/css" />
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 		<script src="http://cdn.jquerytools.org/1.2.6/full/jquery.tools.min.js"></script>
-		<script type="text/javascript" src="http://localhost:8080/Myst/html/ajax.js"></script>
-		<link rel="shortcut icon" href="http://localhost:8080/Myst/html/img/favicon.ico" />
+		<script type="text/javascript" src="/html/ajax.js"></script>
+		<link rel="shortcut icon" href="/html/img/favicon.ico" />
 		<?php
 		print ('<style type ="text/css">');
-		$db =  new Mysqli("sql09.freemysql.net" , "projectmyst" , "GitMyst", "projectmyst", 3306) or die("Fout! De computer mag je niet!");
 
 		$bodybackgroundcolor = $db->query("SELECT value FROM layout WHERE layouttype = 'body-backgroundcolor'");
 		$bodybackgroundcolor = $bodybackgroundcolor->fetch_assoc();
