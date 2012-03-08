@@ -2,11 +2,86 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 	<head>
 		<title>Myst</title>
-		<link href="http://localhost/Myst/html/all_browsers.css" rel="stylesheet" type="text/css" />
+		<link href="http://localhost:8080/Myst/html/all_browsers.css" rel="stylesheet" type="text/css" />
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 		<script src="http://cdn.jquerytools.org/1.2.6/full/jquery.tools.min.js"></script>
-		<script type="text/javascript" src="http://localhost/Myst/html/ajax.js"></script>
-		<link rel="shortcut icon" href="http://localhost/Myst/html/img/favicon.ico" />
+		<script type="text/javascript" src="http://localhost:8080/Myst/html/ajax.js"></script>
+		<link rel="shortcut icon" href="http://localhost:8080/Myst/html/img/favicon.ico" />
+		<?php
+		print ('<style type ="text/css">');
+		$db =  new Mysqli("sql09.freemysql.net" , "projectmyst" , "GitMyst", "projectmyst", 3306) or die("Fout! De computer mag je niet!");
+
+		$bodybackgroundcolor = $db->query("SELECT value FROM layout WHERE layouttype = 'body-backgroundcolor'");
+		$bodybackgroundcolor = $bodybackgroundcolor->fetch_assoc();
+		$bodybackgroundcolor = $bodybackgroundcolor['value'];
+
+		$bodyfont = $db->query("SELECT value FROM layout WHERE layouttype = 'body-font'");
+		$bodyfont = $bodyfont->fetch_assoc();
+		$bodyfont = $bodyfont['value'];
+		
+		$bodyfontcolor = $db->query("SELECT value FROM layout WHERE layouttype = 'body-fontcolor'");
+		$bodyfontcolor = $bodyfontcolor->fetch_assoc();
+		$bodyfontcolor = $bodyfontcolor['value'];
+		
+		$bodyfontsize = $db->query("SELECT value FROM layout WHERE layouttype = 'body-fontsize'");
+		$bodyfontsize = $bodyfontsize->fetch_assoc();
+		$bodyfontsize = $bodyfontsize['value'];
+		
+		$headfontcolor = $db->query("SELECT value FROM layout WHERE layouttype = 'head-fontcolor'");
+		$headfontcolor = $headfontcolor->fetch_assoc();
+		$headfontcolor = $headfontcolor['value'];
+		
+		$headbackgroundcolor = $db->query("SELECT value FROM layout WHERE layouttype = 'head-backgroundcolor'");
+		$headbackgroundcolor = $headbackgroundcolor->fetch_assoc();
+		$headbackgroundcolor = $headbackgroundcolor['value'];
+		
+		$alinkcolor = $db->query("SELECT value FROM layout WHERE layouttype = 'a-linkcolor'");
+		$alinkcolor = $alinkcolor->fetch_assoc();
+		$alinkcolor = $alinkcolor['value'];
+		
+		$avisitedcolor = $db->query("SELECT value FROM layout WHERE layouttype = 'a-visitedcolor'");
+		$avisitedcolor = $avisitedcolor->fetch_assoc();
+		$avisitedcolor = $avisitedcolor['value'];
+		
+		$ahovercolor = $db->query("SELECT value FROM layout WHERE layouttype = 'a-hovercolor'");
+		$ahovercolor = $ahovercolor->fetch_assoc();
+		$ahovercolor = $ahovercolor['value'];
+		
+		$aactivecolor = $db->query("SELECT value FROM layout WHERE layouttype = 'a-activecolor'");
+		$aactivecolor = $aactivecolor->fetch_assoc();
+		$aactivecolor = $aactivecolor['value'];
+		
+		$menubuttonfontcolor = $db->query("SELECT value FROM layout WHERE layouttype = 'menubutton-fontcolor'");
+		$menubuttonfontcolor = $menubuttonfontcolor->fetch_assoc();
+		$menubuttonfontcolor = $menubuttonfontcolor['value'];
+		
+		$menuhoverbackcolor = $db->query("SELECT value FROM layout WHERE layouttype = 'menuhover-backcolor'");
+		$menuhoverbackcolor = $menuhoverbackcolor->fetch_assoc();
+		$menuhoverbackcolor = $menuhoverbackcolor['value'];
+		
+		$menuhoverfontcolor = $db->query("SELECT value FROM layout WHERE layouttype = 'menuhover-fontcolor'");
+		$menuhoverfontcolor = $menuhoverfontcolor->fetch_assoc();
+		$menuhoverfontcolor = $menuhoverfontcolor['value'];
+		
+		print ("\r\n 
+				a:link{color:".$alinkcolor.";}\r\n
+				a:visited{color:".$avisitedcolor.";}\r\n
+				a:hover{color:".$ahovercolor.";}\r\n
+				a:active{color:".$aactivecolor.";}\r\n");
+		print ("body {\r\nfont-family: ".$bodyfont.", Veranda, Ariel, serif;\r\n
+		background-color:".$bodybackgroundcolor.";\r\n 
+		color: ".$bodyfontcolor.";\r\n 
+		font-size: ".$bodyfontsize.";\r\n}\r\n\r\n");
+		print ("#head {\r\ncolor: ".$headfontcolor.";\r\n
+				background-color: ".$headbackgroundcolor.";\r\n}");
+		print ("ul#menu {background-color:".$menucolor.";}\r\n");
+		print ("ul#menu li a {color:".$menubuttonfontcolor.";}\r\n");
+		print ("ul#menu li a:hover \r\n {
+		background:".$menuhoverbackcolor.";\r\n
+		color:".$menuhoverfontcolor.";\r\n}\r\n");
+		print ('</style>');
+		echo $db->error;
+		?>
 	</head>
 
 	<body>
