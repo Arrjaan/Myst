@@ -9,48 +9,47 @@ Layout
     <script type="text/javascript" src="colorpicker/js/eye.js"></script>
     <script type="text/javascript" src="colorpicker/js/utils.js"></script>
     <script type="text/javascript" src="colorpicker/js/layout.js?ver=1.0.2"></script>
-		<link rel="stylesheet" href="colorpicker/css/colorpicker.css" type="text/css" />
+	<link rel="stylesheet" href="colorpicker/css/colorpicker.css" type="text/css" />
+	<?php
+		// controle  post
+		if($_SERVER['REQUEST_METHOD'] == 'POST')
+		{
+			//gegevens die zijn doorgestuurd worden opgeslagen
+			$bodybackgroundcolor =  "#".$_POST['bodybackgroundcolor'];
+			$headfontcolor =  "#".$_POST['headfontcolor'];
+			$bodyfont =  '"'.$_POST['bodyfont'].'"';
+			$bodyfontcolor =  "#".$_POST['bodyfontcolor'];
+			$bodyfontsize =  $_POST['bodyfontsize'];
+			$headbackgroundcolor =  "#".$_POST['headbackgroundcolor'];
+			$menucolor =  "#".$_POST['menucolor'];
+			$menubuttonfontcolor =  "#".$_POST['menubuttonfontcolor'];
+			$menuhoverbackcolor =  "#".$_POST['menuhoverbackcolor'];
+			$menuhoverfontcolor =  "#".$_POST['menuhoverfontcolor'];
+			$alinkcolor =  "#".$_POST['alinkcolor'];
+			$avisitedcolor =  "#".$_POST['alinkcolor'];
+			$ahovercolor =  "#".$_POST['ahovercolor'];
+			$aactivecolor =  "#".$_POST['ahovercolor'];
+
+			$db =  new Mysqli("sql09.freemysql.net" , "projectmyst" , "GitMyst", "projectmyst", 3306) or die("Fout! De computer mag je niet!");
+			$db->query("UPDATE layout SET value = '".$bodybackgroundcolor."' WHERE layouttype = 'body-backgroundcolor'");
+			$db->query("UPDATE layout SET value = '".$headfontcolor."' WHERE layouttype = 'head-fontcolor'");
+			$db->query("UPDATE layout SET value = '".$bodyfont."' WHERE layouttype = 'body-font'");
+			$db->query("UPDATE layout SET value = '".$bodyfontcolor."' WHERE layouttype = 'body-fontcolor'");
+			$db->query("UPDATE layout SET value = '".$bodyfontsize."' WHERE layouttype = 'body-fontsize'");
+			$db->query("UPDATE layout SET value = '".$headbackgroundcolor."' WHERE layouttype = 'head-backgroundcolor'");
+			$db->query("UPDATE layout SET value = '".$menucolor."' WHERE layouttype = 'menu-color'");
+			$db->query("UPDATE layout SET value = '".$menubuttonfontcolor."' WHERE layouttype = 'menubutton-fontcolor'");
+			$db->query("UPDATE layout SET value = '".$menuhoverbackcolor."' WHERE layouttype = 'menuhover-backcolor'");
+			$db->query("UPDATE layout SET value = '".$menuhoverfontcolor."' WHERE layouttype = 'menuhover-fontcolor'");
+			$db->query("UPDATE layout SET value = '".$alinkcolor."' WHERE layouttype = 'a-linkcolor'");
+			$db->query("UPDATE layout SET value = '".$avisitedcolor."' WHERE layouttype = 'a-visitedcolor'");
+			$db->query("UPDATE layout SET value = '".$ahovercolor."' WHERE layouttype = 'a-hovercolor'");
+			$db->query("UPDATE layout SET value = '".$aactivecolor."' WHERE layouttype = 'a-activecolor'");
+			}
+		?>	
 
 </head>
 <body>
-<?php
-// controle  post
-if($_SERVER['REQUEST_METHOD'] == 'POST')
-{
-//gegevens die zijn doorgestuurd worden opgeslagen
-$bodybackgroundcolor =  "#".$_POST['bodybackgroundcolor'];
-$headfontcolor =  "#".$_POST['headfontcolor'];
-$bodyfont =  '"'.$_POST['bodyfont'].'"';
-$bodyfontcolor =  "#".$_POST['bodyfontcolor'];
-$bodyfontsize =  $_POST['bodyfontsize'];
-$headbackgroundcolor =  "#".$_POST['headbackgroundcolor'];
-$menucolor =  "#".$_POST['menucolor'];
-$menubuttonfontcolor =  "#".$_POST['menubuttonfontcolor'];
-$menuhoverbackcolor =  "#".$_POST['menuhoverbackcolor'];
-$menuhoverfontcolor =  "#".$_POST['menuhoverfontcolor'];
-$alinkcolor =  "#".$_POST['alinkcolor'];
-$avisitedcolor =  "#".$_POST['alinkcolor'];
-$ahovercolor =  "#".$_POST['ahovercolor'];
-$aactivecolor =  "#".$_POST['ahovercolor'];
-
-$db =  new Mysqli("sql09.freemysql.net" , "projectmyst" , "GitMyst", "projectmyst", 3306) or die("Fout! De computer mag je niet!");
-$db->query("UPDATE layout SET value = '".$bodybackgroundcolor."' WHERE layouttype = 'body-backgroundcolor'");
-$db->query("UPDATE layout SET value = '".$headfontcolor."' WHERE layouttype = 'head-fontcolor'");
-$db->query("UPDATE layout SET value = '".$bodyfont."' WHERE layouttype = 'body-font'");
-$db->query("UPDATE layout SET value = '".$bodyfontcolor."' WHERE layouttype = 'body-fontcolor'");
-$db->query("UPDATE layout SET value = '".$bodyfontsize."' WHERE layouttype = 'body-fontsize'");
-$db->query("UPDATE layout SET value = '".$headbackgroundcolor."' WHERE layouttype = 'head-backgroundcolor'");
-$db->query("UPDATE layout SET value = '".$menucolor."' WHERE layouttype = 'menu-color'");
-$db->query("UPDATE layout SET value = '".$menubuttonfontcolor."' WHERE layouttype = 'menubutton-fontcolor'");
-$db->query("UPDATE layout SET value = '".$menuhoverbackcolor."' WHERE layouttype = 'menuhover-backcolor'");
-$db->query("UPDATE layout SET value = '".$menuhoverfontcolor."' WHERE layouttype = 'menuhover-fontcolor'");
-$db->query("UPDATE layout SET value = '".$alinkcolor."' WHERE layouttype = 'a-linkcolor'");
-$db->query("UPDATE layout SET value = '".$avisitedcolor."' WHERE layouttype = 'a-visitedcolor'");
-$db->query("UPDATE layout SET value = '".$ahovercolor."' WHERE layouttype = 'a-hovercolor'");
-$db->query("UPDATE layout SET value = '".$aactivecolor."' WHERE layouttype = 'a-activecolor'");
-
-}
-?>
 <table cellpadding ="5" >
 	<form name="layout" method="post" action="layout.php">
 	<tr>
@@ -271,9 +270,10 @@ $db->query("UPDATE layout SET value = '".$aactivecolor."' WHERE layouttype = 'a-
 		<td>
 			<input type="submit" value="Opslaan" name="opslaan">
 		</td>
-	<tr>
+	</tr>
 	</form> 
 </table>
+
 <script>
 $('#kleur1, #kleur2, #kleur3, #kleur4, #kleur5, #kleur6, #kleur7, #kleur8, #kleur9, #kleur10').ColorPicker({
 	onSubmit: function(hsb, hex, rgb, el) {
