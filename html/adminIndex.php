@@ -102,8 +102,8 @@
 
 		</ul>
 					
-		<div id="content">	
-			Dus..
+		<div id="content">		
+			VOEG PAGINA TOE!
 			<?php
 						
 			//Doorverwijzing bij http-fout.

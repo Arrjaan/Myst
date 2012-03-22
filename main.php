@@ -1,7 +1,4 @@
 <?php
-//sessies starten\\
-session_start();
-
 // database connectie \\
 function db($db) {
 
