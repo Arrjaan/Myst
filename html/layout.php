@@ -1,15 +1,3 @@
-<html>
-<head>
-<title>
-Layout
-</title>
-
-	<script type="text/javascript" src="colorpicker/js/jquery.js"></script>
-	<script type="text/javascript" src="colorpicker/js/colorpicker.js"></script>
-    <script type="text/javascript" src="colorpicker/js/eye.js"></script>
-    <script type="text/javascript" src="colorpicker/js/utils.js"></script>
-    <script type="text/javascript" src="colorpicker/js/layout.js?ver=1.0.2"></script>
-	<link rel="stylesheet" href="colorpicker/css/colorpicker.css" type="text/css" />
 	<?php
 		// controle  post
 		if($_SERVER['REQUEST_METHOD'] == 'POST')
@@ -47,11 +35,8 @@ Layout
 			$db->query("UPDATE layout SET value = '".$aactivecolor."' WHERE layouttype = 'a-activecolor'");
 			}
 		?>	
-
-</head>
-<body>
 <table cellpadding ="5" >
-	<form name="layout" method="post" action="layout.php">
+	<form name="layout" method="post" action="#saved">
 	<tr>
 		<td>
 			Achtergrond kleur 
@@ -288,6 +273,3 @@ $('#kleur1, #kleur2, #kleur3, #kleur4, #kleur5, #kleur6, #kleur7, #kleur8, #kleu
 	$(this).ColorPickerSetColor(this.value);
 });
 </script>
-
-</body>
-</html>

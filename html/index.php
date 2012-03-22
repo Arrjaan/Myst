@@ -4,8 +4,18 @@
 		<title>Myst</title>
 		<link href="/html/all_browsers.css" rel="stylesheet" type="text/css" />
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+		
 		<script src="http://cdn.jquerytools.org/1.2.6/full/jquery.tools.min.js"></script>
+		
+		<script type="text/javascript" src="html/colorpicker/js/jquery.js"></script>
+		<script type="text/javascript" src="html/colorpicker/js/colorpicker.js"></script>
+		<script type="text/javascript" src="html/colorpicker/js/eye.js"></script>
+		<script type="text/javascript" src="html/colorpicker/js/utils.js"></script>
+		<script type="text/javascript" src="html/colorpicker/js/layout.js?ver=1.0.2"></script>
+		<link rel="stylesheet" href="html/colorpicker/css/colorpicker.css" type="text/css" />
+		
 		<script type="text/javascript" src="/html/ajax.js"></script>
+		
 		<link rel="shortcut icon" href="/html/img/favicon.ico" />
 		<?php
 		print ('<style type ="text/css">');
@@ -88,7 +98,7 @@
 		<div id="head">Titel</div>
 			
 		<ul id="menu">
-			<li><a href="javascript:void(0)" onclick="load('home')">Home</a></li>
+			<li><a href="?p=index">Home</a></li>
 			<li><a href="javascript:void(0)" class="adminlogin" rel="#prompt">Admin</a></li>
 
 		</ul>
@@ -115,6 +125,8 @@
 		
 		<div class="dialog" id="prompt">
 			<h2>Inloggen</h2>
+			
+			<a href="?p=layout">Verander Layout</a>
 
 			<form>
 				<span id="loginmsg"></span>
