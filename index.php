@@ -1,6 +1,6 @@
 <?php
 
-error_reporting(E_ERROR);
+error_reporting(E_ALL);
 date_default_timezone_set('Europe/Amsterdam');
 session_start();
 
@@ -16,6 +16,7 @@ if ( file_exists('php/'.$page.'.php') ) {
 }
 else echo 'ERRROR!';
 
-require('html/index.php');
+if ( $_SESSION['editmode'] == 'doEdit' ) require('html/adminIndex.php');
+else require('html/index.php');
 
 ?>
