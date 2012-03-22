@@ -275,4 +275,4 @@ $('#kleur1, #kleur2, #kleur3, #kleur4, #kleur5, #kleur6, #kleur7, #kleur8, #kleu
 <br>
 <b>Voorbeeld</b><br>
 Hebban olla vogala nestas hagunnan hinase hic anda thu, wat unbidan we nu?<br>
-<a>Link</a>
+<a href="#">Link</a>
