@@ -35,7 +35,7 @@
 			$db->query("UPDATE layout SET value = '".$aactivecolor."' WHERE layouttype = 'a-activecolor'");
 			}
 		?>	
-<table cellpadding ="5" >
+<table cellpadding ="5" STYLE = "font-size : 13pt">
 	<form name="layout" method="post" action="#saved">
 	<tr>
 		<td>
@@ -258,7 +258,6 @@
 	</tr>
 	</form> 
 </table>
-
 <script>
 $('#kleur1, #kleur2, #kleur3, #kleur4, #kleur5, #kleur6, #kleur7, #kleur8, #kleur9, #kleur10').ColorPicker({
 	onSubmit: function(hsb, hex, rgb, el) {
@@ -273,3 +272,7 @@ $('#kleur1, #kleur2, #kleur3, #kleur4, #kleur5, #kleur6, #kleur7, #kleur8, #kleu
 	$(this).ColorPickerSetColor(this.value);
 });
 </script>
+<br>
+<b>Voorbeeld</b><br>
+Hebban olla vogala nestas hagunnan hinase hic anda thu, wat unbidan we nu?<br>
+<a href="#">Link</a>
