@@ -50,8 +50,8 @@ function loggedin() {
 	}
 }
 
-function onEnter(evt){
-	if(evt.keyCode==13) saveEdit();
+function onEnter(evt,event,id){
+	if(evt.keyCode==13) saveEdit(event,id);
 }
 
 $(document).ready(function() {
