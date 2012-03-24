@@ -13,9 +13,9 @@
 		<script type="text/javascript" src="html/colorpicker/js/layout.js?ver=1.0.2"></script>
 		<link rel="stylesheet" href="html/colorpicker/css/colorpicker.css" type="text/css" />
 		
-		<script type="text/javascript" src="/html/ajax.js"></script>
+		<script type="text/javascript" src="html/ajax.js?src"></script>
 		
-		<link rel="shortcut icon" href="/html/img/favicon.ico" />
+		<link rel="shortcut icon" href="html/img/favicon.ico" />
 		<?php
 		print ('<style type ="text/css">');
 
@@ -103,7 +103,6 @@
 		</ul>
 					
 		<div id="content">		
-			VOEG PAGINA TOE!
 			<?php
 						
 			//Doorverwijzing bij http-fout.
@@ -114,7 +113,7 @@
 			
 			<?php
 			//Content printen.
-				echo $content;
+				echo $adminContent;
 			?>								
 		</div>
 	</div>

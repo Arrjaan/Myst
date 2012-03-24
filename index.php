@@ -10,11 +10,26 @@ require('main.php');
 $page = $_GET['p'];
 if ( empty($page) ) $page = 'index';
 
-if ( empty($page) ) redirect('http://'.$_SERVER['HTTP_HOST'].$config['rootdir'].'/'.$config['processor'].$config['home']);
-if ( file_exists('php/'.$page.'.php') ) {
-	require('php/'.$page.'.php');
+$q = $db->query("select * from `webpages` where `short` = '".$page."'");
+echo $db->error;
+
+switch ( $page ) {
+	case ( $q->num_rows > 0 ):
+		$page = $q->fetch_assoc();
+		$id = $page['pageid'];
+		$title = $page['pagename'];
+		$source = $page['content'];
+		require('php/pages.php');
+		break;
+	case ( file_exists('php/'.$page.'.php') ):
+		require('php/'.$page.'.php');
+		break;
+	default:
+		require('php/notfound.php');
+		break;
 }
-else echo 'ERRROR!';
+
+error_reporting(E_ERROR);
 
 if ( $_SESSION['editmode'] == 'doEdit' ) require('html/adminIndex.php');
 else require('html/index.php');

@@ -10,21 +10,21 @@ function createAJAX() {
 	return null;
 }
 		
-function edit() {
+function edit(event,id) {
 	xmlhttp=createAJAX();
 	xmlhttp.onreadystatechange=stateChanged;
-	xmlhttp.open("GET","php/update.php?title",true);
+	xmlhttp.open("GET","php/update.php?event="+event+"&id="+id,true);
 	xmlhttp.send(null);
 }
 
-function saveEdit()
+function saveEdit(event,id)
 {
 	var option=encodeURIComponent(document.getElementById("option").value);
 	xmlhttp=createAJAX();
 	xmlhttp.onreadystatechange=stateChanged;
 	xmlhttp.open("POST","php/update.php",true);
 	xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-	xmlhttp.send("option="+option);
+	xmlhttp.send("event="+event+"&id="+id+"&value="+option);
 }
 
 function doLogin()
