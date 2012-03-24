@@ -127,8 +127,8 @@
 				<h2>Menu</h2>
 				
 				<a href="?p=layout">&raquo; Verander Layout</a><br />
-				<?php if ( $_SESSION['editmode'] == 'doEdit' ) { ?><a href="?p=editMode">&raquo; Stop met aanpassen</a><br /><?php }
-				else { ?><a href="?p=editMode&stop">&raquo; Pas de website aan</a><br /><?php } ?>
+				<?php if ( $_SESSION['editmode'] == 'doEdit' ) { ?><a href="?p=editMode&stop">&raquo; Stop met aanpassen</a><br /><?php }
+				else { ?><a href="?p=editMode">&raquo; Pas de website aan</a><br /><?php } ?>
 			</span>
 			
 			<span id="loginform">
