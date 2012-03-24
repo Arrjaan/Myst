@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 	<head>
 		<title>Myst</title>
-		<link href="/html/all_browsers.css" rel="stylesheet" type="text/css" />
+		<link href="html/all_browsers.css" rel="stylesheet" type="text/css" />
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 		
 		<script src="http://cdn.jquerytools.org/1.2.6/full/jquery.tools.min.js"></script>
@@ -123,29 +123,34 @@
 		</div>
 		
 		<div class="dialog" id="prompt">
-			<h2>Inloggen</h2>
+			<span style="display: none;" id="loggedin">
+				<h2>Menu</h2>
+				
+				<a href="?p=layout">&raquo; Verander Layout</a><br />
+				<?php if ( $_SESSION['editmode'] == 'doEdit' ) { ?><a href="?p=editMode">&raquo; Stop met aanpassen</a><br /><?php } 
+				else { ?><a href="?p=editMode&stop">&raquo; Pas de website aan</a><br /><?php } ?>
+			</span>
 			
-			<a href="?p=layout">&raquo; Verander Layout</a><br />
-			<a href="?p=editMode">&raquo; Pas de website aan</a><br />
-			
-			<br />
-
-			<form>
-				<span id="loginmsg"></span>
-				<table border="0">
-					<tr>
-						<td>Gebruikersnaam:&nbsp;</td>
-						<td><input id="username" /></td>
-					</td>
-					<tr>
-						<td>Wachtwoord: </td>
-						<td><input type="password" id="password" /></td>
-					</tr>
-				</table>
-				<br />
-				<button type="submit" class="accept"> Inloggen </button>
-				<button type="button" class="close"> Annuleren </button>
-			</form>
+			<span id="loginform">
+				<h2>Inloggen</h2>
+				
+				<form>
+					<span style="color: red; font-style: italic;" id="loginmsg"></span>
+					<table border="0">
+						<tr>
+							<td>Gebruikersnaam:&nbsp;</td>
+							<td><input id="username" /></td>
+						</td>
+						<tr>
+							<td>Wachtwoord: </td>
+							<td><input type="password" id="password" /></td>
+						</tr>
+					</table>
+					<br />
+					<button type="submit" class="accept"> Inloggen </button>
+					<button type="button" class="close"> Annuleren </button>
+				</form>
+			</span>
 			<br />
 		</div>
 	</body>

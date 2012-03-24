@@ -1,4 +1,5 @@
 var xmlhttp;
+var updateEvent
 
 function createAJAX() {
 	if (window.XMLHttpRequest) {
@@ -15,6 +16,7 @@ function edit(event,id) {
 	xmlhttp.onreadystatechange=stateChanged;
 	xmlhttp.open("GET","php/update.php?event="+event+"&id="+id,true);
 	xmlhttp.send(null);
+	updateEvent = event;
 }
 
 function saveEdit(event,id)
@@ -40,13 +42,23 @@ function doLogin()
 		
 function stateChanged() {
 	if (xmlhttp.readyState==4 && xmlhttp.responseText != "") {
-		document.getElementById("title").innerHTML=xmlhttp.responseText;
+		if (updateEvent == "content") {
+			updateEvent = "innerContent";
+		}
+		document.getElementById(updateEvent).innerHTML=xmlhttp.responseText;
 	}
 }
 
 function loggedin() {
 	if (xmlhttp.readyState==4 && xmlhttp.responseText != "") {
-		document.getElementById("loginmsg").innerHTML=xmlhttp.responseText;
+		var regex = /bent nu ingelogd/;
+		if ( regex.test(xmlhttp.responseText) ) {
+			document.getElementById("loggedin").style.display = 'inline';
+			document.getElementById("loginform").style.display = 'none';
+		}
+		else {
+			document.getElementById("loginmsg").innerHTML=xmlhttp.responseText;
+		}
 	}
 }
 

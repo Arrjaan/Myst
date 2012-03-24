@@ -3,10 +3,10 @@
 	padding: 0;
 }
 
-a:link { color: #3300CC; text-decoration: none; }
-a:visited { color: #3300CC; text-decoration: none; }
-a:hover { color: #CC9900; text-decoration: none; }
-a:active { color: #CC9900; text-decoration: none; }
+a:link { color: #3300CC; text-decoration: none; cursor: pointer; }
+a:visited { color: #3300CC; text-decoration: none; cursor: pointer; }
+a:hover { color: #CC9900; text-decoration: none; cursor: pointer; }
+a:active { color: #CC9900; text-decoration: none; cursor: pointer; }
 
 body {
 	font-family: Calibri, Veranda, Arial, serif;
@@ -27,6 +27,11 @@ h2 {
 
 p,ul { 
 	margin-left: 30px;
+}
+
+textarea {
+	width: 99%;
+	height: 400px;
 }
 
 .menu { 

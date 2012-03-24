@@ -29,7 +29,7 @@ switch ( $page ) {
 		break;
 }
 
-error_reporting(E_ERROR);
+error_reporting(E_ALL);
 
 if ( $_SESSION['editmode'] == 'doEdit' ) require('html/adminIndex.php');
 else require('html/index.php');
