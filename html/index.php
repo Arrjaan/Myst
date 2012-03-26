@@ -71,6 +71,10 @@
 		$menuhoverfontcolor = $menuhoverfontcolor->fetch_assoc();
 		$menuhoverfontcolor = $menuhoverfontcolor['value'];
 		
+		$h1color = $db->query("SELECT value FROM layout WHERE layouttype = 'h1-color'");
+		$h1color = $h1color->fetch_assoc();
+		$h1color = $h1color['value'];
+		
 		print ("\r\n 
 				a:link{color:".$alinkcolor.";}\r\n
 				a:visited{color:".$avisitedcolor.";}\r\n
@@ -87,6 +91,7 @@
 		print ("ul#menu li a:hover \r\n {
 		background:".$menuhoverbackcolor.";\r\n
 		color:".$menuhoverfontcolor.";\r\n}\r\n");
+		print("H1 {color: ".$h1color.";}");
 		print ('</style>');
 		echo $db->error;
 		?>
