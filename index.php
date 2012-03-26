@@ -7,7 +7,7 @@ session_start();
 require('config.inc.php');
 require('main.php');
 
-!$page = $_GET['p'];
+@$page = $_GET['p'];
 if ( empty($page) ) $page = 'index';
 
 $q = $db->query("select * from `webpages` where `short` = '".$page."'");
@@ -31,7 +31,6 @@ switch ( $page ) {
 
 error_reporting(E_WARNING);
 
-if ( !$_SESSION['editmode'] == 'doEdit' ) require('html/adminIndex.php');
-else require('html/index.php');
+require('html/index.php');
 
 ?>

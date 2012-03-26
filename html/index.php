@@ -113,7 +113,8 @@
 			
 			<?php
 			//Content printen.
-				echo $content;
+				if ( @$_SESSION['editmode'] == 'doEdit' ) echo $adminContent;
+				else echo $content;
 			?>								
 		</div>
 	</div>
