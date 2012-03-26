@@ -10,12 +10,14 @@ if ( $_SERVER['REQUEST_METHOD'] == "GET" ) {
 	if ( $_GET['event'] == "title" ) 
 		echo '<form method="post" id="admin" onsubmit="return false">
 			<input id="option" name="option" value="'.$prev['pagename'].'" onkeypress="onEnter(event,\''.$_GET['event'].'\',\''.$_GET['id'].'\');" /> 
-			<a onclick="saveEdit(\''.$_GET['event'].'\',\''.$_GET['id'].'\');return false;">Update</a>
+			<a onclick="saveEdit(\''.$_GET['event'].'\',\''.$_GET['id'].'\');"><img src="html/img/accept.png" alt="Update" /></a>
+			<a onclick="location.reload(true);"><img src="html/img/cancel.png" alt="Annuleren" /></a>
 			</form>';
 	if ( $_GET['event'] == "content" ) 
 		echo '<form method="post" id="admin" onsubmit="return false">
 			<textarea id="option" name="option">'.$prev['content'].'</textarea>
-			<a onclick="saveEdit(\''.$_GET['event'].'\',\''.$_GET['id'].'\');return false;">Update</a>
+			<a onclick="saveEdit(\''.$_GET['event'].'\',\''.$_GET['id'].'\');"><img src="html/img/accept.png" alt="Update" /></a>
+			<a onclick="location.reload(true);"><img src="html/img/cancel.png" alt="Annuleren" /></a>
 			</form>';
 }
 else {
