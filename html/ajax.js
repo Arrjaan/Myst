@@ -10,6 +10,14 @@ function createAJAX() {
 	}
 	return null;
 }
+
+function add() {
+	xmlhttp=createAJAX();
+	xmlhttp.onreadystatechange=stateChanged;
+	xmlhttp.open("GET","php/update.php?event=add",true);
+	xmlhttp.send(null);
+	updateEvent = "add";
+}
 		
 function edit(event,id) {
 	xmlhttp=createAJAX();
@@ -19,9 +27,21 @@ function edit(event,id) {
 	updateEvent = event;
 }
 
+function del(id) {
+	xmlhttp=createAJAX();
+	xmlhttp.onreadystatechange=stateChanged;
+	xmlhttp.open("GET","php/update.php?event=del&id="+id,true);
+	xmlhttp.send(null);
+	updateEvent = event;
+}
+
 function saveEdit(event,id)
 {
-	var option=encodeURIComponent(document.getElementById("option").value);
+	var realEvent = "input_"+event;
+	if (realEvent == "input_content") {
+		realEvent = "input_innerContent";
+	}
+	var option=encodeURIComponent(document.getElementById(realEvent).value);
 	xmlhttp=createAJAX();
 	xmlhttp.onreadystatechange=stateChanged;
 	xmlhttp.open("POST","php/update.php",true);
