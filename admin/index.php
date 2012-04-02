@@ -96,10 +96,11 @@ elseif (($_SESSION['admin_on'] == "admin_logged_on") AND (preg_match('/\d{1,3}/'
 	
 	// Begin scherm
 	if($a_page == "home") {
-		print("Welkom in het beheerderspaneel.<br /><br />");
+		print("Welkom in het beheerderspaneel.<br /><br />Als dit uw eerste keer is verwijzen we u graag door naar onze <a href='https://github.com/Arrjaan/Myst/wiki'>wiki</a><br /><br />");
 	}
 	
 	if($a_page == "log") {
+		print("Hier wordt alles wat in dit panneel gebeurd opgeslagen in een logboek.<br /><br />");
 		$query = mysql_query("SELECT * FROM admin ORDER BY nummer DESC");
 		print("<table><tr><td>nummer</td><td></td><td>actie</td></tr>");
 		while(list($nummer,$regel) = mysql_fetch_row($query)) {
@@ -107,18 +108,52 @@ elseif (($_SESSION['admin_on'] == "admin_logged_on") AND (preg_match('/\d{1,3}/'
 		}
 		print("</table><br /><br />");
 	}
+	if($a_page == "leeg_log") {
+		if($_SESSION['id'] == 1) {
+			print("Leeg het logboek?<br /><br />");
+		}
+		else {
+			print("U bent niet gerechtigd om deze actie uit te voeren.<br /><br />");
+		}
+	}
 		
 	if($a_page == "beheerders") {
 		$query = mysql_query("SELECT nummer,naam FROM administrator");
-			print("<table><tr><td>nummer</td><td></td><td>naam</td><td></td><td>wachtwoord</td></tr>");
-		while(list($nummer,$naam) = mysql_fetch_row($query)) {
-			print("<tr><td>#$nummer</td><td></td><td>$naam</td><td></td><td>**********</td></tr>");
+		
+		if($_SESSION['id'] == 1) {
+			print("Hier staan alle beheerders. U kunt beheerders toevoegen of verwijderen.<br /><br />");
+			print("<table><tr><td>nummer</td><td></td><td>naam</td><td></td><td>wachtwoord</td><td></td><td>verwijderen</td></tr>");
+			while(list($nummer,$naam) = mysql_fetch_row($query)) {
+				print("<tr><td>#$nummer</td><td></td><td>$naam</td><td></td><td>**********</td><td></td><td><a href='?a_page=verwijder_beheerder&nummer=$nummer' alt='verwijderen?'>X</a></td></tr>");
+			}
+				print("</table><br /><br />");
 		}
-			print("</table><br /><br />");
+		else {
+			print("Hier staan alle beheerders.<br /><br />");
+			print("<table><tr><td>nummer</td><td></td><td>naam</td><td></td><td>wachtwoord</td></tr>");
+			while(list($nummer,$naam) = mysql_fetch_row($query)) {
+				print("<tr><td>#$nummer</td><td></td><td>$naam</td><td></td><td>**********</td></tr>");
+			}
+				print("</table><br /><br />");
+		}	
 	}
 	
 	if($a_page == "nieuwe_beheerder") {
-		print("service tijdelijk niet beschikbaar.");
+		if($_SESSION['id'] == 1) {
+			print("Voeg nieuwe gebruiker toe??<br /><br />");
+		}
+		else {
+			print("U bent niet gerechtigd om deze actie uit te voeren.<br /><br />");
+		}	
+	}
+	
+	if($a_page == "verwijder_beheerder") {
+		if($_SESSION['id'] == 1) {
+			print("Verwijder gebruiker " . $_POST['nummer'] . "?<br /><br />");
+		}
+		else {
+			print("U bent niet gerechtigd om deze actie uit te voeren.<br /><br />");
+		}
 	}
 			
 	
