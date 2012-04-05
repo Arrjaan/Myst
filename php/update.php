@@ -1,21 +1,32 @@
 <?php
 
+header("Cache-Control: no-cache, must-revalidate"); // HTTP/1.1
+header("Expires: Sat, 26 Jul 1997 05:00:00 GMT"); // Date in the past
+
 require('../config.inc.php');
 require('../main.php');
 
 if ( $_SERVER['REQUEST_METHOD'] == "GET" ) {
-	$q = $db->query("select * from webpages where `pageid` = '".$_GET['id']."'");
-	echo $db->error;
-	$prev = $q->fetch_assoc();
+	if ( !empty($_GET['id']) ) {
+		$q = $db->query("select * from webpages where `pageid` = '".$_GET['id']."'");
+		echo $db->error;
+		$prev = $q->fetch_assoc();
+	}
+	if ( $_GET['event'] == "add" ) 
+		echo '<form method="post" id="admin" onsubmit="return false">
+			Geef een naam op voor uw nieuwe pagina: <input id="input_add" name="option" onkeypress="onEnter(event,\''.$_GET['event'].'\',\''.$_GET['id'].'\');" /> 
+			<a onclick="saveEdit(\''.$_GET['event'].'\',\''.$_GET['id'].'\');"><img src="html/img/accept.png" alt="Toevoegen" /></a>
+			<a onclick="location.reload(true);"><img src="html/img/cancel.png" alt="Annuleren" /></a>
+			</form>';
 	if ( $_GET['event'] == "title" ) 
 		echo '<form method="post" id="admin" onsubmit="return false">
-			<input id="option" name="option" value="'.$prev['pagename'].'" onkeypress="onEnter(event,\''.$_GET['event'].'\',\''.$_GET['id'].'\');" /> 
+			<input id="input_title" name="option" value="'.$prev['pagename'].'" onkeypress="onEnter(event,\''.$_GET['event'].'\',\''.$_GET['id'].'\');" /> 
 			<a onclick="saveEdit(\''.$_GET['event'].'\',\''.$_GET['id'].'\');"><img src="html/img/accept.png" alt="Update" /></a>
 			<a onclick="location.reload(true);"><img src="html/img/cancel.png" alt="Annuleren" /></a>
 			</form>';
 	if ( $_GET['event'] == "content" ) 
 		echo '<form method="post" id="admin" onsubmit="return false">
-			<textarea id="option" name="option">'.$prev['content'].'</textarea>
+			<textarea id="input_innerContent" name="option">'.$prev['content'].'</textarea>
 			<a onclick="saveEdit(\''.$_GET['event'].'\',\''.$_GET['id'].'\');"><img src="html/img/accept.png" alt="Update" /></a>
 			<a onclick="location.reload(true);"><img src="html/img/cancel.png" alt="Annuleren" /></a>
 			</form>';

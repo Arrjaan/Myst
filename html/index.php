@@ -103,9 +103,6 @@
 			
 		<ul id="menu">
 			<li><a href="?p=index">Home</a></li>
-			<?php if ( @$_SESSION['editmode'] == 'doEdit' ) 
-			echo '<li><a href="javascript:void(0)" class="adminlogin" rel="#addpage"><img src="html/img/add.png" alt="Pagina Toevoegen" /></a></li>';
-			?>	
 			<li><a href="javascript:void(0)" class="adminlogin" rel="#prompt">Admin</a></li>
 		</ul>
 					
