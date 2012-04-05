@@ -82,6 +82,11 @@ function loggedin() {
 	}
 }
 
+function autoLogin() {
+	document.getElementById("loggedin").style.display = 'inline';
+	document.getElementById("loginform").style.display = 'none';
+}
+
 function onEnter(evt,event,id){
 	if(evt.keyCode==13) saveEdit(event,id);
 }

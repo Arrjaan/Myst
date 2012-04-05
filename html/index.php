@@ -13,8 +13,53 @@
 		<script type="text/javascript" src="html/colorpicker/js/layout.js?ver=1.0.2"></script>
 		<link rel="stylesheet" href="html/colorpicker/css/colorpicker.css" type="text/css" />
 		
-		<script type="text/javascript" src="html/ajax.js?src"></script>
-		
+		<script type="text/javascript" src="html/ajax.js"></script>
+		<script type="text/javascript" src="html/tinymce/tiny_mce.js"></script>
+		<script type="text/javascript">
+		tinyMCE.init({
+				// General options
+				mode : "textareas",
+				theme : "advanced",
+				plugins : "table,inlinepopups",
+
+				// Theme options
+				theme_advanced_buttons1 : "bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,styleselect,formatselect,|,table,removeformat,code",
+				theme_advanced_buttons2 : "",
+				theme_advanced_buttons3 : "",
+				theme_advanced_buttons4 : "",
+				theme_advanced_toolbar_location : "top",
+				theme_advanced_toolbar_align : "left",
+				theme_advanced_statusbar_location : "bottom",
+				theme_advanced_resizing : true,
+
+				// Example content CSS (should be your site CSS)
+				content_css : "/html/all_browsers.css",
+
+				// Style formats
+				style_formats : [
+						{title : 'Bold text', inline : 'b'},
+						{title : 'Red text', inline : 'span', styles : {color : '#ff0000'}},
+						{title : 'Red header', block : 'h1', styles : {color : '#ff0000'}},
+						{title : 'Example 1', inline : 'span', classes : 'example1'},
+						{title : 'Example 2', inline : 'span', classes : 'example2'},
+						{title : 'Table styles'},
+						{title : 'Table row 1', selector : 'tr', classes : 'tablerow1'}
+				],
+
+				formats : {
+						alignleft : {selector : 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table,img', classes : 'left'},
+						aligncenter : {selector : 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table,img', classes : 'center'},
+						alignright : {selector : 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table,img', classes : 'right'},
+						alignfull : {selector : 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table,img', classes : 'full'},
+						bold : {inline : 'span', 'classes' : 'bold'},
+						italic : {inline : 'span', 'classes' : 'italic'},
+						underline : {inline : 'span', 'classes' : 'underline', exact : true},
+						strikethrough : {inline : 'del'},
+						customformat : {inline : 'span', styles : {color : '#00ff00', fontSize : '20px'}, attributes : {title : 'My custom format'}}
+				}
+		});
+		</script>
+
 		<link rel="shortcut icon" href="html/img/favicon.ico" />
 		<?php
 		print ('<style type ="text/css">');
@@ -98,6 +143,7 @@
 	</head>
 
 	<body>
+	<?php if ( $_SESSION['admin_on'] == "admin_logged_on" ) echo '<script>$(document).ready(function() {autoLogin();});</script>'; ?>
 	<div id="wrap">
 		<div id="head">Titel</div>
 			
@@ -133,7 +179,8 @@
 				
 				<a href="?p=layout">&raquo; Verander Layout</a><br />
 				<?php if ( $_SESSION['editmode'] == 'doEdit' ) { ?><a href="?p=editMode&stop">&raquo; Stop met aanpassen</a><br /><?php } 
-				else { ?><a href="?p=editMode">&raquo; Pas de website aan</a><br /><?php } ?>
+				else { ?><a href="?p=editMode">&raquo; Pas de website aan</a><br /><?php } ?><br />
+				<a href="admin?a_page=admin_off">&raquo; Log uit</a><br />
 			</span>
 			
 			<span id="loginform">
