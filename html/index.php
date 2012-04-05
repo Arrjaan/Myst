@@ -149,6 +149,13 @@
 			
 		<ul id="menu">
 			<li><a href="?p=index">Home</a></li>
+			<?php 
+				$q = $db->query("select * from `webpages` where `pageid` != '1'");
+				
+				while ( $r = $q->fetch_assoc() ) {
+					echo '<li><a href="?p='.$r['short'].'">'.$r['pagename'].'</a></li>'."\r\n";
+				}
+			?>
 			<li><a href="javascript:void(0)" class="adminlogin" rel="#prompt">Admin</a></li>
 		</ul>
 					
@@ -177,6 +184,7 @@
 			<span style="display: none;" id="loggedin">
 				<h2>Menu</h2>
 				
+				<a href="admin">&raquo; Ga naar beheerdersoverzicht</a><br />
 				<a href="?p=layout">&raquo; Verander Layout</a><br />
 				<?php if ( $_SESSION['editmode'] == 'doEdit' ) { ?><a href="?p=editMode&stop">&raquo; Stop met aanpassen</a><br /><?php } 
 				else { ?><a href="?p=editMode">&raquo; Pas de website aan</a><br /><?php } ?><br />

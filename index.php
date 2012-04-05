@@ -7,7 +7,7 @@ session_start();
 require('config.inc.php');
 require('main.php');
 
-@$page = $_GET['p'];
+@$page = urlencode($_GET['p']);
 if ( empty($page) ) $page = 'index';
 
 $q = $db->query("select * from `webpages` where `short` = '".$page."'");

@@ -32,7 +32,7 @@ function del(id) {
 	xmlhttp.onreadystatechange=stateChanged;
 	xmlhttp.open("GET","php/update.php?event=del&id="+id,true);
 	xmlhttp.send(null);
-	updateEvent = event;
+	updateEvent = "del";
 }
 
 function saveEdit(event,id)
@@ -62,8 +62,16 @@ function doLogin()
 		
 function stateChanged() {
 	if (xmlhttp.readyState==4 && xmlhttp.responseText != "") {
+		var regex = /\?p\=/;
 		if (updateEvent == "content") {
 			updateEvent = "innerContent";
+		}
+		if (updateEvent == "del") {
+			window.location = "?p=index";
+		}
+		if (updateEvent == "add" && regex.test(xmlhttp.responseText)) {
+			window.location = xmlhttp.responseText;
+			return true;
 		}
 		document.getElementById(updateEvent).innerHTML=xmlhttp.responseText;
 	}
