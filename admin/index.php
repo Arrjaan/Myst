@@ -1,7 +1,8 @@
 <?php
+session_start();
 
-	include("../config.inc.php");
-	include("../main.php");
+include("../config.inc.php");
+include("../main.php");
 	
 $con = $db;
 
@@ -31,11 +32,11 @@ if(!isset($_POST['logon'])) {
 		$_SESSION['admin_on'] = "empty";
 		//pagina opslaan
 		$sort = 'logout';
-		save_log($sort,$a_page);
+		//save_log($sort,$a_page); <--- Waar staat die functie!? Hij geeft 'empty' terug.. Hij moet niks returnen als dat kan.
 	}
 }
 
-	//niet ingelogt\\
+	//niet ingelogd\\
 if ($_SESSION['admin_on'] == "empty") {
 	
 	// Inloggen
@@ -78,9 +79,9 @@ if ($_SESSION['admin_on'] == "empty") {
 	exit;
 	}
 
-	// terug sturen als er niet wordt ingelogt en niet ingelogt is.\\
+	// terug sturen als er niet wordt ingelogd en niet ingelogd is.\\
 	header('HTTP/1.1 303 See Other');
-	header('Location: http://127.0.0.1/Myst/');
+	header('Location: ../');
 		
 }
 
