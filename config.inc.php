@@ -9,6 +9,7 @@ $db['server'] = 'sql09.freemysql.net';
 $db['user'] = 'projectmyst';
 $db['passw'] = 'GitMyst';
 $db['db'] = 'projectmyst';
+$db['port'] = 3306;
 
 
 

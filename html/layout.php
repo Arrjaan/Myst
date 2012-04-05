@@ -17,6 +17,7 @@
 			$avisitedcolor =  "#".$_POST['alinkcolor'];
 			$ahovercolor =  "#".$_POST['ahovercolor'];
 			$aactivecolor =  "#".$_POST['ahovercolor'];
+			$h1color =  "#".$_POST['h1color'];
 
 			$db =  new Mysqli("sql09.freemysql.net" , "projectmyst" , "GitMyst", "projectmyst", 3306) or die("Fout! De computer mag je niet!");
 			$db->query("UPDATE layout SET value = '".$bodybackgroundcolor."' WHERE layouttype = 'body-backgroundcolor'");
@@ -33,6 +34,7 @@
 			$db->query("UPDATE layout SET value = '".$avisitedcolor."' WHERE layouttype = 'a-visitedcolor'");
 			$db->query("UPDATE layout SET value = '".$ahovercolor."' WHERE layouttype = 'a-hovercolor'");
 			$db->query("UPDATE layout SET value = '".$aactivecolor."' WHERE layouttype = 'a-activecolor'");
+			$db->query("UPDATE layout SET value = '".$h1color."' WHERE layouttype = 'h1-color'");
 			}
 		?>	
 <table cellpadding ="5" STYLE = "font-size : 13pt">
@@ -96,10 +98,25 @@
 	</tr>
 	<tr>
 		<td>
+			Kopkleur(h1)
+		</td>
+		<td>
+			<input type="text"id="kleur3" maxlength="6" size="6" name="h1color"
+				value =	"<?php
+					$h1color = $db->query("SELECT value FROM layout WHERE layouttype = 'h1-color'");
+					$h1color = $h1color->fetch_assoc();
+					$h1color = $h1color['value'];
+					$h1color = str_ireplace("#","",$h1color);
+					print($h1color);
+					?>"/>
+		</td>
+	</tr>
+	<tr>
+		<td>
 			Letterkleur
 		</td>
 		<td>
-			<input type="text"id="kleur3" maxlength="6" size="6" name="bodyfontcolor"
+			<input type="text"id="kleur4" maxlength="6" size="6" name="bodyfontcolor"
 				value = "<?php
 						$bodyfontcolor = $db->query("SELECT value FROM layout WHERE layouttype = 'body-fontcolor'");
 						$bodyfontcolor = $bodyfontcolor->fetch_assoc();
@@ -149,7 +166,7 @@
 			Titelbalkkleur
 		</td>
 		<td>
-			<input type="text"id="kleur4" maxlength="6" size="6" name="headbackgroundcolor"
+			<input type="text"id="kleur5" maxlength="6" size="6" name="headbackgroundcolor"
 				value = "<?php
 						$headbackgroundcolor = $db->query("SELECT value FROM layout WHERE layouttype = 'head-backgroundcolor'");
 						$headbackgroundcolor = $headbackgroundcolor->fetch_assoc();
@@ -164,7 +181,7 @@
 			Menukleur
 		</td>
 		<td>
-			<input type="text"id="kleur5" maxlength="6" size="6" name="menucolor"
+			<input type="text"id="kleur6" maxlength="6" size="6" name="menucolor"
 				value = "<?php
 						$menucolor = $db->query("SELECT value FROM layout WHERE layouttype = 'menu-color'");
 						$menucolor = $menucolor->fetch_assoc();
@@ -179,7 +196,7 @@
 			Menuletterkleur	
 		</td>
 		<td>
-			<input type="text"id="kleur6" maxlength="6" size="6" name="menubuttonfontcolor"
+			<input type="text"id="kleur7" maxlength="6" size="6" name="menubuttonfontcolor"
 				value = "<?php
 					$menubuttonfontcolor = $db->query("SELECT value FROM layout WHERE layouttype = 'menubutton-fontcolor'");
 					$menubuttonfontcolor = $menubuttonfontcolor->fetch_assoc();
@@ -194,7 +211,7 @@
 			Menukleur (geselecteerd) 
 		</td>
 		<td>
-			<input type="text"id="kleur7" maxlength="6" size="6" name="menuhoverbackcolor"
+			<input type="text"id="kleur8" maxlength="6" size="6" name="menuhoverbackcolor"
 				value = "<?php
 						$menuhoverbackcolor = $db->query("SELECT value FROM layout WHERE layouttype = 'menuhover-backcolor'");
 						$menuhoverbackcolor = $menuhoverbackcolor->fetch_assoc();
@@ -209,7 +226,7 @@
 			Menuletterkleur (geselecteerd)
 		</td>
 		<td>
-			<input type="text"id="kleur8" maxlength="6" size="6" name="menuhoverfontcolor"
+			<input type="text"id="kleur9" maxlength="6" size="6" name="menuhoverfontcolor"
 				value 	= "<?php
 						$menuhoverfontcolor = $db->query("SELECT value FROM layout WHERE layouttype = 'menuhover-fontcolor'");
 						$menuhoverfontcolor = $menuhoverfontcolor->fetch_assoc();
@@ -224,7 +241,7 @@
 			Linkkleur
 		</td>
 		<td>
-			<input type="text"id="kleur9" maxlength="6" size="6" name="alinkcolor"
+			<input type="text"id="kleur10" maxlength="6" size="6" name="alinkcolor"
 				value 	= "<?php
 						$alinkcolor = $db->query("SELECT value FROM layout WHERE layouttype = 'a-linkcolor'");
 						$alinkcolor = $alinkcolor->fetch_assoc();
@@ -239,7 +256,7 @@
 			Linkkleur (geselecteerd)
 		</td>
 		<td>
-			<input type="text"id="kleur10" maxlength="6" size="6" name="ahovercolor"
+			<input type="text"id="kleur11" maxlength="6" size="6" name="ahovercolor"
 				value 	= "<?php
 						$ahovercolor = $db->query("SELECT value FROM layout WHERE layouttype = 'a-hovercolor'");
 						$ahovercolor = $ahovercolor->fetch_assoc();
@@ -259,7 +276,7 @@
 	</form> 
 </table>
 <script>
-$('#kleur1, #kleur2, #kleur3, #kleur4, #kleur5, #kleur6, #kleur7, #kleur8, #kleur9, #kleur10').ColorPicker({
+$('#kleur1, #kleur2, #kleur3, #kleur4, #kleur5, #kleur6, #kleur7, #kleur8, #kleur9, #kleur10, #kleur11').ColorPicker({
 	onSubmit: function(hsb, hex, rgb, el) {
 		$(el).val(hex);
 		$(el).ColorPickerHide();
@@ -273,6 +290,6 @@ $('#kleur1, #kleur2, #kleur3, #kleur4, #kleur5, #kleur6, #kleur7, #kleur8, #kleu
 });
 </script>
 <br>
-<b>Voorbeeld</b><br>
+<h1>Voorbeeld</h1>
 Hebban olla vogala nestas hagunnan hinase hic anda thu, wat unbidan we nu?<br>
 <a href="#">Link</a>

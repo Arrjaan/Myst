@@ -2,7 +2,7 @@
 // database connectie \\
 function db($db) {
 
-	$db = new mysqli($db['server'], $db['user'], $db['passw'], $db['db']);
+	$db = new Mysqli($db['server'], $db['user'], $db['passw'], $db['db'], $db['port']);
 
 	if ($db->connect_errno) {
 		die('Connect Error: ' . $db->connect_errno);

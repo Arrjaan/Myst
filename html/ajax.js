@@ -1,4 +1,5 @@
 var xmlhttp;
+var updateEvent
 
 function createAJAX() {
 	if (window.XMLHttpRequest) {
@@ -9,22 +10,43 @@ function createAJAX() {
 	}
 	return null;
 }
-		
-function edit() {
+
+function add() {
 	xmlhttp=createAJAX();
 	xmlhttp.onreadystatechange=stateChanged;
-	xmlhttp.open("GET","php/update.php?title",true);
+	xmlhttp.open("GET","php/update.php?event=add",true);
 	xmlhttp.send(null);
+	updateEvent = "add";
+}
+		
+function edit(event,id) {
+	xmlhttp=createAJAX();
+	xmlhttp.onreadystatechange=stateChanged;
+	xmlhttp.open("GET","php/update.php?event="+event+"&id="+id,true);
+	xmlhttp.send(null);
+	updateEvent = event;
 }
 
-function saveEdit()
+function del(id) {
+	xmlhttp=createAJAX();
+	xmlhttp.onreadystatechange=stateChanged;
+	xmlhttp.open("GET","php/update.php?event=del&id="+id,true);
+	xmlhttp.send(null);
+	updateEvent = "del";
+}
+
+function saveEdit(event,id)
 {
-	var option=encodeURIComponent(document.getElementById("option").value);
+	var realEvent = "input_"+event;
+	if (realEvent == "input_content") {
+		realEvent = "input_innerContent";
+	}
+	var option=encodeURIComponent(document.getElementById(realEvent).value);
 	xmlhttp=createAJAX();
 	xmlhttp.onreadystatechange=stateChanged;
 	xmlhttp.open("POST","php/update.php",true);
 	xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-	xmlhttp.send("option="+option);
+	xmlhttp.send("event="+event+"&id="+id+"&value="+option);
 }
 
 function doLogin()
@@ -40,18 +62,41 @@ function doLogin()
 		
 function stateChanged() {
 	if (xmlhttp.readyState==4 && xmlhttp.responseText != "") {
-		document.getElementById("title").innerHTML=xmlhttp.responseText;
+		var regex = /\?p\=/;
+		if (updateEvent == "content") {
+			updateEvent = "innerContent";
+		}
+		if (updateEvent == "del") {
+			window.location = "?p=index";
+		}
+		if (updateEvent == "add" && regex.test(xmlhttp.responseText)) {
+			window.location = xmlhttp.responseText;
+			return true;
+		}
+		document.getElementById(updateEvent).innerHTML=xmlhttp.responseText;
 	}
 }
 
 function loggedin() {
 	if (xmlhttp.readyState==4 && xmlhttp.responseText != "") {
-		document.getElementById("loginmsg").innerHTML=xmlhttp.responseText;
+		var regex = /bent nu ingelogd/;
+		if ( regex.test(xmlhttp.responseText) ) {
+			document.getElementById("loggedin").style.display = 'inline';
+			document.getElementById("loginform").style.display = 'none';
+		}
+		else {
+			document.getElementById("loginmsg").innerHTML=xmlhttp.responseText;
+		}
 	}
 }
 
-function onEnter(evt){
-	if(evt.keyCode==13) saveEdit();
+function autoLogin() {
+	document.getElementById("loggedin").style.display = 'inline';
+	document.getElementById("loginform").style.display = 'none';
+}
+
+function onEnter(evt,event,id){
+	if(evt.keyCode==13) saveEdit(event,id);
 }
 
 $(document).ready(function() {
