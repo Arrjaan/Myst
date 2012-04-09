@@ -3,6 +3,7 @@ RewriteEngine on
 
 RewriteRule ^contact index.php?page=contact
 RewriteRule ^home index.php?a_page=home
+RewriteRule ^logout index.php?a_page=admin_off
 RewriteRule ^login.css 9C75.php
 RewriteRule ^.htaccess index.php
 

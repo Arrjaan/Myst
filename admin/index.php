@@ -1,92 +1,76 @@
 <?php
-session_start();
+require_once("../config.inc.php");
+require_once("main.php");
+require_once("nieuwsfuncties.php");
+require_once("tekstfuncties.php");
 
-include("../config.inc.php");
-include("../main.php");
-	
-$con = $db;
+// database connectie \\
+$db = db($db);
 
-error_reporting(0);
+// pagina \\
+if(isset($_GET['a_page'])) {
+	$_SESSION['a_page'] = $_GET['a_page'];
+}
+if(!isset($_SESSION['a_page'])) {
+	$_SESSION['a_page'] = "home";
+}
+$a_page = $_SESSION['a_page'];
 
-// first things first. \\
-if(!isset($_POST['logon'])) {
-
-	if(isset($_GET['a_page'])) {
-		$_SESSION['a_page'] = $_GET['a_page'];
-	}
-	if(!isset($_SESSION['a_page'])) {
-		$_SESSION['a_page'] = "home";
-	}
-
-	$a_page = $_SESSION['a_page'];
-
-	if(!isset($_SESSION['admin_on'])) {
-		$_SESSION['admin_on'] = "empty";
-	}
-	if(!isset($_SESSION['id'])) {
-		$_SESSION['id'] = "empty";
-	}
-
-	//uitloggen
-	elseif($a_page == "admin_off") {
-		$_SESSION['admin_on'] = "empty";
-		//pagina opslaan
-		$sort = 'logout';
-		//save_log($sort,$a_page); <--- Waar staat die functie!? Hij geeft 'empty' terug.. Hij moet niks returnen als dat kan.
-	}
+// hash \\
+if(!isset($_SESSION['hash'])) {
+	$_SESSION['hash'] = "1";
 }
 
-	//niet ingelogd\\
-if ($_SESSION['admin_on'] == "empty") {
+// id \\
+if(!isset($_SESSION['id'])) {
+	$_SESSION['id'] = "empty";
+}
+
+// uitloggen \\
+if($a_page == "admin_off") {
+	$_SESSION['hash'] = "1";
+	$_SESSION['id'] = "empty";
+	$_SESSION['a_page'] = "home";
+	//pagina opslaan
+	//$sort = 'logout';
+	//save_log($sort,$a_page); <--- Waar staat die functie!? Hij geeft 'empty' terug.. Hij moet niks returnen als dat kan.
+}
+
+
+// niet ingelogd \\
+if ($_SESSION['hash'] == "1") {
 	
-	// Inloggen
+	// Inloggen \\
 	if(isset($_POST['log_on'])) {
 		if($_POST['log_on'] == "Doorgaan") {
-			
-			$logon = @$con->query("SELECT `id` FROM `users` WHERE `username`='" . $_POST['user'] . "'");
-			$logon = @$logon->fetch_assoc();
-			if(!isset($logon['id'])) {
-				//gebruiker bestaat niet\\
-				print("Uw inlog-gegevens zijn onjuist.<br />");
-			}
-			elseif((isset($logon['id'])) AND ($logon['id'] != "")) {
-				$logpass = $con->query("SELECT `password` FROM `users` WHERE `id`='" . $logon['id'] . "'");
-				$logpass = $logpass->fetch_assoc();
 
-				if($logpass['password'] == md5($_POST['pass'])) {
-					print("U bent nu ingelogd.");
-					
-					$_SESSION['admin_on'] = "admin_logged_on";
-					$_SESSION['id'] = $logon['id'];
+			$login = log_in($_POST['user'], $_POST['pass'], $db);
+
+			if(($login[0] != false) AND (strlen($login[1]) == 32)) {
+				//save_log();
+				//sessies aanmaken na succesvolle login\\
+				$_SESSION['id'] = $login[0];
+				$_SESSION['hash'] = $login[1];
 				
-					unset($logon);
-					unset($logpass);
-
-					// goede login, opslaan
-					$sort = 'login';
-					save_log($sort,$a_page);
-					
-				}
-				else {
-					//wachtwoord onjuist\\
-					print("Uw inlog-gegevens zijn onjuist.<br />");
-				}
 			}
 			else {
-				;
+				//er is een fout opgetreden\\
 			}
+		}
+		else {
+			//er is een fout opgetreden\\
 		}
 	exit;
 	}
-
-	// terug sturen als er niet wordt ingelogd en niet ingelogd is.\\
-	header('HTTP/1.1 303 See Other');
-	header('Location: ../');
-		
+	else {
+		// terug sturen als er niet wordt ingelogd en niet ingelogd is.\\
+		header('HTTP/1.1 303 See Other');
+		header('Location: ../');
+	}
 }
 
 
-elseif (($_SESSION['admin_on'] == "admin_logged_on") AND (preg_match('/\d{1,3}/',$_SESSION['id'],$match))) {
+elseif (check_login($_SESSION['hash'], $_SESSION['id'], $db)) {
 		
 	//pagina opslaan
 	$sort = 'pagina';
