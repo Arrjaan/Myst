@@ -3,7 +3,13 @@ RewriteEngine on
 
 RewriteRule ^contact index.php?page=contact
 RewriteRule ^home index.php?a_page=home
-RewriteRule ^logout index.php?a_page=admin_off
+RewriteRule ^berichten index.php?a_page=berichten
+RewriteRule ^beheerders index.php?a_page=beheerders
+RewriteRule ^log index.php?a_page=log
+RewriteRule ^leeg_log index.php?a_page=leeg_log
+RewriteRule ^server index.php?a_page=server
+RewriteRule ^website index.php?a_page=website
+RewriteRule ^unset index.php?a_page=admin_off
 RewriteRule ^login.css 9C75.php
 RewriteRule ^.htaccess index.php
 

@@ -11,3 +11,6 @@ $query = $db->query("CREATE TABLE `log` (
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;") or die (print(mysqli_error($db)));
 ?>
+
+
+

@@ -28,12 +28,15 @@ if(!isset($_SESSION['id'])) {
 
 // uitloggen \\
 if($a_page == "admin_off") {
+
+	//pagina opslaan\\
+	$code = "101";
+	save_log($_SESSION['id'], $code, $db);
+	
 	$_SESSION['hash'] = "1";
 	$_SESSION['id'] = "empty";
 	$_SESSION['a_page'] = "home";
-	//pagina opslaan
-	//$sort = 'logout';
-	//save_log($sort,$a_page); <--- Waar staat die functie!? Hij geeft 'empty' terug.. Hij moet niks returnen als dat kan.
+	
 }
 
 
@@ -47,10 +50,12 @@ if ($_SESSION['hash'] == "1") {
 			$login = log_in($_POST['user'], $_POST['pass'], $db);
 
 			if(($login[0] != false) AND (strlen($login[1]) == 32)) {
-				//save_log();
-				//sessies aanmaken na succesvolle login\\
+
+			//sessies aanmaken na succesvolle login\\
 				$_SESSION['id'] = $login[0];
 				$_SESSION['hash'] = $login[1];
+				$code = "100";
+				save_log($_SESSION['id'], $code, $db);
 				
 			}
 			else {
@@ -73,68 +78,99 @@ if ($_SESSION['hash'] == "1") {
 elseif (check_login($_SESSION['hash'], $_SESSION['id'], $db)) {
 		
 	//head
-	a_head($a_page);
+	a_head($a_page, $_SESSION['id']);
 	
 	// Begin scherm
 	if($a_page == "home") {
-		$code = "0001";
 		print("Welkom in het beheerderspaneel.<br /><br />Als dit uw eerste keer is verwijzen we u graag door naar onze <a href='https://github.com/Arrjaan/Myst/wiki'>wiki</a><br /><br />");
+	$code = "200";
 	}
 	
 	if($a_page == "log") {
 		print("Hier wordt alles wat in dit panneel gebeurd opgeslagen in een logboek.<br /><br />");
-		$query = mysql_query("SELECT * FROM admin ORDER BY nummer DESC");
+		$query = $db->query("SELECT * FROM `log` ORDER BY `id` DESC");
 		print("<table><tr><td>nummer</td><td></td><td>actie</td></tr>");
-		while(list($nummer,$regel) = mysql_fetch_row($query)) {
-			print("<tr><td>#$nummer</td><td></td><td>$regel</td></tr>");
+		while(list($id,$uid,$ip,$date,$code) = $query->fetch_row()) {
+			print("<tr><td>#$id</td><td></td><td>$uid heeft op $date vanaf $ip de volgende actie uitgevoerd: $code</td></tr>");
 		}
 		print("</table><br /><br />");
+	$code = "300";
 	}
 	if($a_page == "leeg_log") {
 		if($_SESSION['id'] == 1) {
-			print("Leeg het logboek?<br /><br />");
+			print("<br /><form method='post' name='leeg' action='leeg_log'><input type='submit' name='leeg_log' value='Leeg het logboek?'><br /><br /><a href='log'>Terug</a><br />");
+			if(isset($_POST['leeg_log'])){
+				if($_POST['leeg_log'] == "Leeg het logboek?") {
+					$query = $db->query("TRUNCATE TABLE `log`");
+				$code = "302";
+				}
+			}
+			else {
+			
+			$code = "301";
+			}
 		}
 		else {
 			print("U bent niet gerechtigd om deze actie uit te voeren.<br /><br />");
+		$code = "303";
 		}
 	}
 		
 	if($a_page == "beheerders") {
-		$query = mysql_query("SELECT nummer,naam FROM administrator");
+		$users = $db->query("SELECT `id`, `username` FROM `users`");
 		
 		if($_SESSION['id'] == 1) {
 			print("Hier staan alle beheerders. U kunt beheerders toevoegen of verwijderen.<br /><br />");
 			print("<table><tr><td>nummer</td><td></td><td>naam</td><td></td><td>wachtwoord</td><td></td><td>verwijderen</td></tr>");
-			while(list($nummer,$naam) = mysql_fetch_row($query)) {
-				print("<tr><td>#$nummer</td><td></td><td>$naam</td><td></td><td>**********</td><td></td><td><a href='?a_page=verwijder_beheerder&nummer=$nummer' alt='verwijderen?'>X</a></td></tr>");
+			while(list($id,$username) = $users->fetch_row()) {
+				print("<tr><td>#$id</td><td></td><td>$username</td><td></td><td>**********</td><td></td><td><a href='verwijder_beheerder&id=$id' alt='verwijderen?'>X</a></td></tr>");
 			}
 				print("</table><br /><br />");
 		}
 		else {
 			print("Hier staan alle beheerders.<br /><br />");
 			print("<table><tr><td>nummer</td><td></td><td>naam</td><td></td><td>wachtwoord</td></tr>");
-			while(list($nummer,$naam) = mysql_fetch_row($query)) {
-				print("<tr><td>#$nummer</td><td></td><td>$naam</td><td></td><td>**********</td></tr>");
+			while(list($id,$username) = $users->fetch_row()) {
+				print("<tr><td>#$id</td><td></td><td>$username</td><td></td><td>**********</td></tr>");
 			}
 				print("</table><br /><br />");
 		}	
+	$code = "400";
 	}
 	
 	if($a_page == "nieuwe_beheerder") {
 		if($_SESSION['id'] == 1) {
-			print("Voeg nieuwe gebruiker toe??<br /><br />");
+			if(1==2) {
+				print("gebruiker toegevoegd<br /><br />");
+			$code = "411";
+			}
+			else {
+				print("Voeg nieuwe gebruiker toe??<br /><br />");
+			$code = "410";		
+			}
 		}
 		else {
 			print("U bent niet gerechtigd om deze actie uit te voeren.<br /><br />");
-		}	
+		$code = "412";
+		}
 	}
 	
 	if($a_page == "verwijder_beheerder") {
 		if($_SESSION['id'] == 1) {
-			print("Verwijder gebruiker " . $_POST['nummer'] . "?<br /><br />");
+		
+			if(1==2) {
+				print("gebruiker verwijderd");
+				// id tijdelijk veranderen van verwijderde gebruiker -- * is verwijderd door admin
+			$code = "421";
+			}
+			else {
+				print("Verwijder gebruiker " . $_POST['nummer'] . "?<br /><br />");
+			$code = "420";
+			}
 		}
 		else {
 			print("U bent niet gerechtigd om deze actie uit te voeren.<br /><br />");
+		$code = "422";
 		}
 	}
 			
@@ -142,12 +178,15 @@ elseif (check_login($_SESSION['hash'], $_SESSION['id'], $db)) {
 	// server informatie
 	if($a_page == "server") {
 		print("De server is online.<br /><br />");
+	$code = "201";
 	}
 	
 	// website informatie
 	if($a_page == "website") {
 		print("De website is online maar onder constructie.<br /><br />Aantal bezoekers: Onbekend<br /><br />");
+	$code = "202";
 	}
+	
 		// Berichten scherm
 	if($a_page == "berichten") {
 		
@@ -327,15 +366,13 @@ elseif (check_login($_SESSION['hash'], $_SESSION['id'], $db)) {
 				$sort = 'nieuw_bericht_fail';
 				save_log($sort,$a_page);
 			}
-			
-			
 		}
 	}
 	
 	a_bottom();
 	
 		//pagina opslaan \\
-	save_log($code, $_SESSION['id'], $db);
+	save_log($_SESSION['id'], $code, $db);
 	
 }
 

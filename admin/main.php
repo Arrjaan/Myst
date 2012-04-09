@@ -168,67 +168,13 @@ function save_log($uid, $code, $db) {
 	$ip = getRealIpAddr();
 	$date = tijd();
 
-	if($sort == "login") {
-		$regel = ":: $date :: Bezoeker logt in vanaf $ip.";
-		$query = mysql_query("INSERT INTO admin VALUES('$nummer','$regel')");
-	}
-	elseif($sort == "login_fail") {
-		$regel = ":: $date :: Bezoeker geeft verkeerd wachtwoord op vanaf $ip.";
-		$query = mysql_query("INSERT INTO admin VALUES('$nummer','$regel')");
-	}
-	elseif($sort == "logout") {
-		$regel = ":: $date :: Bezoeker logt uit vanaf $ip.";
-		$query = mysql_query("INSERT INTO admin VALUES('$nummer','$regel')");
-	}
-	elseif($sort == "pagina") {
-		$regel = ":: $date :: Bezoeker krijgt de pagina \"$a_page\" te zien vanaf $ip.";
-		$query = mysql_query("INSERT INTO admin VALUES('$nummer','$regel')");
-	}
-	elseif($sort == "nieuw_bericht") {
-		$regel = ":: $date :: Bezoeker plaatst een nieuw bericht vanaf $ip.";
-		$query = mysql_query("INSERT INTO admin VALUES('$nummer','$regel')");
-	}	
-	elseif($sort == "nieuw_bericht_fail") {
-		$regel = ":: $date :: Bezoeker kon geen nieuw bericht plaatsen vanaf $ip.";
-		$query = mysql_query("INSERT INTO admin VALUES('$nummer','$regel')");
-	}	
-	elseif($sort == "verwijder_bericht") {
-		$regel = ":: $date :: Bezoeker verwijderd een bericht vanaf $ip.";
-		$query = mysql_query("INSERT INTO admin VALUES('$nummer','$regel')");
-	}	
-	elseif($sort == "verwijder_bericht_fail") {
-		$regel = ":: $date :: Bezoeker kon geen bericht verwijderen vanaf $ip.";
-		$query = mysql_query("INSERT INTO admin VALUES('$nummer','$regel')");
-	}
-	elseif($sort == "bewerk_bericht_versturen") {
-		$regel = ":: $date :: Bezoeker bewerkte een bericht vanaf $ip.";
-		$query = mysql_query("INSERT INTO admin VALUES('$nummer','$regel')");
-	}	
-	elseif($sort == "bewerk_bericht_versturen_fail") {
-		$regel = ":: $date :: Bezoeker kon geen bericht bewerken vanaf $ip.";
-		$query = mysql_query("INSERT INTO admin VALUES('$nummer','$regel')");
-	}	
-	elseif($sort == "verborgen_bericht") {
-		$regel = ":: $date :: Bezoeker veranderde de zichtbaarheid van een bericht vanaf $ip.";
-		$query = mysql_query("INSERT INTO admin VALUES('$nummer','$regel')");
-	}	
-	elseif($sort == "verborgen_bericht_fail") {
-		$regel = ":: $date :: Bezoeker kon de zichtbaarheid van een bericht niet veranderen vanaf $ip.";
-		$query = mysql_query("INSERT INTO admin VALUES('$nummer','$regel')");
-	}	
-	elseif($sort == "failure") {
-		$regel = ":: $date :: Bezoeker krijgt een foutmelding te zien vanaf $ip.";
-		$query = mysql_query("INSERT INTO admin VALUES('$nummer','$regel')");
-	}	
-	else {
-		$regel = ":: $date :: Bezoeker krijgt een pagina te zien die niet is opgenomen in het systeem vanaf $ip.";
-		$query = mysql_query("INSERT INTO admin VALUES('$nummer','$regel')");
-	}	
-	print(mysql_error() . "$nummer");
+	$query = $db->query("INSERT INTO `log`(`uid`, `ip`, `date`, `code`) VALUES('$uid', '$ip', '$date', '$code')");
+	
+	print(mysql_error());
 }
 
 // head \\
-function a_head($a_page) {
+function a_head($a_page, $id) {
 
 //begin
 print('
@@ -266,28 +212,28 @@ print('
 	}
 	//berichten
 	if($a_page == "berichten" OR $a_page == "nieuw_bericht" OR $a_page == "bewerk_bericht" OR $a_page == "verwijder_bericht") {
-		print('<li><a href="?a_page=berichten" class="active">Berichten</a></li>');
+		print('<li><a href="berichten" class="active">Berichten</a></li>');
 	}
 	else {
-		print('<li><a href="?a_page=berichten">Berichten</a></li>');
+		print('<li><a href="berichten">Berichten</a></li>');
 	}
 	//beheerders
 	if($a_page == "beheerders" OR $a_page == "nieuwe_beheerder") {
-		print('<li><a href="?a_page=beheerders" class="active">Beheerders</a></li>');
+		print('<li><a href="beheerders" class="active">Beheerders</a></li>');
 	}
 	else {
-		print('<li><a href="?a_page=beheerders">Beheerders</a></li>');
+		print('<li><a href="beheerders">Beheerders</a></li>');
 	}
 	//logboek
-	if($a_page == "log") {
-		print('<li><a href="?a_page=log" class="active">Logboek</a></li>');
+	if($a_page == "log" OR $a_page == "leeg_log") {
+		print('<li><a href="log" class="active">Logboek</a></li>');
 	}
 	else {
-		print('<li><a href="?a_page=log">Logboek</a></li>');
+		print('<li><a href="log">Logboek</a></li>');
 	}
 	//logout
 	print('
-	        	<li class="logout"><a href="?a_page=admin_off">LOGOUT</a></li>
+	        	<li class="logout"><a href="unset">LOGOUT</a></li>
 	        </ul>
 	        <!-- // #end mainNav -->
 	');
@@ -305,8 +251,8 @@ print('
 		<div id="sidebar">
 			<ul class="sideNav">
 				<li><a href="home"'); if($a_page == "home") { print('class="active"'); } else { ; } print('>Home</a></li>
-				<li><a href="?a_page=server"'); if($a_page == "server") { print('class="active"'); } else { ; } print('>Serverstatus</a></li>
-				<li><a href="?a_page=website"'); if($a_page == "website") { print('class="active"'); } else { ; } print('>Websitestatus</a></li>
+				<li><a href="server"'); if($a_page == "server") { print('class="active"'); } else { ; } print('>Serverstatus</a></li>
+				<li><a href="website"'); if($a_page == "website") { print('class="active"'); } else { ; } print('>Websitestatus</a></li>
 			</ul>
 			<!-- // .sideNav -->
 		</div>    
@@ -323,24 +269,28 @@ print('
 			print('</a></h2>'); 
 	}	
 	//logboek
-	elseif($a_page == "log") {
+	elseif($a_page == "log" or $a_page == "leeg_log") {
 	print('        		
 		<div id="sidebar">
 			<ul class="sideNav">
-				<li><a href="?a_page=log"'); if($a_page == "log") { print('class="active"'); } else { ; } print('>Logboek</a></li>
+				<li><a href="log"'); if($a_page == "log") { print('class="active"'); } else { ; } print('>Logboek</a></li>
+	');
+		if($id == "1") {
+	print('<li><a href="leeg_log"'); if($a_page == "leeg_log") { print('class="active"'); } else { ; } print('>Logboek legen</a></li>');
+		}
+	print('
 			</ul>
 			<!-- // .sideNav -->
 		</div>    
 		<!-- // #sidebar -->
 		
 		<!-- h2 stays for breadcrumbs -->
-		<h2><a href="?a_page=log"'); if($a_page == "log") { print('class="active">Logboek</a>'); } 
-		/*else { 
-			print('>Logboek</a> &raquo; <a href="?a_page=' . $a_page . '" class="active">'); 
-			if($a_page == "server") { print('Serverstatus'); } 
-			elseif($a_page == "website") { print('Websitestatus'); } 
+		<h2><a href="log"'); if($a_page == "log") { print('class="active">Logboek</a>'); } 
+		else { 
+			print('>Logboek</a> &raquo; <a href="' . $a_page . '" class="active">'); 
+			if($a_page == "leeg_log") { print('Logboek legen'); } 
 			print('</a></h2>'); 
-		} */
+		} 
 			print('</a></h2>'); 
 	}		
 	//beheerders
