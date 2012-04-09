@@ -13,13 +13,7 @@ function db($db) {
 
 }
 
-// database connectie \\
-$db = db($db);
-
-	include("nieuwsfuncties.php");
-	include("tekstfuncties.php");
-
-// inlog hash \\
+// login functie \\
 function log_in($user, $pass, $db) {
 
 			$logon = @$db->query("SELECT `id` FROM `users` WHERE `password`='" . md5($pass) . "' AND `username`='" . $user . "'");
@@ -59,6 +53,7 @@ function log_in($user, $pass, $db) {
 	return $return;
 }
 
+// login -checker \\
 function check_login($hash,$id,$db) {
 	
 	$check = @$db->query("SELECT `hash` FROM `users` WHERE `id`=" . $id . " ");
@@ -74,6 +69,7 @@ function check_login($hash,$id,$db) {
 return $return;
 }
 
+// random hash 32 \\
 function random() {
 	$salt = rand(9999,99999);
 	$rand = rand(1000,9999);
@@ -88,7 +84,7 @@ function random() {
 return $random;
 }
 	
-//Echt ip-adres
+// Echt ip-adres \\
 function getRealIpAddr() {
     if (!empty($_SERVER['HTTP_CLIENT_IP']))   //check ip from share internet
     {
@@ -106,7 +102,7 @@ function getRealIpAddr() {
 }
 
 
-//dagen omrekenen
+// dagen omrekenen \\
 function ned_dag($dag) {
 	for($i=1;$i<=7;$i++) {
 		if($dag == $i) {
@@ -118,7 +114,7 @@ function ned_dag($dag) {
 }
 
 
-//maanden omrekenen
+// maanden omrekenen \\
 function ned_maand($maand) {
 	for($i=1;$i<=12;$i++) {
 		if($maand == $i) {
@@ -130,7 +126,7 @@ function ned_maand($maand) {
 }
 
 
-// datum en tijd
+// datum en tijd \\
 function tijd() {
 
 	$dag = date("N");
@@ -142,7 +138,7 @@ function tijd() {
 	return($datum);
 }
 
-//bb-codes
+// bb-codes \\
 function bb_codes($bericht) {
 
 	//include("nieuwsfuncties.php");
@@ -156,6 +152,7 @@ function bb_codes($bericht) {
 	return($bericht);
 }
 
+// regel afbraak \\
 function naar_br($tekst) {
 
 	$replace = array("\r\n", "\r", "\n", "<", ">");
@@ -165,13 +162,13 @@ function naar_br($tekst) {
 	return($tekst);
 }
 
-//Logboek
-function save_log($sort, $a_page) {
+// Logboek \\
+function save_log($uid, $code, $db) {
 
 	$ip = getRealIpAddr();
-	$date = date('r');
+	$date = tijd();
 	
-	$query = mysql_query("SELECT * FROM admin");
+	$query = $db->query("MAX(`id`) FROM `log`");
 	$nummer = mysql_num_rows($query);
 	$nummer++;
 
@@ -234,7 +231,7 @@ function save_log($sort, $a_page) {
 	print(mysql_error());
 }
 
-//head_admin
+// head \\
 function a_head($a_page) {
 
 //begin
@@ -397,7 +394,7 @@ print('
 print('<br /><br /><div id="main">');
 }
 
-//bottom
+// bottom \\
 function a_bottom() {
 print(' 			</div>
 					<!-- // #main -->

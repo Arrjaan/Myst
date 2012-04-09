@@ -1,44 +1,46 @@
 <?php
-session_start();
-
-print_r($_SESSION);
-
 require_once("../config.inc.php");
 require_once("main.php");
+require_once("nieuwsfuncties.php");
+require_once("tekstfuncties.php");
 
-print_R($_GET);
+// database connectie \\
+$db = db($db);
 
-//first things first\\
-	if(isset($_GET['a_page'])) {
-		$_SESSION['a_page'] = $_GET['a_page'];
-	}
-	if(!isset($_SESSION['a_page'])) {
-		$_SESSION['a_page'] = "home";
-	}
+// pagina \\
+if(isset($_GET['a_page'])) {
+	$_SESSION['a_page'] = $_GET['a_page'];
+}
+if(!isset($_SESSION['a_page'])) {
+	$_SESSION['a_page'] = "home";
+}
+$a_page = $_SESSION['a_page'];
 
-	$a_page = $_SESSION['a_page'];
+// hash \\
+if(!isset($_SESSION['hash'])) {
+	$_SESSION['hash'] = "1";
+}
 
-	if(!isset($_SESSION['hash'])) {
-		$_SESSION['hash'] = "1";
-	}
-	if(!isset($_SESSION['id'])) {
-		$_SESSION['id'] = "empty";
-	}
+// id \\
+if(!isset($_SESSION['id'])) {
+	$_SESSION['id'] = "empty";
+}
 
-	//uitloggen
-	if($a_page == "admin_off") {
-		$_SESSION['hash'] = "1";
-		$_SESSION['id'] = "empty";
-		//pagina opslaan
-		//$sort = 'logout';
-		//save_log($sort,$a_page); <--- Waar staat die functie!? Hij geeft 'empty' terug.. Hij moet niks returnen als dat kan.
-	}
+// uitloggen \\
+if($a_page == "admin_off") {
+	$_SESSION['hash'] = "1";
+	$_SESSION['id'] = "empty";
+	$_SESSION['a_page'] = "home";
+	//pagina opslaan
+	//$sort = 'logout';
+	//save_log($sort,$a_page); <--- Waar staat die functie!? Hij geeft 'empty' terug.. Hij moet niks returnen als dat kan.
+}
 
 
-	//niet ingelogd\\
+// niet ingelogd \\
 if ($_SESSION['hash'] == "1") {
 	
-	// Inloggen
+	// Inloggen \\
 	if(isset($_POST['log_on'])) {
 		if($_POST['log_on'] == "Doorgaan") {
 
@@ -58,12 +60,12 @@ if ($_SESSION['hash'] == "1") {
 		else {
 			//er is een fout opgetreden\\
 		}
-	//exit;
+	exit;
 	}
 	else {
 		// terug sturen als er niet wordt ingelogd en niet ingelogd is.\\
-		//header('HTTP/1.1 303 See Other');
-		//header('Location: ../');
+		header('HTTP/1.1 303 See Other');
+		header('Location: ../');
 	}
 }
 
