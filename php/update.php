@@ -44,7 +44,7 @@ else {
 	if ( $_POST['event'] == "add" ) {
 		$short = urlencode(str_replace(" ","-",strtolower(substr($_POST['value'],0,30))));
 		$db->query("insert into webpages values ('0', '".$short."', '".substr(strip_tags($_POST['value']),0,32)."', 'Nieuwe pagina.')");
-		echo "?p=".substr($short,0,30);
+		echo "?p=".stripslashes(substr($short,0,30));
 		echo $db->error;
 	}
 	if ( $_POST['event'] == "title" ) {
