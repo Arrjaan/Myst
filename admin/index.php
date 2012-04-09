@@ -72,15 +72,12 @@ if ($_SESSION['hash'] == "1") {
 
 elseif (check_login($_SESSION['hash'], $_SESSION['id'], $db)) {
 		
-	//pagina opslaan
-	$sort = 'pagina';
-	save_log($sort,$a_page);
-	
 	//head
 	a_head($a_page);
 	
 	// Begin scherm
 	if($a_page == "home") {
+		$code = "0001";
 		print("Welkom in het beheerderspaneel.<br /><br />Als dit uw eerste keer is verwijzen we u graag door naar onze <a href='https://github.com/Arrjaan/Myst/wiki'>wiki</a><br /><br />");
 	}
 	
@@ -336,16 +333,22 @@ elseif (check_login($_SESSION['hash'], $_SESSION['id'], $db)) {
 	}
 	
 	a_bottom();
+	
+		//pagina opslaan \\
+	save_log($code, $_SESSION['id'], $db);
+	
 }
 
 // sessie 'admin_on' is niet 'admin_logged_on' of 'empy'
 else {
 	
-	// onbekende fout
-	$sort = 'failure';
-	save_log($sort,$a_page);
-	
 	print("Onbekende fout.");
+	
+	// inlogfout verholpen \\
+	$_SESSION['hash'] = "1";
+	$_SESSION['id'] = "empty";
+	$_SESSION['a_page'] = "home";
+	
 }
 
 ?>

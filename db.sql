@@ -31,6 +31,16 @@ INSERT INTO `layout` (`id`, `layouttype`, `value`) VALUES
 (14,	'head-backgroundcolor',	'#ff0000'),
 (15,	'h1-color',	'#ff0000');
 
+DROP TABLE IF EXISTS `log`;
+CREATE TABLE `log` (
+  `id` int(11) NOT NULL auto_increment,
+  `uid` int(3) NOT NULL,
+  `ip` text NOT NULL,
+  `date` text NOT NULL,
+  `code` int(4) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+
 DROP TABLE IF EXISTS `siteinfo`;
 CREATE TABLE `siteinfo` (
   `title` varchar(20) default NULL

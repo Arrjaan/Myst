@@ -12,7 +12,7 @@ $db['db'] = 'projectmyst';
 $db['port'] = 3306;
 
 // sessies starten \\
-//session_start();
+session_start();
 
 //error reporting \\
 error_reporting(E_ALL);

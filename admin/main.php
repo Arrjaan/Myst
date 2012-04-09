@@ -167,10 +167,6 @@ function save_log($uid, $code, $db) {
 
 	$ip = getRealIpAddr();
 	$date = tijd();
-	
-	$query = $db->query("MAX(`id`) FROM `log`");
-	$nummer = mysql_num_rows($query);
-	$nummer++;
 
 	if($sort == "login") {
 		$regel = ":: $date :: Bezoeker logt in vanaf $ip.";
@@ -228,7 +224,7 @@ function save_log($uid, $code, $db) {
 		$regel = ":: $date :: Bezoeker krijgt een pagina te zien die niet is opgenomen in het systeem vanaf $ip.";
 		$query = mysql_query("INSERT INTO admin VALUES('$nummer','$regel')");
 	}	
-	print(mysql_error());
+	print(mysql_error() . "$nummer");
 }
 
 // head \\
