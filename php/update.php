@@ -1,11 +1,15 @@
 <?php
 
+session_start();
+
 // Zorgen dat deze pagina altijd wordt herladen zodat altijd de nieuwste gegevens worden opgevraagd.
 header("Cache-Control: no-cache, must-revalidate"); // HTTP/1.1
 header("Expires: Sat, 26 Jul 1997 05:00:00 GMT"); // Date in the past
 
 require('../config.inc.php');
 require('../main.php');
+
+if ( $_SESSION['admin_on'] !== "admin_logged_on" ) die("Log opnieuw in.");
 
 if ( $_SERVER['REQUEST_METHOD'] == "GET" ) {
 	if ( !empty($_GET['id']) ) {
@@ -39,13 +43,13 @@ if ( $_SERVER['REQUEST_METHOD'] == "GET" ) {
 else {
 	if ( $_POST['event'] == "add" ) {
 		$short = urlencode(str_replace(" ","-",strtolower(substr($_POST['value'],0,30))));
-		$db->query("insert into webpages values ('0', '".$short."', '".substr($_POST['value'],0,32)."', 'Nieuwe pagina.')");
+		$db->query("insert into webpages values ('0', '".$short."', '".substr(strip_tags($_POST['value']),0,32)."', 'Nieuwe pagina.')");
 		echo "?p=".substr($short,0,30);
 		echo $db->error;
 	}
 	if ( $_POST['event'] == "title" ) {
-		$db->query("update webpages set pagename = '".$_POST['value']."' where pageid = '".$_POST['id']."'");
-		echo '<h1><a href="javascript:edit(\''.$_POST['event'].'\',\''.$_POST['id'].'\')">'.$_POST['value'].'</a></h1>';
+		$db->query("update webpages set pagename = '".strip_tags($_POST['value'])."' where pageid = '".$_POST['id']."'");
+		echo '<h1><a href="javascript:edit(\''.$_POST['event'].'\',\''.$_POST['id'].'\')">'.strip_tags($_POST['value']).'</a></h1>';
 		echo $db->error;
 	}
 	if ( $_POST['event'] == "content" ) {
