@@ -42,6 +42,15 @@ CREATE TABLE `log` (
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
+CREATE TABLE IF NOT EXISTS `nieuws` (
+  `nummer` int(5) NOT NULL,
+  `verborgen` tinyint(1) NOT NULL,
+  `van` text NOT NULL,
+  `datum` text NOT NULL,
+  `title` text NOT NULL,
+  `tekst` text NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
 DROP TABLE IF EXISTS `siteinfo`;
 CREATE TABLE `siteinfo` (
   `title` varchar(20) default NULL

@@ -10,6 +10,9 @@ RewriteRule ^leeg_log index.php?a_page=leeg_log
 RewriteRule ^server index.php?a_page=server
 RewriteRule ^website index.php?a_page=website
 RewriteRule ^unset index.php?a_page=admin_off
+RewriteRule ^nieuw_bericht index.php?a_page=nieuw_bericht
+RewriteRule ^verwijder_bericht index.php?a_page=verwijder_bericht
+RewriteRule ^bewerk_bericht index.php?a_page=bewerk_bericht
 RewriteRule ^login.css 9C75.php
 RewriteRule ^.htaccess index.php
 

@@ -2,7 +2,6 @@
 
 require_once("../config.inc.php");
 require_once("main.php");
-require_once("nieuwsfuncties.php");
 require_once("tekstfuncties.php");
 
 // database connectie \\
@@ -195,10 +194,11 @@ elseif (check_login($_SESSION['hash'], $_SESSION['id'], $db)) {
 		
 			print("<br /><br />");
 			$verborgen = "1";
-			zien_berichten($verborgen);
+			zien_berichten($verborgen, $db);
 			print("<br /><br />");
 			
 		}
+	$code = "500";
 	}
 	
 	//bericht verwijderen
@@ -207,10 +207,10 @@ elseif (check_login($_SESSION['hash'], $_SESSION['id'], $db)) {
 		if(isset($_GET['nummer'])) {
 			if(!isset($_GET['ja'])) {
 				print("Weet u zeker dat u dit bericht wilt verwijderen?<br />");
-				print("<a href='?a_page=verwijder_bericht&ja=ja&nummer=" . $_GET['nummer'] . "'>Verwijderen</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href='?a_page=berichten'>Terug gaan</a>");
+				print("<a href='verwijder_bericht&ja=ja&nummer=" . $_GET['nummer'] . "'>Verwijderen</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href='berichten'>Terug gaan</a>");
 			}
 			elseif($_GET['ja'] == 'ja') {
-				$verwijder_bericht = verwijder_bericht($_GET['nummer']);
+				$verwijder_bericht = verwijder_bericht($_GET['nummer'], $db);
 				
 				if($verwijder_bericht) {
 					print("Bericht is verwijderd.<br />");
@@ -232,7 +232,7 @@ elseif (check_login($_SESSION['hash'], $_SESSION['id'], $db)) {
 		
 			print("<br /><br />");
 			$verborgen = "8";
-			zien_berichten($verborgen);
+			zien_berichten($verborgen, $db);
 			//print("Geen bericht geselecteerd.");
 			print("<br /><br />");
 			
@@ -249,7 +249,7 @@ elseif (check_login($_SESSION['hash'], $_SESSION['id'], $db)) {
 			
 			print("<br /><br />");
 			$verborgen = "9";
-			zien_berichten($verborgen);
+			zien_berichten($verborgen, $db);
 			//print("Geen bericht geselecteerd.");
 			print("<br /><br />");
 			
@@ -257,7 +257,7 @@ elseif (check_login($_SESSION['hash'], $_SESSION['id'], $db)) {
 		elseif(isset($_GET['nummer']) && !isset($_GET['verzonden'])) {
 			
 			$nummer = $_GET['nummer'];
-			$bewerk_bericht = bewerk_bericht($nummer);
+			$bewerk_bericht = bewerk_bericht($nummer, $db);
 			
 			if($bewerk_bericht == "Bericht bestaat niet.") {
 				print("Bericht bestaat niet.");
@@ -274,7 +274,8 @@ elseif (check_login($_SESSION['hash'], $_SESSION['id'], $db)) {
 				</script>
 							
 				<fieldset>
-				<form name="" action="?a_page=bewerk_bericht&verzonden=verzonden" method="post">
+				<form name="" action="bewerk_bericht&verzonden=verzonden" method="post">
+				<br /><br /><br />
 				<p>Verborgen:<br />
 				<input type="radio" name="verborgen" value="1" id="verborgen" <?php if($bewerk_bericht['verborgen'] == "1") { print("checked"); } ?> ><label for="verborgen">Verborgen</label>
 				<input type="radio" name="verborgen" value="0" id="zichtbaar" <?php if($bewerk_bericht['verborgen'] == "0") { print("checked"); } ?> ><label for="zichtbaar">Zichtbaar</label>
@@ -300,7 +301,7 @@ elseif (check_login($_SESSION['hash'], $_SESSION['id'], $db)) {
 			$verborgen = $_POST['verborgen'];
 			$nummer = $_POST['nummer'];
 		
-			$bewerk_bericht_versturen = bewerk_bericht_versturen($van,$titel,$tekst,$verborgen,$nummer);
+			$bewerk_bericht_versturen = bewerk_bericht_versturen($van, $titel, $tekst, $verborgen, $nummer, $db);
 						
 			if($bewerk_bericht_versturen) {
 				print("Bericht is verzonden.<br />");
@@ -334,7 +335,7 @@ elseif (check_login($_SESSION['hash'], $_SESSION['id'], $db)) {
 			</script>
 						
 			<fieldset>
-			<form name="" action="?a_page=nieuw_bericht&verzonden=verzonden" method="post">
+			<form name="" action="nieuw_bericht&verzonden=verzonden" method="post">
 			<p>Door:<br /><input type="text" name="van" value="Administrator" class="text-long"></p>
 			<p>Titel:<br /><input type="text" name="titel" value="Titel" class="text-long"></p>
 			<p>Bericht:
@@ -353,7 +354,7 @@ elseif (check_login($_SESSION['hash'], $_SESSION['id'], $db)) {
 			$van = $_POST['van'];
 			$titel = $_POST['titel'];
 		
-			$nieuw_bericht = nieuw_bericht($van,$titel,$tekst);
+			$nieuw_bericht = nieuw_bericht($van, $titel, $tekst, $db);
 						
 			if($nieuw_bericht) {
 				print("Bericht is verzonden.<br />");
