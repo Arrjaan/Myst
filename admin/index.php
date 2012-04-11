@@ -2,7 +2,6 @@
 
 require_once("../config.inc.php");
 require_once("main.php");
-require_once("tekstfuncties.php");
 
 // database connectie \\
 $db = db($db);
