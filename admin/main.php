@@ -1,5 +1,6 @@
 <?php
 
+
 // database connectie \\
 function db($db) {
 

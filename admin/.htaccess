@@ -13,6 +13,7 @@ RewriteRule ^unset index.php?a_page=admin_off
 RewriteRule ^login.css 9C75.php
 RewriteRule ^.htaccess index.php
 
+
 <Files .htaccess>
 	order deny,allow
 	deny from all

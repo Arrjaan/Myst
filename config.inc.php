@@ -1,5 +1,6 @@
 <?php
 
+
 $config['processor'] = '';
 $config['home'] = 'index';
 $config['rootdir'] = '/';
