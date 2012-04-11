@@ -153,7 +153,7 @@ function bb_codes($bericht) {
 	return($bericht);
 }
 
-// regel afbraak \\
+// regelafbraak \\
 function naar_br($tekst) {
 
 	$replace = array("\r\n", "\r", "\n", "<", ">");
