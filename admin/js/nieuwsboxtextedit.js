@@ -4,7 +4,7 @@ function addBBCode(tag)
 }
 function addURL()
 {
-		document.getElementsByName("tekst")[0].value += "[url= /] [/url]";
+		document.getElementsByName("tekst")[0].value += "[url=http:// /] [/url]";
 }
 function addEmail()
 {

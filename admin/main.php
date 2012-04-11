@@ -199,7 +199,7 @@ function zien_berichten($verborgen, $db) {
 					</table>
 					
 					<div id='file_" . $nummer . "' style='background: #ddd; display: none; padding: 3px 5px 5px 5px; visibility: hidden;'>
-					<a href='?a_page=bewerk_bericht&nummer=$nummer'>Dit bericht bewerken.</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href='?a_page=verwijder_bericht&nummer=$nummer'>Dit bericht verwijderen.</a>
+					<a href='bewerk_bericht&nummer=$nummer'>Dit bericht bewerken.</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href='verwijder_bericht&nummer=$nummer'>Dit bericht verwijderen.</a>
 					<table class=\"nieuws\">
 					<tr><td>Nummer:</td><td class='nieuws'>$nummer</td></tr>
 					<tr><td>Verborgen:</td><td class='nieuws'>$verborgen</td></tr>
@@ -261,7 +261,7 @@ function zien_berichten($verborgen, $db) {
 					</table>
 					
 					<div id='file_" . $nummer . "' style='background: #ddd; display: none; padding: 3px 5px 5px 5px; visibility: hidden;'>
-					<a href='?a_page=bewerk_bericht&nummer=$nummer'>Dit bericht bewerken.</a>
+					<a href='bewerk_bericht&nummer=$nummer'>Dit bericht bewerken.</a>
 					</div>
 			");
 		}
@@ -287,7 +287,7 @@ function zien_berichten($verborgen, $db) {
 					</table>
 					
 					<div id='file_" . $nummer . "' style='background: #ddd; display: none; padding: 3px 5px 5px 5px; visibility: hidden;'>
-					<a href='?a_page=verwijder_bericht&nummer=$nummer'>Dit bericht verwijderen.</a>
+					<a href='verwijder_bericht&nummer=$nummer'>Dit bericht verwijderen.</a>
 					</div>
 			");
 		}

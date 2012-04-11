@@ -89,19 +89,27 @@ elseif (check_login($_SESSION['hash'], $_SESSION['id'], $db)) {
 	if($a_page == "log") {
 		print("Hier wordt alles wat in dit panneel gebeurd opgeslagen in een logboek.<br /><br />");
 		$query = $db->query("SELECT * FROM `log` ORDER BY `id` DESC");
-		print("<table><tr><td>nummer</td><td></td><td>actie</td></tr>");
+		print("<table><tr><td>nummer</td><td width='5'></td><td>actie</td></tr>");
 		while(list($id,$uid,$ip,$date,$code) = $query->fetch_row()) {
-			print("<tr><td>#$id</td><td></td><td>$uid heeft op $date vanaf $ip de volgende actie uitgevoerd: $code</td></tr>");
+			$lil = $db->query("SELECT `username` FROM `users` WHERE `id` = " . $uid . "");
+			$lil = mysqli_fetch_array($lil);
+			print("<tr><td>#$id</td><td></td><td>" . $lil[0] . " heeft op $date vanaf $ip de volgende actie uitgevoerd: $code</td></tr>");
 		}
 		print("</table><br /><br />");
 	$code = "300";
 	}
 	if($a_page == "leeg_log") {
 		if($_SESSION['id'] == 1) {
-			print("<br /><form method='post' name='leeg' action='leeg_log'><input type='submit' name='leeg_log' value='Leeg het logboek?'><br /><br /><a href='log'>Terug</a><br />");
-			if(isset($_POST['leeg_log'])){
-				if($_POST['leeg_log'] == "Leeg het logboek?") {
+			print("<br /><a href='leeg_log&legen=ja'>Leeg het logboek</a><br /><br /><a href='log'>Terug</a><br /><br />");
+			if(isset($_GET['legen'])){
+				if($_GET['legen'] == "ja") {
 					$query = $db->query("TRUNCATE TABLE `log`");
+					if($query) {
+						print("Het logboek is geleegd.<br />");
+					}
+					else {
+						print("Er is een fout opgetreden, het logboek is niet geleegd.<br />");
+					}
 				$code = "302";
 				}
 			}
@@ -145,7 +153,8 @@ elseif (check_login($_SESSION['hash'], $_SESSION['id'], $db)) {
 			$code = "411";
 			}
 			else {
-				print("Voeg nieuwe gebruiker toe??<br /><br />");
+				print("Deze service is tijdelijk niet beschikbaar.<br />");
+				//print("Voeg nieuwe gebruiker toe??<br /><br />");
 			$code = "410";		
 			}
 		}
@@ -164,7 +173,8 @@ elseif (check_login($_SESSION['hash'], $_SESSION['id'], $db)) {
 			$code = "421";
 			}
 			else {
-				print("Verwijder gebruiker " . $_POST['nummer'] . "?<br /><br />");
+				print("Deze service is tijdelijk niet beschikbaar.<br />");
+				//print("Verwijder gebruiker " . $_POST['nummer'] . "?<br /><br />");
 			$code = "420";
 			}
 		}
@@ -276,16 +286,16 @@ elseif (check_login($_SESSION['hash'], $_SESSION['id'], $db)) {
 				<fieldset>
 				<form name="" action="bewerk_bericht&verzonden=verzonden" method="post">
 				<br /><br /><br />
-				<p>Verborgen:<br />
-				<input type="radio" name="verborgen" value="1" id="verborgen" <?php if($bewerk_bericht['verborgen'] == "1") { print("checked"); } ?> ><label for="verborgen">Verborgen</label>
-				<input type="radio" name="verborgen" value="0" id="zichtbaar" <?php if($bewerk_bericht['verborgen'] == "0") { print("checked"); } ?> ><label for="zichtbaar">Zichtbaar</label>
+				<p><input type="radio" name="verborgen" value="1" id="verborgen" <?php if($bewerk_bericht['verborgen'] == "1") { print("checked"); } ?> >&nbsp;<label for="verborgen">Verborgen</label>
+				<input type="radio" name="verborgen" value="0" id="zichtbaar" <?php if($bewerk_bericht['verborgen'] == "0") { print("checked"); } ?> >&nbsp;<label for="zichtbaar">Zichtbaar</label>
 				<p>Door:<br /><input type="text" name="van" value="<?php print($bewerk_bericht['van']); ?>" class="text-long"></p>
 				<p>Titel:<br /><input type="text" name="titel" value="<?php print($bewerk_bericht['title']); ?>" class="text-long"></p>
-				<p>Bericht:
-				<div id="input"></div>
-				<textarea name="tekst"><?php print($bewerk_bericht['tekst']); ?></textarea></p><br />
+				Bericht:<br /><br /><br />
+				<div id="input"><br /></div>
+				<textarea name="tekst"><?php print($bewerk_bericht['tekst']); ?></textarea><br /><br /><br /><br /><br /><br /><br /><br />
 				<input type="hidden" name="nummer" value="<?php print("" . $bewerk_bericht['nummer'] . ""); ?>">
-				<input type="submit" name="submit" value="Verzenden">
+				<input type="submit" name="submit" value="Verzenden"><br />
+				<input type="reset" name="reset" value="      Reset      ">
 				</form>
 				</fieldset>
 				
@@ -338,10 +348,11 @@ elseif (check_login($_SESSION['hash'], $_SESSION['id'], $db)) {
 			<form name="" action="nieuw_bericht&verzonden=verzonden" method="post">
 			<p>Door:<br /><input type="text" name="van" value="Administrator" class="text-long"></p>
 			<p>Titel:<br /><input type="text" name="titel" value="Titel" class="text-long"></p>
-			<p>Bericht:
-			<div id="input"></div>
-			<textarea name="tekst"></textarea></p><br />
-			<input type="submit" name="submit" value="Verzenden">
+			Bericht:<br /><br /><br />
+			<div id="input" height="50"><br /></div>
+			<textarea name="tekst"></textarea><br /><br /><br /><br /><br /><br /><br /><br />
+			<input type="submit" name="submit" value="Verzenden"><br />
+			<input type="reset" name="reset" value="      Reset      ">
 			</form>
 			</fieldset>
 				
