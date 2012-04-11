@@ -9,8 +9,6 @@ ob_start();
 De pagina die u probeert te bereiken kon niet gevonden worden.
 <?php 
 
-echo $source; 
-
 $adminContent = ob_get_contents();
 $content = $adminContent;
 

@@ -153,7 +153,7 @@
 				$q = $db->query("select * from `webpages` where `pageid` != '1'");
 				
 				while ( $r = $q->fetch_assoc() ) {
-					echo '<li><a href="?p='.$r['short'].'">'.$r['pagename'].'</a></li>'."\r\n";
+					echo '<li><a href="?p='.urlencode($r['short']).'">'.$r['pagename'].'</a></li>'."\r\n";
 				}
 			?>
 			<li><a href="javascript:void(0)" class="adminlogin" rel="#prompt">Admin</a></li>
