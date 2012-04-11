@@ -38,7 +38,7 @@ CREATE TABLE `log` (
   `uid` int(3) NOT NULL,
   `ip` text NOT NULL,
   `date` text NOT NULL,
-  `code` int(4) NOT NULL,
+  `code` int(5) NOT NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 

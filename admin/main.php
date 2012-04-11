@@ -304,10 +304,10 @@ function zien_berichten($verborgen, $db) {
 //bericht bewerken
 function bewerk_bericht($nummer, $db) {
 
-	$query = $db->query("SELECT * FROM `nieuws`");
-	$aantal = mysqli_fetch_row($query);
+	$query = $db->query("SELECT MAX(`nummer`) FROM `nieuws`");
+	$aantal = mysqli_fetch_array($query);
 
-	if($nummer <= $aantal) {
+	if($nummer <= $aantal[0]) {
 
 	$query = $db->query("SELECT * FROM `nieuws` WHERE `nummer`=" . $nummer . "");
 	$query = mysqli_fetch_assoc($query);
@@ -347,8 +347,8 @@ function nieuw_bericht($van, $titel, $tekst, $db) {
 
 	$datum = tijd();
 	
-	$query = $db->query("SELECT `nummer` FROM `nieuws` ORDER BY `nummer` DESC");
-	$nummer = mysqli_fetch_row($query);
+	$query = $db->query("SELECT MAX(`nummer`) FROM `nieuws`");
+	$nummer = mysqli_fetch_array($query);
 	$nummertje = $nummer[0] + 1;
 	$verborgen = "1"; //standaard verborgen
 	
@@ -357,11 +357,11 @@ function nieuw_bericht($van, $titel, $tekst, $db) {
 	$query = $db->query("INSERT INTO `nieuws`(`nummer`, `verborgen`, `van`, `datum`, `title`, `tekst`) VALUES (" . $nummertje . ", " . $verborgen . ", '" . $van . "', '" . $datum . "', '" . $titel . "', '" . $tekst . "')");
 	
 	if($query) {
-		$nieuw_bericht = true;
+		$nieuw_bericht = array(true, $nummertje);
 		//print("Uw bericht is succesvol toegevoegd aan de database!<br />");
 	}
 	else {
-		$nieuw_bericht = false;
+		$nieuw_bericht = array(false, $nummertje);
 		//print("Uw bericht kon niet worden toegevoegd aan de database.<br />Probeer het later nog eens.<br />");
 	}
 

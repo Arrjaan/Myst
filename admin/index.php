@@ -242,9 +242,8 @@ elseif (check_login($_SESSION['hash'], $_SESSION['id'], $db)) {
 				
 				if($verwijder_bericht) {
 					print("Bericht is verwijderd.<br />");
-					// nieuw bericht opslaan in de log
-					$sort = 'verwijder_bericht';
-					save_log($sort,$a_page);
+
+				$code = "61" . $_GET['nummer'];
 				}
 				else {
 					print("Bericht kon niet worden verwijderd.<br />");
@@ -336,8 +335,8 @@ elseif (check_login($_SESSION['hash'], $_SESSION['id'], $db)) {
 			if($bewerk_bericht_versturen) {
 				print("Bericht is verzonden.<br />");
 				// nieuw bericht opslaan in de log
-				$sort = 'bewerk_bericht_versturen';
-				save_log($sort,$a_page);
+			
+			$code = "62" . $nummer;
 			}
 			else {
 				print("Bericht kon niet worden verzonden.<br />");
