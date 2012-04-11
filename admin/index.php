@@ -31,6 +31,7 @@ if($a_page == "admin_off") {
 
 	//pagina opslaan\\
 	$code = "101";
+	
 	save_log($_SESSION['id'], $code, $db);
 	
 	$_SESSION['hash'] = "1";
@@ -54,6 +55,7 @@ if ($_SESSION['hash'] == "1") {
 			//sessies aanmaken na succesvolle login\\
 				$_SESSION['id'] = $login[0];
 				$_SESSION['hash'] = $login[1];
+				
 				$code = "100";
 				save_log($_SESSION['id'], $code, $db);
 				
@@ -83,6 +85,7 @@ elseif (check_login($_SESSION['hash'], $_SESSION['id'], $db)) {
 	// Begin scherm
 	if($a_page == "home") {
 		print("Welkom in het beheerderspaneel.<br /><br />Als dit uw eerste keer is verwijzen we u graag door naar onze <a href='https://github.com/Arrjaan/Myst/wiki'>wiki</a><br /><br />");
+	
 	$code = "200";
 	}
 	
@@ -96,6 +99,7 @@ elseif (check_login($_SESSION['hash'], $_SESSION['id'], $db)) {
 			print("<tr><td>#$id</td><td></td><td>" . $lil[0] . " heeft op $date vanaf $ip de volgende actie uitgevoerd: $code</td></tr>");
 		}
 		print("</table><br /><br />");
+		
 	$code = "300";
 	}
 	if($a_page == "leeg_log") {
@@ -110,6 +114,7 @@ elseif (check_login($_SESSION['hash'], $_SESSION['id'], $db)) {
 					else {
 						print("Er is een fout opgetreden, het logboek is niet geleegd.<br />");
 					}
+					
 				$code = "302";
 				}
 			}
@@ -120,6 +125,7 @@ elseif (check_login($_SESSION['hash'], $_SESSION['id'], $db)) {
 		}
 		else {
 			print("U bent niet gerechtigd om deze actie uit te voeren.<br /><br />");
+			
 		$code = "303";
 		}
 	}
@@ -143,6 +149,7 @@ elseif (check_login($_SESSION['hash'], $_SESSION['id'], $db)) {
 			}
 				print("</table><br /><br />");
 		}	
+		
 	$code = "400";
 	}
 	
@@ -150,16 +157,19 @@ elseif (check_login($_SESSION['hash'], $_SESSION['id'], $db)) {
 		if($_SESSION['id'] == 1) {
 			if(1==2) {
 				print("gebruiker toegevoegd<br /><br />");
+				
 			$code = "411";
 			}
 			else {
 				print("Deze service is tijdelijk niet beschikbaar.<br />");
 				//print("Voeg nieuwe gebruiker toe??<br /><br />");
+				
 			$code = "410";		
 			}
 		}
 		else {
 			print("U bent niet gerechtigd om deze actie uit te voeren.<br /><br />");
+			
 		$code = "412";
 		}
 	}
@@ -170,16 +180,19 @@ elseif (check_login($_SESSION['hash'], $_SESSION['id'], $db)) {
 			if(1==2) {
 				print("gebruiker verwijderd");
 				// id tijdelijk veranderen van verwijderde gebruiker -- * is verwijderd door admin
+				
 			$code = "421";
 			}
 			else {
 				print("Deze service is tijdelijk niet beschikbaar.<br />");
 				//print("Verwijder gebruiker " . $_POST['nummer'] . "?<br /><br />");
+				
 			$code = "420";
 			}
 		}
 		else {
 			print("U bent niet gerechtigd om deze actie uit te voeren.<br /><br />");
+			
 		$code = "422";
 		}
 	}
@@ -188,12 +201,14 @@ elseif (check_login($_SESSION['hash'], $_SESSION['id'], $db)) {
 	// server informatie
 	if($a_page == "server") {
 		print("De server is online.<br /><br />");
+		
 	$code = "201";
 	}
 	
 	// website informatie
 	if($a_page == "website") {
 		print("De website is online maar onder constructie.<br /><br />Aantal bezoekers: Onbekend<br /><br />");
+		
 	$code = "202";
 	}
 	
@@ -208,6 +223,7 @@ elseif (check_login($_SESSION['hash'], $_SESSION['id'], $db)) {
 			print("<br /><br />");
 			
 		}
+		
 	$code = "500";
 	}
 	
@@ -218,6 +234,8 @@ elseif (check_login($_SESSION['hash'], $_SESSION['id'], $db)) {
 			if(!isset($_GET['ja'])) {
 				print("Weet u zeker dat u dit bericht wilt verwijderen?<br />");
 				print("<a href='verwijder_bericht&ja=ja&nummer=" . $_GET['nummer'] . "'>Verwijderen</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href='berichten'>Terug gaan</a>");
+			
+			$code = "501";
 			}
 			elseif($_GET['ja'] == 'ja') {
 				$verwijder_bericht = verwijder_bericht($_GET['nummer'], $db);
@@ -230,9 +248,8 @@ elseif (check_login($_SESSION['hash'], $_SESSION['id'], $db)) {
 				}
 				else {
 					print("Bericht kon niet worden verwijderd.<br />");
-					// nieuw bericht opslaan in de log
-					$sort = 'verwijder_bericht_fail';
-					save_log($sort,$a_page);
+					
+				$code = "502";
 				}
 			}
 		}
@@ -246,6 +263,7 @@ elseif (check_login($_SESSION['hash'], $_SESSION['id'], $db)) {
 			//print("Geen bericht geselecteerd.");
 			print("<br /><br />");
 			
+		$code = "501";
 		}
 	}
 		
@@ -263,6 +281,7 @@ elseif (check_login($_SESSION['hash'], $_SESSION['id'], $db)) {
 			//print("Geen bericht geselecteerd.");
 			print("<br /><br />");
 			
+		$code = "510";
 		}
 		elseif(isset($_GET['nummer']) && !isset($_GET['verzonden'])) {
 			
@@ -302,6 +321,7 @@ elseif (check_login($_SESSION['hash'], $_SESSION['id'], $db)) {
 				<?php
 			}
 			
+		$code = "510";
 		}
 		elseif($_GET['verzonden'] == 'verzonden') {
 			
@@ -321,9 +341,8 @@ elseif (check_login($_SESSION['hash'], $_SESSION['id'], $db)) {
 			}
 			else {
 				print("Bericht kon niet worden verzonden.<br />");
-				// nieuw bericht opslaan in de log
-				$sort = 'bewerk_bericht_versturen_fail';
-				save_log($sort,$a_page);
+				
+			$code = "511";
 			}
 			
 			
@@ -357,7 +376,8 @@ elseif (check_login($_SESSION['hash'], $_SESSION['id'], $db)) {
 			</fieldset>
 				
 			<?php
-				
+			
+		$code = "520";		
 		}
 		elseif($_GET['verzonden'] == 'verzonden') {
 			
@@ -367,17 +387,15 @@ elseif (check_login($_SESSION['hash'], $_SESSION['id'], $db)) {
 		
 			$nieuw_bericht = nieuw_bericht($van, $titel, $tekst, $db);
 						
-			if($nieuw_bericht) {
+			if($nieuw_bericht[0]) {
 				print("Bericht is verzonden.<br />");
-				// nieuw bericht opslaan in de log
-				$sort = 'nieuw_bericht';
-				save_log($sort,$a_page);
+
+			$code = "60" . $nieuw_bericht[1];
 			}
 			else {
 				print("Bericht kon niet worden verzonden.<br />");
-				// nieuw bericht opslaan in de log
-				$sort = 'nieuw_bericht_fail';
-				save_log($sort,$a_page);
+
+			$code = "521";
 			}
 		}
 	}
