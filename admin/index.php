@@ -5,6 +5,9 @@ require_once("main.php");
 
 // database connectie \\
 $db = db($db);
+if($db->connect_errno) {
+	print("<center>Er is geen verbinding met de database:<br />Geen van de functies zal werken.<br /><br />Connectie error: $db->connect_errno<br /><br /><br /><i>U zal eerst een stabiele database-connectie moeten<br />maken om bij het adminpanel te komen.</i><br />");
+}
 
 // pagina \\
 if(isset($_GET['a_page'])) {

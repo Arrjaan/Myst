@@ -17,7 +17,7 @@ $db['port'] = 3306;
 session_start();
 
 //error reporting \\
-error_reporting(E_ALL);
+error_reporting(0);
 
 //tijdzone NETHERLANDS \\
 date_default_timezone_set('Europe/Amsterdam');

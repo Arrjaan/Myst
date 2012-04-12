@@ -1,24 +1,18 @@
 <?php
 
-
 // database connectie \\
 function db($db) {
 
 	$db = new Mysqli($db['server'], $db['user'], $db['passw'], $db['db'], $db['port']);
 
-	if ($db->connect_errno) {
-		die('Connect Error: ' . $db->connect_errno);
-		return false;
-	}
-	else return $db;
-
+return $db;
 }
 
 // login functie \\
 function log_in($user, $pass, $db) {
 
-			$logon = @$db->query("SELECT `id` FROM `users` WHERE `password`='" . md5($pass) . "' AND `username`='" . $user . "'");
-			$logon = @$logon->fetch_assoc();
+			$logon = $db->query("SELECT `id` FROM `users` WHERE `password`='" . md5($pass) . "' AND `username`='" . $user . "'");
+			$logon = $logon->fetch_assoc();
 			
 			if(!isset($logon['id'])) {
 				//gebruiker-wachtwoord combinatie bestaat niet\\
@@ -57,8 +51,8 @@ function log_in($user, $pass, $db) {
 // login -checker \\
 function check_login($hash,$id,$db) {
 	
-	$check = @$db->query("SELECT `hash` FROM `users` WHERE `id`=" . $id . " ");
-	$check = @$check->fetch_assoc();
+	$check = $db->query("SELECT `hash` FROM `users` WHERE `id`=" . $id . " ");
+	$check = mysqli_fetch_assoc($check);
 	
 	if($check['hash'] == $hash) {
 		$return = true;
