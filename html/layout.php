@@ -20,7 +20,7 @@
 			$h1color =  "#".$_POST['h1color'];
 			$newscolor =  "#".$_POST['newscolor'];
 
-			$db =  new Mysqli("sql09.freemysql.net" , "projectmyst" , "GitMyst", "projectmyst", 3306) or die("Fout! De computer mag je niet!");
+			
 			$db->query("UPDATE layout SET value = '".$bodybackgroundcolor."' WHERE layouttype = 'body-backgroundcolor'");
 			$db->query("UPDATE layout SET value = '".$headfontcolor."' WHERE layouttype = 'head-fontcolor'");
 			$db->query("UPDATE layout SET value = '".$bodyfont."' WHERE layouttype = 'body-font'");
@@ -48,7 +48,7 @@
 		<td>
 			<input type="text"id="kleur1" maxlength="6" size="6" 
 			value =  "<?php
-						$db =  new Mysqli("sql09.freemysql.net" , "projectmyst" , "GitMyst", "projectmyst", 3306) or die("Fout! De computer mag je niet!");
+						
 						
 						$bodybackgroundcolor = $db->query("SELECT value FROM layout WHERE layouttype = 'body-backgroundcolor'");
 						$bodybackgroundcolor = $bodybackgroundcolor->fetch_assoc();
