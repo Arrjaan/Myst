@@ -49,16 +49,59 @@ return $return;
 // Logboek \\
 function save_log($uid, $code, $db) {
 
-	//$ip = getRealIpAddr();
-	//$date = tijd();
+	$ip = getRealIpAddr();
+	$date = tijd();
 
-	//$query = $db->query("INSERT INTO `log`(`uid`, `ip`, `date`, `code`) VALUES('$uid', '$ip', '$date', '$code')");
+	$query = $db->query("INSERT INTO `log`(`uid`, `ip`, `date`, `code`) VALUES('$uid', '$ip', '$date', '$code')");
 	
-	//print(mysql_error());
+	return(true);
+}
+
+// datum en tijd \\
+function tijd() {
+
+	$dag = date("N");
+	$dag = ned_dag($dag);
+	$maand = date("n");
+	$maand = ned_maand($maand);
+	$datum = $dag . " " . date("j") . " " . $maand . " " . date("Y H:i:s");
+
+	return($datum);
+}
+
+// Echt ip-adres \\
+function getRealIpAddr() {
+    if (!empty($_SERVER['HTTP_CLIENT_IP']))   //check ip from share internet
+    {
+      $ip=$_SERVER['HTTP_CLIENT_IP'];
+    }
+    elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR']))   //to check ip is pass from proxy
+    {
+      $ip=$_SERVER['HTTP_X_FORWARDED_FOR'];
+    }
+    else
+    {
+      $ip=$_SERVER['REMOTE_ADDR'];
+    }
+    return $ip;
+}
+
+// bb-codes \\
+function bb_codes($bericht) {
+
+	//include("nieuwsfuncties.php");
+	//$verborgen = '0';
+	//$nieuwsbox = zien_berichten($verborgen);
+
+	$lijst_codes = array('[br]','[b]','[/b]','[u]','[/u]','[i]','[/i]','[url=','/]','[/url]');
+	$lijst_html = array('<br />','<b>','</b>','<u>','</u>','<i>','</i>','<a href=\'','\'>','</a>');
+	$bericht = str_replace($lijst_codes, $lijst_html, $bericht);
+	
+	return($bericht);
 }
 
 // berichten zien
-function zien_berichten($verborgen, $db) {
+function zien_berichten($db) {
 		
 		$verborgen = "0";
 		$i = "0";
