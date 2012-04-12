@@ -22,4 +22,14 @@ error_reporting(E_ALL);
 //tijdzone NETHERLANDS \\
 date_default_timezone_set('Europe/Amsterdam');
 
+// hash \\
+if(!isset($_SESSION['hash'])) {
+	$_SESSION['hash'] = "1";
+}
+
+// id \\
+if(!isset($_SESSION['id'])) {
+	$_SESSION['id'] = "empty";
+}
+
 ?>

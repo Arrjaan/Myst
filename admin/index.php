@@ -15,16 +15,6 @@ if(!isset($_SESSION['a_page'])) {
 }
 $a_page = $_SESSION['a_page'];
 
-// hash \\
-if(!isset($_SESSION['hash'])) {
-	$_SESSION['hash'] = "1";
-}
-
-// id \\
-if(!isset($_SESSION['id'])) {
-	$_SESSION['id'] = "empty";
-}
-
 // uitloggen \\
 if($a_page == "admin_off") {
 

@@ -25,8 +25,6 @@ switch ( $page ) {
 		break;
 }
 
-error_reporting(E_ALL);
-
 require('html/index.php');
 
 ?>

@@ -43,7 +43,7 @@ function check_login($hash,$id,$db) {
 		$return = false;
 	}
 
-return $return;
+return($return);
 }
 
 // Logboek \\
