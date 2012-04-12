@@ -29,6 +29,7 @@ if($a_page == "admin_off") {
 	$_SESSION['hash'] = "1";
 	$_SESSION['id'] = "empty";
 	$_SESSION['a_page'] = "home";
+	$_SESSION['editmode'] = 'NoEdit';
 	
 }
 
