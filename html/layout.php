@@ -18,6 +18,7 @@
 			$ahovercolor =  "#".$_POST['ahovercolor'];
 			$aactivecolor =  "#".$_POST['ahovercolor'];
 			$h1color =  "#".$_POST['h1color'];
+			$newscolor =  "#".$_POST['newscolor'];
 
 			$db =  new Mysqli("sql09.freemysql.net" , "projectmyst" , "GitMyst", "projectmyst", 3306) or die("Fout! De computer mag je niet!");
 			$db->query("UPDATE layout SET value = '".$bodybackgroundcolor."' WHERE layouttype = 'body-backgroundcolor'");
@@ -35,6 +36,7 @@
 			$db->query("UPDATE layout SET value = '".$ahovercolor."' WHERE layouttype = 'a-hovercolor'");
 			$db->query("UPDATE layout SET value = '".$aactivecolor."' WHERE layouttype = 'a-activecolor'");
 			$db->query("UPDATE layout SET value = '".$h1color."' WHERE layouttype = 'h1-color'");
+			$db->query("UPDATE layout SET value = '".$newscolor."' WHERE layouttype = 'news-color'");
 			}
 		?>	
 <table cellpadding ="5" STYLE = "font-size : 13pt">
@@ -238,6 +240,21 @@
 	</tr>
 	<tr>
 		<td>
+			Nieuwsboxkleur
+		</td>
+		<td>
+			<input type="text"id="kleur12" maxlength="6" size="6" name="newscolor"
+				value 	= "<?php
+						$newscolor = $db->query("SELECT value FROM layout WHERE layouttype = 'news-color'");
+						$newscolor = $newscolor->fetch_assoc();
+						$newscolor = $newscolor['value'];
+						$newscolor = str_ireplace("#","",$newscolor);
+						print($newscolor);?>"
+			/><br>
+		</td>
+	</tr>
+	<tr>
+		<td>
 			Linkkleur
 		</td>
 		<td>
@@ -276,7 +293,7 @@
 	</form> 
 </table>
 <script>
-$('#kleur1, #kleur2, #kleur3, #kleur4, #kleur5, #kleur6, #kleur7, #kleur8, #kleur9, #kleur10, #kleur11').ColorPicker({
+$('#kleur1, #kleur2, #kleur3, #kleur4, #kleur5, #kleur6, #kleur7, #kleur8, #kleur9, #kleur10, #kleur11, #kleur12').ColorPicker({
 	onSubmit: function(hsb, hex, rgb, el) {
 		$(el).val(hex);
 		$(el).ColorPickerHide();
