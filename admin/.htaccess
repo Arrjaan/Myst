@@ -3,7 +3,7 @@ RewriteEngine on
 
 RewriteRule ^contact index.php?page=contact
 RewriteRule ^home index.php?a_page=home
-RewriteRule ^berichten index.php?a_page=berichten
+RewriteRule ^berichten(.*) index.php?a_page=berichten$1
 RewriteRule ^beheerders index.php?a_page=beheerders
 RewriteRule ^verwijder_beheerder(.*) index.php?a_page=verwijder_beheerder$1
 RewriteRule ^nieuwe_beheerder index.php?a_page=nieuwe_beheerder

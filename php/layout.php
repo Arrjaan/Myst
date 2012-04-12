@@ -1,7 +1,7 @@
 <?php
 ob_start();
 
-check_login($_SESSION['hash'],$_SESSION['id'],$db)
+check_login($_SESSION['hash'],$_SESSION['id'],$db);
 
 require('html/layout.php');
 

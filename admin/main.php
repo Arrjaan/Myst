@@ -142,12 +142,8 @@ function tijd() {
 // bb-codes \\
 function bb_codes($bericht) {
 
-	//include("nieuwsfuncties.php");
-	//$verborgen = '0';
-	//$nieuwsbox = zien_berichten($verborgen);
-
 	$lijst_codes = array('[br]','[b]','[/b]','[u]','[/u]','[i]','[/i]','[url=','/]','[/url]');
-	$lijst_html = array('<br />','<b>','</b>','<u>','</u>','<i>','</i>','<a href=\'','\'>','</a>');
+	$lijst_html = array('<br />','<b>','</b>','<u>','</u>','<i>','</i>','<a href=\'','\' target=\'_blank\'>','</a>');
 	$bericht = str_replace($lijst_codes, $lijst_html, $bericht);
 	
 	return($bericht);
@@ -170,8 +166,7 @@ function save_log($uid, $code, $db) {
 	$date = tijd();
 
 	$query = $db->query("INSERT INTO `log`(`uid`, `ip`, `date`, `code`) VALUES('$uid', '$ip', '$date', '$code')");
-	
-	print(mysql_error());
+
 }
 
 // berichten zien
@@ -202,7 +197,7 @@ function zien_berichten($verborgen, $db) {
 					<a href='bewerk_bericht&nummer=$nummer'>Dit bericht bewerken.</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href='verwijder_bericht&nummer=$nummer'>Dit bericht verwijderen.</a>
 					<table class=\"nieuws\">
 					<tr><td>Nummer:</td><td class='nieuws'>$nummer</td></tr>
-					<tr><td>Verborgen:</td><td class='nieuws'>$verborgen</td></tr>
+					<tr><td>Verborgen:</td><td class='nieuws'><a href='berichten&nummer=$nummer' alt='verander'>$verborgen</a></td></tr>
 					<tr><td>Van:</td><td class='nieuws'>$van</td></tr>
 					<tr><td>Op:</td><td class='nieuws'>$datum</td></tr>
 					<tr><td>Titel:</td><td class='nieuws'>$titel</td></tr>

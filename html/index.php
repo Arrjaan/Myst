@@ -148,7 +148,10 @@
 	</head>
 
 	<body>
-	<?php //if (check_login($_SESSION['hash'], $_SESSION['id'], $db)) { echo '<script>$(document).ready(function() {autoLogin();});</script>'; } else { ; }  ?>
+	<?php if(check_login($_SESSION['hash'], $_SESSION['id'], $db)) { 
+			echo '<script>$(document).ready(function() {autoLogin();});</script>'; 
+		} else { ; }  
+	?>
 	<div id="wrap">
 		<div id="head"><?php echo $config['title']; ?></div>
 			
@@ -164,7 +167,7 @@
 			<li><a href="javascript:void(0)" class="adminlogin" rel="#prompt">Admin</a></li>
 		</ul>
 		<div id="nieuws">
-		EFSFSFSEwserseserser
+			<?php $zien = zien_berichten($db); print("$zien"); ?>
 		</div>
 		<div id="content">	
 			<?php
@@ -180,11 +183,6 @@
 				if ( @$_SESSION['editmode'] == 'doEdit' ) echo $adminContent;
 				else echo $content;
 			?>	
-				<div id="nieuws">
-					<?php
-						zien_berichten($db);
-					?>
-				</div>
 		</div>
 	</div>
 		

@@ -33,8 +33,8 @@ function redirect($url) {
 // login -checker \\
 function check_login($hash,$id,$db) {
 	
-	$check = @$db->query("SELECT `hash` FROM `users` WHERE `id`=" . $id . " ");
-	$check = @$check->fetch_assoc();
+	$check = $db->query("SELECT `hash` FROM `users` WHERE `id`=" . $id . " ");
+	$check = mysqli_fetch_assoc($check);
 	
 	if($check['hash'] == $hash) {
 		$return = true;
@@ -54,7 +54,7 @@ function save_log($uid, $code, $db) {
 
 	$query = $db->query("INSERT INTO `log`(`uid`, `ip`, `date`, `code`) VALUES('$uid', '$ip', '$date', '$code')");
 	
-	return(true);
+return(true);
 }
 
 // datum en tijd \\
@@ -66,39 +66,34 @@ function tijd() {
 	$maand = ned_maand($maand);
 	$datum = $dag . " " . date("j") . " " . $maand . " " . date("Y H:i:s");
 
-	return($datum);
+return($datum);
 }
 
 // Echt ip-adres \\
 function getRealIpAddr() {
-    if (!empty($_SERVER['HTTP_CLIENT_IP']))   //check ip from share internet
-    {
-      $ip=$_SERVER['HTTP_CLIENT_IP'];
-    }
-    elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR']))   //to check ip is pass from proxy
-    {
-      $ip=$_SERVER['HTTP_X_FORWARDED_FOR'];
-    }
-    else
-    {
-      $ip=$_SERVER['REMOTE_ADDR'];
-    }
-    return $ip;
+
+	if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+		$ip = $_SERVER['HTTP_CLIENT_IP'];
+	}
+	elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+		$ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+	}
+	else {
+		$ip = $_SERVER['REMOTE_ADDR'];
+	}
+	
+return $ip;
 }
 
 
 // bb-codes \\
 function bb_codes($bericht) {
 
-	//include("nieuwsfuncties.php");
-	//$verborgen = '0';
-	//$nieuwsbox = zien_berichten($verborgen);
-
 	$lijst_codes = array('[br]','[b]','[/b]','[u]','[/u]','[i]','[/i]','[url=','/]','[/url]');
-	$lijst_html = array('<br />','<b>','</b>','<u>','</u>','<i>','</i>','<a href=\'','\'>','</a>');
+	$lijst_html = array('<br />','<b>','</b>','<u>','</u>','<i>','</i>','<a href=\'','\' target=\'_blank\'>','</a>');
 	$bericht = str_replace($lijst_codes, $lijst_html, $bericht);
 	
-	return($bericht);
+return($bericht);
 }
 
 // berichten zien
@@ -129,8 +124,7 @@ function zien_berichten($db) {
 		
 		$print = $print . "</table>";
 		
-		return($print);
-
+return($print);
 }
 
 ?>

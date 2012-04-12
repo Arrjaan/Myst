@@ -206,16 +206,35 @@ elseif (check_login($_SESSION['hash'], $_SESSION['id'], $db)) {
 		// Berichten scherm
 	if($a_page == "berichten") {
 		
-		if(!isset($_GET['verborgen'])) {
+		if(!isset($_GET['nummer'])) {
 		
 			print("<br /><br />");
 			$verborgen = "1";
 			zien_berichten($verborgen, $db);
 			print("<br /><br />");
-			
+
+		$code = "500";
 		}
-		
-	$code = "500";
+		elseif(isset($_GET['nummer'])) {
+			
+			$var = verborgen_bericht($_GET['nummer'], $db);
+			if($var) {
+				print("Bewerking geslaagd.<br />");
+				
+			$code = "62" . $_GET['nummer'];
+			}
+			else {
+				print("Bewerking is mislukt.<br />");
+				
+			$code = "511";
+			}
+			
+			print("<br /><br />");
+			$verborgen = "1";
+			zien_berichten($verborgen, $db);
+			print("<br /><br />");	
+		}	
+			
 	}
 	
 	//bericht verwijderen
