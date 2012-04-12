@@ -59,7 +59,12 @@ html, body {height: 100%;}
 	margin-top: 15px;
 }
 #nieuws {
-		background-color: grey;		
+		background-color: 		grey;
+		float:					right;
+		width:					17%;
+		padding: 				5px;
+		margin-top:				5px;
+		margin-right:			5px;
 		}
 
 #content { 
@@ -68,7 +73,7 @@ html, body {height: 100%;}
 	margin-right: 50px;
 	margin-bottom: 0px;
 	position: relative;
-	width: 77%;
+	width: 75%;
 	overflow:auto;
 	padding-bottom: 150px;
 }
