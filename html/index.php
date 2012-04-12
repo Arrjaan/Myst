@@ -143,7 +143,7 @@
 	</head>
 
 	<body>
-	<?php //if ( check_login($_SESSION['hash'],$_SESSION['id'],$db) ) echo '<script>$(document).ready(function() {autoLogin();});</script>'; ?>
+	<?php if ( check_login($_SESSION['hash'],$_SESSION['id'],$db) ) echo '<script>$(document).ready(function() {autoLogin();});</script>'; ?>
 	<div id="wrap">
 		<div id="head">Titel</div>
 			

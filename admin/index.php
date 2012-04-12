@@ -55,6 +55,8 @@ if ($_SESSION['hash'] == "1") {
 				$_SESSION['id'] = $login[0];
 				$_SESSION['hash'] = $login[1];
 				
+				print("U bent nu ingelogd.<br /><br />");
+				
 				$code = "100";
 				save_log($_SESSION['id'], $code, $db);
 				
@@ -66,7 +68,7 @@ if ($_SESSION['hash'] == "1") {
 		else {
 			//er is een fout opgetreden\\
 		}
-	exit;
+	die;
 	}
 	else {
 		// terug sturen als er niet wordt ingelogd en niet ingelogd is.\\

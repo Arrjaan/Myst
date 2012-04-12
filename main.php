@@ -86,6 +86,7 @@ function getRealIpAddr() {
     return $ip;
 }
 
+
 // bb-codes \\
 function bb_codes($bericht) {
 
