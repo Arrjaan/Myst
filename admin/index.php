@@ -80,7 +80,9 @@ elseif (check_login($_SESSION['hash'], $_SESSION['id'], $db)) {
 	// Begin scherm
 	if($a_page == "home") {
 		print("Welkom in het beheerderspaneel.<br /><br />Als dit uw eerste keer is verwijzen we u graag door naar onze <a href='https://github.com/Arrjaan/Myst/wiki'>wiki</a><br /><br />");
-	
+		print("<a href='../?p=index'>Ga terug naar de website</a><br />");
+		print("<a href='../?p=layout'>Ga terug naar Layout aanpassen</a><br />");
+		print("<a href='../?p=editMode'>Ga terug naar Website aanpassen</a><br />");
 	$code = "200";
 	}
 	

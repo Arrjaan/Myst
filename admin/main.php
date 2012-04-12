@@ -447,7 +447,7 @@ print('
 		print('<li><a href="berichten">Berichten</a></li>');
 	}
 	//beheerders
-	if($a_page == "beheerders" OR $a_page == "nieuwe_beheerder") {
+	if($a_page == "beheerders" OR $a_page == "nieuwe_beheerder" OR $a_page == "verwijder_beheerder") {
 		print('<li><a href="beheerders" class="active">Beheerders</a></li>');
 	}
 	else {
@@ -523,12 +523,13 @@ print('
 			print('</a></h2>'); 
 	}		
 	//beheerders
-	elseif($a_page == "beheerders" OR $a_page == "nieuwe_beheerder") {
+	elseif($a_page == "beheerders" OR $a_page == "nieuwe_beheerder" OR $a_page == "verwijder_beheerder") {
 	print('        		
 		<div id="sidebar">
 			<ul class="sideNav">
 				<li><a href="beheerders"'); if($a_page == "beheerders") { print('class="active"'); } else { ; } print('>Beheerders</a></li>
 				<li><a href="nieuwe_beheerder"'); if($a_page == "nieuwe_beheerder") { print('class="active"'); } else { ; } print('>Beheerder toevoegen</a></li>
+				<li><a href="nieuwe_beheerder"'); if($a_page == "verwijder_beheerder") { print('class="active"'); } else { ; } print('>Beheerder verwijderen</a></li>
 			</ul>
 			<!-- // .sideNav -->
 		</div>    
@@ -539,6 +540,7 @@ print('
 		else { 
 			print('>Beheerders</a> &raquo; <a href="' . $a_page . '" class="active">'); 
 			if($a_page == "nieuwe_beheerder") { print('Beheerder toevoegen'); } 
+			if($a_page == "verwijder_beheerder") { print('Beheerder verwijderen'); } 
 		} 
 			print('</a></h2>'); 
 	}			

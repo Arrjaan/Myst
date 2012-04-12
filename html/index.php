@@ -187,7 +187,7 @@
 	</div>
 		
 		<div id="onderkant">
-		Deze site is gemaakt met Myst
+		Deze site is gemaakt met <a href="https://github.com/Arrjaan/Myst">Myst</a>.
 		</div>
 		
 		<div class="dialog" id="prompt">
