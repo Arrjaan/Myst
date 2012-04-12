@@ -14,9 +14,6 @@ function db($db) {
 
 $db = db($db);
 
-function save_log($sort,$a_page) {
-	print("empty");
-}
 
 function error($errormsg, $errno = 0) {
 	echo $errormsg;
@@ -52,12 +49,12 @@ return $return;
 // Logboek \\
 function save_log($uid, $code, $db) {
 
-	$ip = getRealIpAddr();
-	$date = tijd();
+	//$ip = getRealIpAddr();
+	//$date = tijd();
 
-	$query = $db->query("INSERT INTO `log`(`uid`, `ip`, `date`, `code`) VALUES('$uid', '$ip', '$date', '$code')");
+	//$query = $db->query("INSERT INTO `log`(`uid`, `ip`, `date`, `code`) VALUES('$uid', '$ip', '$date', '$code')");
 	
-	print(mysql_error());
+	//print(mysql_error());
 }
 
 // berichten zien
