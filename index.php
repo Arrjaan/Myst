@@ -3,7 +3,7 @@
 require('config.inc.php');
 require('main.php');
 
-@$page = urldecode($_GET['p']);
+@$page = $_GET['p'];
 if ( empty($page) ) $page = 'index';
 
 $q = $db->query("select * from `webpages` where `short` = '".$page."'");

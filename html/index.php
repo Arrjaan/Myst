@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 	<head>
-		<title>Myst</title>
+		<title><?php echo $config['title']; ?></title>
 		<link href="html/all_browsers.css" rel="stylesheet" type="text/css" />
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 		
@@ -145,7 +145,7 @@
 	<body>
 	<?php if ( check_login($_SESSION['hash'],$_SESSION['id'],$db) ) echo '<script>$(document).ready(function() {autoLogin();});</script>'; ?>
 	<div id="wrap">
-		<div id="head">Titel</div>
+		<div id="head"><?php echo $config['title']; ?></div>
 			
 		<ul id="menu">
 			<li><a href="?p=index">Home</a></li>

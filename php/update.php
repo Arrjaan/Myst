@@ -9,7 +9,7 @@ header("Expires: Sat, 26 Jul 1997 05:00:00 GMT"); // Date in the past
 require('../config.inc.php');
 require('../main.php');
 
-if ( check_login($_SESSION['hash'],$_SESSION['id'],$db) ) die("Log opnieuw in.");
+if ( !check_login($_SESSION['hash'],$_SESSION['id'],$db) ) die("Log opnieuw in.");
 
 if ( $_SERVER['REQUEST_METHOD'] == "GET" ) {
 	if ( !empty($_GET['id']) ) {

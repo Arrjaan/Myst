@@ -1,5 +1,6 @@
 <?php
 
+$config['title'] = 'Titel';
 
 $config['processor'] = '';
 $config['home'] = 'index';
