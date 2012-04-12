@@ -58,6 +58,9 @@ html, body {height: 100%;}
 	height: 258px;
 	margin-top: 15px;
 }
+#nieuws {
+		background-color: grey;		
+		}
 
 #content { 
 	margin-top: 50px;

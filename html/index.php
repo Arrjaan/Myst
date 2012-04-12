@@ -172,7 +172,12 @@
 			//Content printen.
 				if ( @$_SESSION['editmode'] == 'doEdit' ) echo $adminContent;
 				else echo $content;
-			?>								
+			?>	
+				<div id="nieuws">
+					<?php
+						zien_berichten($db);
+					?>
+				</div>
 		</div>
 	</div>
 		
