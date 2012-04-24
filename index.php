@@ -4,6 +4,10 @@ require('config.inc.php');
 require('main.php');
 
 @$page = $_GET['p'];
+if ( empty($page) ) {
+	$page = explode("/",$_SERVER['PATH_INFO']);
+	$page = $page[1];
+}
 if ( empty($page) ) $page = 'index';
 
 $q = $db->query("select * from `webpages` where `short` = '".$page."'");

@@ -1,16 +1,16 @@
 <?php
 
-$config['title'] = 'Titel';
+$config['title'] = 'Myst';
 
 $config['processor'] = '';
 $config['home'] = 'index';
 $config['rootdir'] = '/';
 
 // database gegevens \\
-$db['server'] = 'sql09.freemysql.net';
-$db['user'] = 'projectmyst';
-$db['passw'] = 'GitMyst';
-$db['db'] = 'projectmyst';
+$db['server'] = 'localhost';
+$db['user'] = '144348';
+$db['passw'] = 'GitMyst2012';
+$db['db'] = '144348';
 $db['port'] = 3306;
 
 // sessies starten \\
