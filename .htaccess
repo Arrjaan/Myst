@@ -6,6 +6,7 @@ RewriteRule ^admin/home index.php?a_page=home
 RewriteRule ^admin/berichten(.*) index.php?a_page=berichten$1
 RewriteRule ^admin/beheerders index.php?a_page=beheerders
 RewriteRule ^admin/verwijder_beheerder(.*) index.php?a_page=verwijder_beheerder$1
+RewriteRule ^admin/ander_wachtwoord(.*) index.php?a_page=ander_wachtwoord$1
 RewriteRule ^admin/nieuwe_beheerder index.php?a_page=nieuwe_beheerder
 RewriteRule ^admin/log index.php?a_page=log
 RewriteRule ^admin/leeg_log(.*) index.php?a_page=leeg_log$1
