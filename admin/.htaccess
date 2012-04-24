@@ -1,6 +1,7 @@
 Options +FollowSymlinks
-RewriteEngine on
+#RewriteEngine on
 
+RewriteRule ^(.*) index.php$1
 RewriteRule ^contact index.php?page=contact
 RewriteRule ^home index.php?a_page=home
 RewriteRule ^berichten(.*) index.php?a_page=berichten$1
