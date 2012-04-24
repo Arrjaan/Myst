@@ -99,6 +99,7 @@ elseif (check_login($_SESSION['hash'], $_SESSION['id'], $db)) {
 		
 	$code = "300";
 	}
+	
 	if($a_page == "leeg_log") {
 		if($_SESSION['id'] == 1) {
 			print("<br /><a href='leeg_log&legen=ja'>Leeg het logboek</a><br /><br /><a href='log'>Terug</a><br /><br />");
@@ -148,6 +149,40 @@ elseif (check_login($_SESSION['hash'], $_SESSION['id'], $db)) {
 		}	
 		
 	$code = "400";
+	}
+	
+	if($a_page == "ander_wachtwoord") {
+		if($_SESSION['id'] == 1) {
+			print("<br /><form name='ww' action='ander_wachtwoord&sub=sub' method='post'><input type='text' name='password' value='wachtwoord'><br /><br /><input type='submit' name='veranderen' value='veranderen'/><br />");
+			if(isset($_GET['legen'])){
+				if($_GET['sub'] == "sub") {
+					if($_POST['password'] != "") {
+					
+						$query = $db->query("UPDATE `users` SET(`password`=`" . md5($_POST['password']) . "` WHERE `id`=`" . $_SESSION['id'] . "`");
+						if($query) {
+							print("Het wachtwoord is veranderd.<br />");
+						}
+						else {
+							print("Er is een fout opgetreden, het logboek is niet geleegd.<br />");
+						}
+					}
+					else {
+						print("Er is een fout opgetreden, het logboek is niet geleegd.<br />");
+					}		
+					
+				$code = "901";
+				}
+			}
+			else {
+			
+			$code = "900";
+			}
+		}
+		else {
+			print("U bent niet gerechtigd om deze actie uit te voeren.<br /><br />");
+			
+		$code = "902";
+		}
 	}
 	
 	if($a_page == "nieuwe_beheerder") {
