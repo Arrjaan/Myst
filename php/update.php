@@ -24,6 +24,7 @@ if ( $_SERVER['REQUEST_METHOD'] == "GET" ) {
 	if ( $_GET['event'] == "del" ) {
 		$db->query("delete from webpages where `pageid` = '".$_GET['id']."'");
 		echo "DELETED";
+		save_log($_SESSION['id'], "72".$_GET['id'], $db);
 	}
 	if ( $_GET['event'] == "title" ) 
 		echo '<form method="post" id="admin" onsubmit="return false">
@@ -44,16 +45,19 @@ else {
 		$db->query("insert into webpages values ('0', '".$short."', '".substr(strip_tags($_POST['value']),0,32)."', 'Nieuwe pagina.')");
 		echo "?p=".stripslashes(substr($short,0,30));
 		echo $db->error;
+		save_log($_SESSION['id'], "71".$db->inserted_id, $db);
 	}
 	if ( $_POST['event'] == "title" ) {
 		$db->query("update webpages set pagename = '".strip_tags($_POST['value'])."' where pageid = '".$_POST['id']."'");
 		echo '<h1><a href="javascript:edit(\''.$_POST['event'].'\',\''.$_POST['id'].'\')">'.strip_tags($_POST['value']).'</a></h1>';
 		echo $db->error;
+		save_log($_SESSION['id'], "80".$_POST['id'], $db);
 	}
 	if ( $_POST['event'] == "content" ) {
 		$db->query("update webpages set content = '".$_POST['value']."' where pageid = '".$_POST['id']."'");
 		echo nl2br($_POST['value']);
 		echo $db->error;
+		save_log($_SESSION['id'], "70".$_POST['id'], $db);
 	}
 }
 
