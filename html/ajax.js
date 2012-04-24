@@ -105,7 +105,7 @@ $(document).ready(function() {
 			color: '#ebecff',
 			loadSpeed: 200,
 			opacity: 0.9
-		},
+		}
 	});
 	$("#prompt form").submit(function(e) {
 		doLogin();

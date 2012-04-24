@@ -177,7 +177,10 @@ ul#menu li a.current
 }
 
 .dialog .close {
-    background-image:url(img/close.png);
+    background:none;
+	border-width: 0px;
+	font-size: 0px;
+	background-image:url(img/close.png);
     position:absolute;
     right:-15px;
     top:-15px;
