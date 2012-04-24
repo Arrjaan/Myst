@@ -1,6 +1,11 @@
+Options +FollowSymlinks
 RewriteEngine on
 
-RewriteCond $1 !^(index\.php|admin|html|php|robots\.txt)
-RewriteRule ^(.*)$ /index.php/$1 [L]
+RewriteRule ^(.*) index.php?p=$1
 
 ErrorDocument 404 /notfound
+
+<Files .htaccess>
+	order deny,allow
+	deny from all
+</Files> 
