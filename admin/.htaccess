@@ -1,5 +1,5 @@
 Options +FollowSymlinks
-#RewriteEngine on
+RewriteEngine on
 
 RewriteRule ^(.*) index.php$1
 RewriteRule ^contact index.php?page=contact
