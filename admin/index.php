@@ -33,7 +33,6 @@ if($a_page == "admin_off") {
 	
 }
 
-
 // niet ingelogd \\
 if ($_SESSION['hash'] == "1") {
 	
@@ -154,16 +153,15 @@ elseif (check_login($_SESSION['hash'], $_SESSION['id'], $db)) {
 	if($a_page == "ander_wachtwoord") {
 		if($_SESSION['id'] == 1) {
 			print("<br /><form name='ww' action='ander_wachtwoord&sub=sub' method='post'><input type='text' name='password' value='wachtwoord'><br /><br /><input type='submit' name='veranderen' value='veranderen'/><br />");
-			if(isset($_GET['legen'])){
 				if($_GET['sub'] == "sub") {
 					if($_POST['password'] != "") {
 					
-						$query = $db->query("UPDATE `users` SET(`password`=`" . md5($_POST['password']) . "` WHERE `id`=`" . $_SESSION['id'] . "`");
+						$query = $db->query("UPDATE `users` SET `password`='" . md5($_POST['password']) . "' WHERE `id`=" . $_SESSION['id'] . "") or die (mysqli_error($db));
 						if($query) {
 							print("Het wachtwoord is veranderd.<br />");
 						}
 						else {
-							print("Er is een fout opgetreden, het logboek is niet geleegd.<br />");
+							print("Er is een fout opgetreden, het wachtwoord is niet veranderd.<br />");
 						}
 					}
 					else {
@@ -172,7 +170,6 @@ elseif (check_login($_SESSION['hash'], $_SESSION['id'], $db)) {
 					
 				$code = "901";
 				}
-			}
 			else {
 			
 			$code = "900";
